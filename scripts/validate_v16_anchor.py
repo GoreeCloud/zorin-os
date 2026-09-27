@@ -168,8 +168,12 @@ def main() -> int:
             if "Glaze UI 1.2.0" in generated_metadata:
                 fail(f"{index_file.parent.name}: generated metadata contains stale V1.2 labeling")
 
-        if len(list(wallpaper_output.glob("*.svg"))) < 20:
-            fail("V1.6 Anchor build did not render the complete wallpaper catalog")
+        wallpaper_files = list(wallpaper_output.glob("*.svg"))
+        if len(wallpaper_files) != 30:
+            fail(
+                "V1.6 Anchor build must render exactly 30 Glaze Originals wallpapers; "
+                f"found {len(wallpaper_files)}"
+            )
 
     print("GLAZE UI V1.6 Anchor desktop contract validation passed")
     return 0
