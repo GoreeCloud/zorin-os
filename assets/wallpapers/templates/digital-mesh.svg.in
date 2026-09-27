@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160" role="img" aria-labelledby="title desc">
+  <title id="title">{{category}} — {{family}} {{mode_label}}</title>
+  <desc id="desc">Glaze UI digital wallpaper with a restrained node mesh, quiet data geometry, and a low-noise central field.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="{{canvas}}"/><stop offset=".52" stop-color="{{deep}}"/><stop offset="1" stop-color="{{surface}}"/></linearGradient>
+    <radialGradient id="glow" cx=".76" cy=".48" r=".48"><stop stop-color="{{clear_sky_blue}}" stop-opacity=".18"/><stop offset="1" stop-color="{{clear_sky_blue}}" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="3840" height="2160" fill="url(#bg)"/><rect width="3840" height="2160" fill="url(#glow)"/>
+  <g fill="none" stroke="{{glacier_blue}}" stroke-opacity=".13" stroke-width="4">
+    <path d="M2140 610L2520 420L2910 690L3330 480L3620 760L3330 1100L3650 1390L3200 1640L2820 1380L2420 1600L2140 1260L2460 970Z"/>
+    <path d="M2520 420L2460 970L2910 690L3330 1100L2820 1380L2460 970L2140 1260M2910 690L3200 1640M3330 480L3330 1100"/>
+  </g>
+  <g fill="{{crystal_white}}" opacity=".34"><circle cx="2520" cy="420" r="14"/><circle cx="2910" cy="690" r="16"/><circle cx="3330" cy="1100" r="13"/><circle cx="2820" cy="1380" r="15"/><circle cx="2460" cy="970" r="12"/></g>
+</svg>
