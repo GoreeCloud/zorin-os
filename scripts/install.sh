@@ -35,8 +35,8 @@ Usage:
 The install activates the light-first GoreeCloud desktop experience using the
 GLAZE UI V1.6 Official Anchor desktop palette: Applications theme, Shell theme, GoreeCloud
 icons, GoreeCloud cursors, and the primary light wallpaper. The GNOME
-Settings gallery remains light-first rather than light-only: all 24 wallpapers
-are visible, ordered as 8 Light, 8 Dark, and 8 Deep Dark variants.
+Settings gallery remains light-first rather than light-only: all 30 Glaze
+Originals are visible, ordered as 10 Light, 10 Dark, and 10 Deep Dark variants.
 
 --replace-stock additionally moves the exact audited Zorin OS 17.3 stock
 wallpaper files/catalogs out of GNOME discovery paths with package-safe dpkg
@@ -253,7 +253,7 @@ echo "  Icons:          $ICON_THEME"
 echo "  Cursor asset:   $CURSOR_THEME"
 echo "  Cursor runtime: $CURSOR_RUNTIME_THEME"
 echo "  Wallpaper:      primary GoreeCloud light wallpaper"
-echo "  Gallery:        24 visible (8 Light / 8 Dark / 8 Deep Dark), Light first"
+echo "  Gallery:        30 visible (10 Light / 10 Dark / 10 Deep Dark), Light first"
 echo "  Live refresh:   GTK, icons, cursor, and Shell settings were re-emitted; cursor revisions use a cache-busting runtime identity"
 echo
 echo "Theme directory:"
