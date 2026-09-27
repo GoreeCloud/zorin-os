@@ -52,31 +52,44 @@ Care does not currently accept Wardveil runtime-authorization envelopes for `apt
 
 ## Exact-source automated prequalification
 
-At exact Care source revision `96c731a35912edee113ad04eb8fd2c96b306bdf6`, GoreeCloud Care Development run `34139295536` passed the following Wardveil-relevant automated evidence on Ubuntu 24.04 CI:
+Current exact Care candidate:
 
-- 106 source/unit tests, including passing and non-passing privilege-boundary states, exact scope/authority semantics, freshness, sensitive-field minimization and the explicit no-protection-claim invariant;
-- installed `0.1.0~dev22` validation against real package paths and root-owned installed files;
-- repeated installed status validation before and after a complete remove/reinstall/downgrade/restore lifecycle;
-- working-directory Python shadow-resistance checks for both the normal application and privileged helper launchers;
-- private-bytecode cleanup checks;
-- current installed Wardveil-compatible evidence reported as passing, current, minimized and scoped while keeping `protected_by_wardveil=false`;
-- immutable rollback construction from accepted dev17 source `0fda6f90a545eaf3d1bed525aae98c6529ebbf7b`;
-- full candidate install, remove, fresh reinstall, downgrade to dev17, restore to dev22, and final candidate-state validation without invoking a Care cleanup action.
+- source revision: `188a60c5277f5b2d9a9b6499ba500b5340dd8eb6`;
+- runtime: `0.2.0-dev3`;
+- Debian package: `0.2.0~dev3`;
+- package SHA-256: `5a4aab81c4869a068f075371d1e6e94bcef25fcdca217ac3fdd429860f81451a`;
+- Care qualification: run `36356321253` — success;
+- theme-source validation: run `36356321241` — success;
+- Platform Contract validation: run `36356321526` — success;
+- primary qualification artifact: `10944555293`.
 
-The same exact head passed Care Platform Contract run `34139295983` and theme-source run `34139295510`. CI package SHA-256 was `eaa09e1339e6f069590819db26ab6e60e89ff14a380e668b95c90598bbce7395`; preserved artifact ID `10025251334` contains the dev22 package plus the immutable dev17 rollback package and provenance files.
+The exact-head qualification passed source/unit/contract validation, headless GTK task-flow and accessibility checks, package construction and inspection, same-source and Ubuntu 22.04/24.04 cross-environment reproducibility, immutable Stable `0.1.0` rollback reconstruction, installed package lifecycle, launcher-isolation checks, PolicyKit success/cancellation/failure outcome mapping, and installed Wardveil-compatible privilege-boundary prequalification.
 
-This is **source/install/lifecycle prequalification**, not target-device Wardveil production acceptance. Ubuntu CI does not replace the representative Zorin OS acceptance requirement, central Wardveil governance, or final product-lifecycle promotion.
+The installed package keeps the privileged boundary narrow:
+
+- `/usr/lib/goreecloud-care/goreecloud-care-helper` and the PolicyKit policy are fixed package-owned paths;
+- the PolicyKit rule denies inactive/any-user authorization and requires administrator authentication for active use;
+- the helper accepts only `apt-clean` and `reclaim-memory`;
+- `apt-clean` invokes fixed argv `/usr/bin/apt-get clean`;
+- file-cache reclaim writes only the fixed value `3` to `/proc/sys/vm/drop_caches`;
+- installed application/helper launchers use `/usr/bin/python3 -I -B -m ...`;
+- package lifecycle validation repeats isolated-launcher and bounded security-status checks across install, remove, reinstall, Stable downgrade, and restore; and
+- Care continues to emit `claim.protected_by_wardveil=false`.
+
+This evidence is source/install/lifecycle prequalification, not representative-target Wardveil acceptance. It does not grant production protection, cross-service execution authority, release status, or lifecycle promotion.
+
+Wardveil review issue `GoreeCloud/wardveil#177` records the current decision as **CHANGES REQUIRED**. The remaining Wardveil-specific evidence gap is exact-candidate representative Zorin OS 17.3 native/PolicyKit acceptance for this exact source/package identity. Historical Stable/dev1/dev2 target evidence does not transfer.
 
 ## Acceptance boundary
 
 Care-side source evidence now covers the Wardveil adoption requirements that can be automated locally: integration documentation, protected/non-passing status behavior, missing/writable fail-closed behavior, freshness, explicit text semantics, sensitive-field minimization, launcher isolation, private-bytecode cleanup, and exact-source CI evidence.
 
-Still required before any production-conformant Wardveil claim:
+Still required before any Wardveil protection claim or production-conformant Wardveil status:
 
-- central Wardveil consumer-source evidence registration and validation;
-- exact-candidate representative Zorin OS installed-boundary acceptance at the applicable release lifecycle stage;
+- exact-candidate representative Zorin OS 17.3 installed-boundary and native PolicyKit acceptance for source `188a60c5277f5b2d9a9b6499ba500b5340dd8eb6` / package SHA-256 `5a4aab81c4869a068f075371d1e6e94bcef25fcdca217ac3fdd429860f81451a`;
 - any remaining security-relevant desktop PolicyKit-agent acceptance required by release policy;
 - exact-candidate Privacy Shield acceptance where it affects the shared security-evidence boundary;
-- governed Wardveil adoption/promotion explicitly permitting the claim.
+- governed Wardveil adoption/promotion explicitly permitting the narrowly scoped claim; and
+- fresh review if the source, package bytes, helper/policy behavior, or relevant evidence changes.
 
 Until those steps complete, `goreecloud.platform.yaml` must remain fail-closed and `claim.protected_by_wardveil` must remain `false`.
