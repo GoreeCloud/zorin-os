@@ -18,7 +18,7 @@ class DevelopmentArtifactIdentityTests(unittest.TestCase):
         self.assertIn("version: 0.2.0-dev3", manifest)
         self.assertIn("status: nonconformant", manifest)
         self.assertIn('platform_contract: "0.2"', manifest)
-        self.assertIn('glaze_ui_required: "1.4.1"', manifest)
+        self.assertIn('glaze_ui_required: "1.5.0"', manifest)
         self.assertNotIn("\nlifecycle: stable\n", manifest)
 
     def test_platform_manifest_has_exactly_seven_integral_systems_and_sync_is_separate(self) -> None:
@@ -108,7 +108,7 @@ class DevelopmentArtifactIdentityTests(unittest.TestCase):
             self.assertIn(f"  {system}:\n    result: applicable-nonconformant", manifest)
         self.assertIn("  glaze_ui:\n    result: applicable-migration-required", manifest)
         self.assertIn("Stable promotion requires a later explicit exact-candidate decision", manifest)
-        self.assertIn("cannot be inferred from historical 0.1.0, dev1, dev2, or prior 1.4.0 evidence", manifest)
+        self.assertIn("cannot be inferred from historical 0.1.0, dev1, dev2, V1.4.0, or V1.4.1 evidence", manifest)
 
     def test_local_status_producers_still_do_not_self_assign_external_governance(self) -> None:
         platform_status = (ROOT / "goreecloud_care" / "platform_status.py").read_text(encoding="utf-8")
