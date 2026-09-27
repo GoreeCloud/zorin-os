@@ -12,6 +12,16 @@
 @define-color accent_color {{ACCENT}};
 @define-color accent_bg_color {{ACCENT}};
 @define-color accent_fg_color {{ON_ACCENT}};
+@define-color focus_color {{FOCUS}};
+@define-color success_color {{SUCCESS}};
+@define-color success_bg_color {{SUCCESS}};
+@define-color success_fg_color {{ON_SUCCESS}};
+@define-color warning_color {{WARNING}};
+@define-color warning_bg_color {{WARNING}};
+@define-color warning_fg_color {{ON_WARNING}};
+@define-color error_color {{DESTRUCTIVE}};
+@define-color error_bg_color {{DESTRUCTIVE}};
+@define-color error_fg_color #FFFFFF;
 @define-color destructive_color {{DESTRUCTIVE}};
 @define-color destructive_bg_color {{DESTRUCTIVE}};
 @define-color destructive_fg_color #FFFFFF;
@@ -91,11 +101,21 @@ headerbar:backdrop {
 }
 
 button {
+  min-height: 32px;
+  min-width: 32px;
   border-radius: 16px;
 }
 
 button:hover {
   border-color: {{ACCENT_SOFT}};
+}
+
+button:focus {
+  border-color: @focus_color;
+  outline-color: @focus_color;
+  outline-style: solid;
+  outline-width: 2px;
+  outline-offset: 2px;
 }
 
 button.suggested-action,
@@ -114,13 +134,18 @@ button.destructive-action {
 entry,
 searchentry,
 spinbutton {
+  min-height: 32px;
   border-radius: 16px;
 }
 
 entry:focus-within,
 searchentry:focus-within,
 spinbutton:focus-within {
-  outline-color: @accent_color;
+  border-color: @focus_color;
+  outline-color: @focus_color;
+  outline-style: solid;
+  outline-width: 2px;
+  outline-offset: 2px;
 }
 
 popover > contents,
