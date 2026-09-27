@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160" role="img" aria-labelledby="title desc">
+  <title id="title">{{category}} — {{family}} {{mode_label}}</title>
+  <desc id="desc">Glaze UI atmospheric wallpaper built from soft optical halos and restrained concentric frost rings.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop stop-color="{{surface}}"/><stop offset=".56" stop-color="{{canvas}}"/><stop offset="1" stop-color="{{deep}}"/></linearGradient>
+    <radialGradient id="a" cx=".72" cy=".46" r=".48"><stop stop-color="{{clear_sky_blue}}" stop-opacity=".22"/><stop offset=".5" stop-color="{{glacier_blue}}" stop-opacity=".08"/><stop offset="1" stop-color="{{clear_sky_blue}}" stop-opacity="0"/></radialGradient>
+    <radialGradient id="b" cx=".78" cy=".5" r=".28"><stop stop-color="{{crystal_white}}" stop-opacity=".18"/><stop offset="1" stop-color="{{crystal_white}}" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="3840" height="2160" fill="url(#bg)"/><rect width="3840" height="2160" fill="url(#a)"/><rect width="3840" height="2160" fill="url(#b)"/>
+  <g fill="none" stroke="{{ice_blue}}" stroke-opacity=".16">
+    <circle cx="2920" cy="1030" r="340" stroke-width="4"/><circle cx="2920" cy="1030" r="540" stroke-width="3"/><circle cx="2920" cy="1030" r="760" stroke-width="2"/>
+  </g>
+  <path d="M360 1720C1120 1530 1620 1570 2230 1700" fill="none" stroke="{{cloud_gray}}" stroke-opacity=".18" stroke-width="28" stroke-linecap="round"/>
+</svg>
