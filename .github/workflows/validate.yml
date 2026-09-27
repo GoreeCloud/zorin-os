@@ -40,8 +40,8 @@ jobs:
       - name: Validate desktop icon and cursor assets
         run: python3 ./scripts/validate_desktop_assets.py
 
-      - name: Validate Glaze UI V1.2 preview contract
-        run: python3 ./scripts/validate_v12_preview.py
+      - name: Validate GLAZE UI V1.6 Anchor desktop contract
+        run: python3 ./scripts/validate_v16_anchor.py
 
       - name: Validate stock wallpaper replacement source
         run: python3 ./scripts/validate_system_wallpapers.py
