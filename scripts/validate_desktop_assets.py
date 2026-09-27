@@ -217,6 +217,37 @@ def main() -> int:
     if behavior.get("unresolved_icons_inherit") is not True:
         fail("third-party app icons must continue to inherit when not overridden")
 
+    presentation = icons.get("launcher_presentation", {})
+    if presentation.get("enabled") is not True:
+        fail("safe launcher tile presentation must remain enabled")
+    if presentation.get("mode") != "shell-app-tile":
+        fail("launcher presentation must remain on the Shell app-tile layer")
+    if presentation.get("preserves_original_icon_artwork") is not True:
+        fail("launcher presentation must preserve original application artwork")
+    if presentation.get("target_selectors") != [".overview-tile", ".grid-search-result"]:
+        fail("launcher presentation selectors changed unexpectedly")
+    if int(presentation.get("padding_px", 0)) != 8:
+        fail("launcher tile padding must remain 8px")
+    if int(presentation.get("spacing_px", 0)) != 6:
+        fail("launcher tile spacing must remain 6px")
+    if int(presentation.get("radius_px", 0)) != 16:
+        fail("launcher tile radius must remain 16px")
+    if int(presentation.get("focus_ring_px", 0)) < 2:
+        fail("launcher tile focus ring must remain at least 2px")
+
+    shell_template = (ROOT / "src" / "gnome-shell" / "gnome-shell.css.in").read_text(
+        encoding="utf-8"
+    )
+    required_shell_fragments = (
+        ".overview-tile,\n.grid-search-result {",
+        "background-color: {{SHELL_ELEVATED}};",
+        "border: 1px solid {{SHELL_BORDER}};",
+        "box-shadow: inset 0 0 0 2px {{FOCUS}}, inset 0 1px 0 {{EDGE_LIGHT}};",
+    )
+    for fragment in required_shell_fragments:
+        if fragment not in shell_template:
+            fail(f"launcher presentation CSS is missing required fragment: {fragment}")
+
     design_revision = int(cursors.get("design_revision", 0))
     expected_runtime_id = f"{cursors['id']}-r{design_revision}"
     if cursors.get("runtime_id") != expected_runtime_id:
@@ -275,10 +306,10 @@ def main() -> int:
                 fail(f"generated icon theme does not inherit {inherit}")
         for size in normalization["optical_sizes"]:
             rel = f"{size}x{size}/apps"
-            if rel not in icon_index:
-                fail(f"generated icon theme does not advertise {rel}")
-            if not (icon_root / rel).is_dir():
-                fail(f"generated icon theme is missing optical directory {rel}")
+            if rel in icon_index or (icon_root / rel).exists():
+                fail(
+                    f"disabled runtime wrappers must not leave an advertised optical directory: {rel}"
+                )
 
         svgs = sorted(icon_root.rglob("*.svg"))
         if len(svgs) < int(icons["minimum_generated_icons"]):
