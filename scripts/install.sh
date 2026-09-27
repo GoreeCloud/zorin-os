@@ -6,7 +6,7 @@ DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 THEME_DEST="$DATA_HOME/themes"
 ICON_DEST="$DATA_HOME/icons"
 LEGACY_ICON_DEST="$HOME/.icons"
-PALETTE_CONFIG="$ROOT/config/palettes-v1.2.json"
+PALETTE_CONFIG="$ROOT/config/palettes.json"
 DESKTOP_ASSET_CONFIG="$ROOT/config/desktop-assets.json"
 STAMP="$(date +%Y%m%d-%H%M%S)"
 THEME_RECOVERY_ROOT="$THEME_DEST/.goreecloud-zorin-recovery/$STAMP"
@@ -33,7 +33,7 @@ Usage:
   ./scripts/install.sh --replace-stock
 
 The install activates the light-first GoreeCloud desktop experience using the
-Glaze UI V1.2 Development palette: Applications theme, Shell theme, GoreeCloud
+GLAZE UI V1.6 Official Anchor desktop palette: Applications theme, Shell theme, GoreeCloud
 icons, GoreeCloud cursors, and the primary light wallpaper. The background
 gallery contains all 24 Light, Dark, and Deep Dark GoreeCloud wallpapers, with
 Light variants listed first.
@@ -70,13 +70,13 @@ python3 "$ROOT/scripts/build.py" \
 python3 "$ROOT/scripts/build_icons.py" --output "$TEMP_ROOT/icons"
 python3 "$ROOT/scripts/build_cursors.py" --output "$TEMP_ROOT/cursors"
 python3 "$ROOT/scripts/validate_desktop_assets.py" >/dev/null
-python3 "$ROOT/scripts/validate_v12_preview.py" >/dev/null
+python3 "$ROOT/scripts/validate_v16_anchor.py" >/dev/null
 python3 "$ROOT/scripts/validate_light_catalog.py" >/dev/null
 
 # Zorin OS 17.3's GTK 3, GTK 4, and Shell themes contain extensive
 # platform-specific selectors and assets. Compose the generated GoreeCloud
 # semantic overrides on top of the exact verified local Zorin 17.3 base before
-# touching an existing installed GoreeCloud theme. Use the same V1.2 palette
+# touching an existing installed GoreeCloud theme. Use the same V1.6 palette
 # contract so native selected/checked states cannot fall back to V1.1 teal.
 python3 "$ROOT/scripts/compose_zorin_base.py" \
   "$TEMP_ROOT/themes" \
@@ -246,7 +246,7 @@ fi
 
 echo
 echo "Installed and activated GoreeCloud desktop assets:"
-echo "  Design:         Glaze UI V1.2 Development"
+echo "  Design:         GLAZE UI V1.6 / 1.6.0 Official Anchor (downstream Development)"
 echo "  Applications:   $LIGHT_THEME"
 echo "  Shell:          $LIGHT_THEME"
 echo "  Icons:          $ICON_THEME"
