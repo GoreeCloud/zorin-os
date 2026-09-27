@@ -220,18 +220,18 @@ def main() -> int:
     presentation = icons.get("launcher_presentation", {})
     if presentation.get("enabled") is not True:
         fail("safe launcher tile presentation must remain enabled")
-    if presentation.get("mode") != "shell-app-tile":
-        fail("launcher presentation must remain on the Shell app-tile layer")
+    if presentation.get("mode") != "zorin-menu-grid-app-item":
+        fail("launcher presentation must remain on the Zorin Menu grid app-item layer")
     if presentation.get("preserves_original_icon_artwork") is not True:
         fail("launcher presentation must preserve original application artwork")
-    if presentation.get("target_selectors") != [".overview-tile", ".grid-search-result"]:
-        fail("launcher presentation selectors changed unexpectedly")
-    if int(presentation.get("padding_px", 0)) != 8:
-        fail("launcher tile padding must remain 8px")
+    if presentation.get("target_selectors") != [".apps-grid .app-item"]:
+        fail("launcher presentation must target the verified Zorin Menu app actors")
+    if int(presentation.get("padding_px", 0)) != 6:
+        fail("Zorin Menu app-item padding must remain 6px")
     if int(presentation.get("spacing_px", 0)) != 6:
         fail("launcher tile spacing must remain 6px")
-    if int(presentation.get("radius_px", 0)) != 16:
-        fail("launcher tile radius must remain 16px")
+    if int(presentation.get("radius_px", 0)) != 14:
+        fail("Zorin Menu app-item radius must remain 14px")
     if int(presentation.get("focus_ring_px", 0)) < 2:
         fail("launcher tile focus ring must remain at least 2px")
 
@@ -240,9 +240,15 @@ def main() -> int:
     )
     required_shell_fragments = (
         ".overview-tile,\n.grid-search-result {",
+        ".apps-grid .app-item {",
+        "padding: 6px;",
+        "border-radius: 14px;",
         "background-color: {{SHELL_ELEVATED}};",
         "border: 1px solid {{SHELL_BORDER}};",
         "box-shadow: inset 0 0 0 2px {{FOCUS}}, inset 0 1px 0 {{EDGE_LIGHT}};",
+        ".calendar-day-base.calendar-today,",
+        "background-gradient-start: {{ACCENT}};",
+        "background-gradient-end: {{ACCENT}};",
     )
     for fragment in required_shell_fragments:
         if fragment not in shell_template:
