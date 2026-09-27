@@ -110,11 +110,19 @@ It records normalized icon names, unresolved icons, skipped entries, and source 
 
 ## Install and refresh
 
-The normalizer is run automatically by:
+The normalizer is run automatically by the full desktop installer:
 
 ```bash
 ./scripts/install.sh
 ```
+
+For icon-only target testing or upgrades, use the recovery-backed icon installer:
+
+```bash
+bash ./scripts/install_icons.sh
+```
+
+That path replaces only `GoreeCloud-Zorin`, preserves the previous installed icon theme in timestamped recovery storage, rebuilds the cache, and re-emits the icon-theme setting. It does not change GTK/Shell themes, cursors, or wallpaper settings.
 
 After installing additional applications:
 
