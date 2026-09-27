@@ -6,7 +6,7 @@
   "icon_theme": {
     "id": "GoreeCloud-Zorin",
     "name": "GoreeCloud Zorin",
-    "comment": "Glaze-normalized GoreeCloud icon theme for Zorin OS",
+    "comment": "GoreeCloud icon theme for Zorin OS",
     "inherits": [
       "ZorinBlue",
       "Adwaita",
@@ -25,8 +25,8 @@
     },
     "minimum_generated_icons": 16,
     "normalization": {
-      "enabled": true,
-      "mode": "glaze-plate-preserve-third-party-identity",
+      "enabled": false,
+      "mode": "disabled-after-target-visual-failure",
       "source_authority": "GLAZE UI V1.6 inherited icon construction and identity contracts",
       "canvas": 1024,
       "presentation_inset": 64,
@@ -70,8 +70,10 @@
         "source_formats": [
           "svg",
           "png"
-        ]
-      }
+        ],
+        "runtime_icon_wrappers": false
+      },
+      "status": "Failed target visual acceptance on 2026-09-27; runtime wrappers must not be installed"
     }
   },
   "cursor_theme": {
