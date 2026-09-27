@@ -25,7 +25,7 @@ EXPECTED_CATALOGS = {
     "/usr/share/gnome-background-properties/zorin-os-17-pro-wallpapers.xml": "zorin-os-pro-wallpapers-17",
 }
 EXPECTED_WALLPAPER_COUNT = 28
-EXPECTED_REPLACEMENT_COUNT = 24
+EXPECTED_REPLACEMENT_COUNT = 30
 EXPECTED_DIVERSION_ROOT = "/var/lib/goreecloud-zorin/stock-wallpaper-diversions"
 
 
@@ -88,7 +88,7 @@ def main() -> int:
 
     replacement = data.get("replacement", {})
     if replacement.get("expected_wallpaper_count") != EXPECTED_REPLACEMENT_COUNT:
-        fail("Replacement catalog must require exactly 24 GoreeCloud wallpapers")
+        fail("Replacement catalog must require exactly 30 GoreeCloud wallpapers")
     if replacement.get("user_background_dir") != "~/.local/share/backgrounds/GoreeCloud-Zorin":
         fail("Unexpected user replacement background directory")
     if replacement.get("user_catalog") != "~/.local/share/gnome-background-properties/goreecloud-zorin.xml":
