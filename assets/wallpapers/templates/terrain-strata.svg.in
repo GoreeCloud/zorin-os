@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160" role="img" aria-labelledby="title desc">
+  <title id="title">{{category}} — {{family}} {{mode_label}}</title>
+  <desc id="desc">Glaze UI terrain wallpaper with topographic strata, quiet contour bands, and a spacious work-safe field.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="0"><stop stop-color="{{surface}}"/><stop offset=".48" stop-color="{{canvas}}"/><stop offset="1" stop-color="{{deep}}"/></linearGradient>
+    <radialGradient id="glow" cx=".78" cy=".5" r=".5"><stop stop-color="{{glacier_blue}}" stop-opacity=".18"/><stop offset="1" stop-color="{{glacier_blue}}" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="3840" height="2160" fill="url(#bg)"/><rect width="3840" height="2160" fill="url(#glow)"/>
+  <g fill="none" stroke="{{slate_gray}}" stroke-opacity=".16" stroke-width="5">
+    <path d="M2050 350C2690 170 3380 430 3620 930C3850 1410 3470 1860 2850 1920C2300 1970 1890 1620 1950 1170C2000 780 2390 620 2840 670C3240 710 3440 980 3330 1250C3220 1530 2870 1630 2580 1500C2300 1370 2220 1090 2380 890"/>
+    <path d="M2250 500C2740 360 3230 540 3410 930C3580 1290 3310 1640 2860 1700C2440 1750 2150 1490 2200 1160C2240 870 2530 750 2870 790C3170 820 3290 1020 3210 1220"/>
+    <path d="M2470 670C2820 580 3150 690 3260 950C3360 1190 3170 1430 2870 1470C2590 1510 2410 1330 2440 1110"/>
+  </g>
+  <path d="M-220 1800C710 1600 1400 1630 2100 1810" fill="none" stroke="{{ice_blue}}" stroke-opacity=".12" stroke-width="22" stroke-linecap="round"/>
+</svg>
