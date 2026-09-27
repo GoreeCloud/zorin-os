@@ -98,12 +98,13 @@ PY
   python3 "$ROOT/scripts/build_background_catalog.py" \
     --manifest "$MANIFEST" \
     --filename-root "$DEST_DIR" \
-    --output "$CATALOG_FILE" >/dev/null
+    --output "$CATALOG_FILE" \
+    --mode light >/dev/null
 
   rm -rf -- "$temp_dir"
   trap - RETURN
   printf 'Installed GoreeCloud wallpaper source set to:\n  %s\n' "$DEST_DIR"
-  printf 'Installed 24-wallpaper Light/Dark/Deep Dark background catalog to:\n  %s\n' "$CATALOG_FILE"
+  printf 'Installed Light-only GNOME background catalog (8 visible; 16 compatibility derivatives hidden) to:\n  %s\n' "$CATALOG_FILE"
 }
 
 backup_settings() {
