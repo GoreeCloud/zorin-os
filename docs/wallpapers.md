@@ -1,205 +1,225 @@
-# GoreeCloud Zorin Wallpaper Collection
+# GoreeCloud Zorin — Glaze Originals Wallpaper Collection
 
 ## Status
 
-Development. Source implementation is identity-derived; target-device visual acceptance is pending for the redesigned artwork.
+Development. The collection is implemented as repository-native vector source and still requires exact-revision visual acceptance on the representative Zorin OS 17.3 target before release promotion.
 
-The earlier 24-wallpaper abstract collection was rejected during target review because its compositions did not match the current approved GoreeCloud, Glaze UI, Wardveil Security, and Privacy Shield artwork closely enough. That visual direction is superseded by the current identity-derived source and must not be treated as accepted wallpaper artwork.
+The active wallpaper design system is **GLAZE UI V1.6 / 1.6.0 Official Anchor** through `config/palettes.json`. V1.7 remains Development and is not a consumer target for this collection.
 
-The installed/default theme and wallpaper path now uses the repository's **GLAZE UI V1.6 / 1.6.0 Official Anchor** desktop adaptation in `config/palettes.json`. Downstream Zorin acceptance remains separate; the older V1.2 preview palette is retained only as migration provenance.
+## Product direction
+
+The previous 24-wallpaper set was primarily identity/logo-derived. It is superseded by **Glaze Originals**, a new environmental wallpaper system designed to feel like part of Glaze UI without turning the desktop into a logo board.
+
+The collection is intentionally:
+
+- Glaze-native rather than logo-centric;
+- quiet enough for desktop icons, windows, menus, docks, and text;
+- visually varied by category while sharing one optical language;
+- pure vector SVG with no downloaded stock photography;
+- independent of semantic UI state colors;
+- non-semantic: artwork never claims security, privacy, connectivity, health, or runtime state.
+
+The user requested that no images be generated in chat. The implementation therefore lives entirely in repository source and is rendered by the wallpaper build pipeline.
 
 ## Scope
 
-The repository defines **24 3840×2160 SVG wallpapers** across four balanced categories:
+The repository defines exactly **30 3840×2160 SVG wallpapers**.
 
-| Category | Identity / families | Count |
-| --- | --- | ---: |
-| GoreeCloud | Unified Clean — Horizon, Meridian | 6 |
-| Glaze UI | Facet — Aurora, Lattice | 6 |
-| Wardveil Security | Sentinel Fold — Core, Veil | 6 |
-| Privacy Shield | Approved Privacy Shield — Bands, Filter | 6 |
-| **Total** | 8 families × Light/Dark/Deep Dark | **24** |
+There are five categories, two distinct families in each category, and three appearance variants per family:
 
-Every wallpaper preserves the canonical identity geometry and identity colors from the current unified branding authority. The surrounding field is intentionally environmental: neutral structure, low-frequency depth, restrained cold light, and generous quiet regions rather than a second brand mark or a semantic UI surface.
+| Category | Families | Light | Dark | Deep Dark | Total |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Atmosphere | Cirrus, Halo | 2 | 2 | 2 | 6 |
+| Terrain | Tundra, Strata | 2 | 2 | 2 | 6 |
+| Celestial | Orbit, Aurora | 2 | 2 | 2 | 6 |
+| Architecture | Atrium, Vault | 2 | 2 | 2 | 6 |
+| Digital | Mesh, Current | 2 | 2 | 2 | 6 |
+| **Total** | **10 families** | **10** | **10** | **10** | **30** |
 
-## Wallpaper visual contract
+### Atmosphere
 
-The redesigned source follows these rules:
+**Cirrus** uses layered translucent ribbons and long low-frequency curves to create a calm, airy desktop.
 
-- canonical marks keep their approved geometry and identity colors;
-- GoreeCloud environmental light uses the approved platform blues rather than the theme's former Mineral Teal accent;
-- Glaze UI, Wardveil Security, and Privacy Shield keep their own canonical identity color families;
-- marks are subordinate to desktop work rather than oversized hero artwork;
-- composition favors large calm regions, low-frequency detail, and restrained optical depth;
-- wallpaper does not consume focus, selection, destructive, warning, or other semantic UI color tokens;
-- changing the interactive theme accent must not silently recolor wallpaper identity artwork;
-- wallpaper remains non-semantic and must not imply security, privacy, compliance, or runtime state.
+**Halo** uses broad optical glow and concentric frost rings with a restrained focal region.
 
-This keeps family resemblance in the optical grammar while allowing every GoreeCloud identity to remain distinct.
+### Terrain
 
-## Branding authority and synchronization
+**Tundra** abstracts frozen terrain into large crystalline horizon planes.
 
-Canonical identity authority is:
+**Strata** uses topographic contour bands and quiet geological layering.
+
+### Celestial
+
+**Orbit** uses restrained orbital geometry and sparse luminous points.
+
+**Aurora** uses broad translucent curtains rather than detailed sky imagery.
+
+### Architecture
+
+**Atrium** uses monumental frosted planes, open voids, and perspective edge light.
+
+**Vault** uses repeated structural arcs and cool graphite depth.
+
+### Digital
+
+**Mesh** uses restrained network geometry and sparse nodes without implying live connectivity.
+
+**Current** uses layered signal-like flows without representing data transfer or system status.
+
+## Glaze UI visual contract
+
+All ten compositions share these rules:
+
+- use the V1.6 environmental base tokens for canvas, surface, elevated, deep, and border;
+- use approved V1.6 optical references such as Frost White, Crystal White, Ice Blue, Glacier Blue, Clear Sky Blue, Cloud Gray, Slate Gray, and Graphite;
+- keep major detail away from the central reading/work field where practical;
+- prefer low-frequency geometry over texture noise;
+- use translucent planes and edge light sparingly;
+- preserve readable icon and panel contrast on representative target surfaces;
+- avoid nested decorative complexity that competes with application content;
+- avoid interaction/status semantics in environmental art.
+
+Wallpaper templates may **not** consume focus, selection, destructive, warning, success, information, or other semantic UI-state tokens. The validator rejects those placeholders if introduced.
+
+## Source model
+
+Wallpaper definitions are stored in:
 
 ```text
-GoreeCloud/goreecloud-branding-assets
+config/wallpapers.json
 ```
 
-The exact authority commit and synchronized source metadata are pinned in:
+The active schema is version 4 and records:
+
+- exactly 30 catalog entries;
+- exactly five categories;
+- exactly two families per category;
+- exactly three modes per family;
+- the matching GoreeCloud Zorin appearance theme for each mode;
+- the source template for every composition;
+- V1.6 compatibility metadata.
+
+The ten active source templates are:
 
 ```text
-config/wallpaper-identities.json
+assets/wallpapers/templates/atmosphere-cirrus.svg.in
+assets/wallpapers/templates/atmosphere-halo.svg.in
+assets/wallpapers/templates/terrain-tundra.svg.in
+assets/wallpapers/templates/terrain-strata.svg.in
+assets/wallpapers/templates/celestial-orbit.svg.in
+assets/wallpapers/templates/celestial-aurora.svg.in
+assets/wallpapers/templates/architecture-atrium.svg.in
+assets/wallpapers/templates/architecture-vault.svg.in
+assets/wallpapers/templates/digital-mesh.svg.in
+assets/wallpapers/templates/digital-current.svg.in
 ```
 
-Synchronized consumer copies live under:
-
-```text
-assets/wallpapers/identity/
-```
-
-They are retained only so wallpaper generation works reproducibly and offline. They are not independent branding masters. The wallpaper builder verifies every synchronized SVG against its pinned SHA-256 before rendering.
-
-Current canonical sources used by the wallpaper collection are:
-
-- GoreeCloud Unified Clean transparent/reversed marks from `official/`;
-- Glaze UI **Facet** from `systems/glaze-ui/glaze-ui-mark.svg`;
-- Wardveil Security **Sentinel Fold** from `systems/wardveil-security/wardveil-security-icon.svg`;
-- the approved Privacy Shield icon from `systems/privacy-shield/privacy-shield-icon.svg`.
-
-GoreeCloud's official mark is never arbitrarily recolored or redrawn. Dark and Deep Dark wallpapers use the approved reversed variant. Glaze UI, Wardveil Security, and Privacy Shield preserve the identity colors already authored in their canonical SVGs. Glaze presentation effects may surround the marks without modifying their canonical geometry.
-
-Wardveil Security and Privacy Shield artwork identifies those systems only. A wallpaper does not prove security protection, privacy state, runtime status, compliance, or production readiness.
+Older identity-oriented wallpaper templates and synchronized identity assets may remain temporarily as superseded repository provenance, but active generation and validation do not depend on them.
 
 ## Generation
 
-Wallpaper definitions are recorded in `config/wallpapers.json`. All 24 are generated from identity-aware templates under:
-
-```text
-assets/wallpapers/templates/
-```
-
-Build the current V1.6 Anchor-aligned collection with:
+Build all 30 wallpapers with:
 
 ```bash
 python3 ./scripts/build_wallpapers.py --output /tmp/goreecloud-wallpapers
 ```
 
-The historical V1.2 preview can still be rendered for regression comparison with:
+The builder reads the selected Glaze palette, injects only approved environmental and optical tokens into the ten templates, and produces three appearance variants for each composition.
 
-```bash
-python3 ./scripts/build_wallpapers.py \
-  --palette-config config/palettes-v1.2.json \
-  --output /tmp/goreecloud-wallpapers-v1.2
-```
+The output must contain exactly 30 SVG files.
 
-The builder injects the verified canonical SVG interior into a nested SVG using the original canonical viewBox. It does not trace, approximate, recolor, or regenerate the logo geometry.
+## GNOME / Zorin gallery behavior
 
-## Historical V1.2 preview boundary
-
-`config/palettes-v1.2.json` is retained only as historical migration evidence. Current install, wallpaper, validation, and documentation paths use `config/palettes.json`, which records the V1.6 Official Anchor source pin and the downstream Zorin desktop adaptation.
-
-Validate the preview contract with:
-
-```bash
-python3 ./scripts/validate_v16_anchor.py
-```
-
-That check validates the V1.6 Anchor/source pins, the Light/Dark/Deep Dark contract, semantic and focus contrast gates, desktop material/target floors, wallpaper alignment, and successful rendering of all theme and wallpaper variants. It remains a source gate only; target-device visual/accessibility acceptance is still required.
-
-## User-local install and catalog
-
-Run:
+Install or refresh the collection with:
 
 ```bash
 ./scripts/wallpaper.sh install
-./scripts/wallpaper.sh list
 ```
 
-The helper installs all 24 SVGs under:
+All 30 wallpapers are visible in GNOME Settings.
+
+The gallery is **light-first, not light-only**:
+
+1. 10 Light wallpapers
+2. 10 Dark wallpapers
+3. 10 Deep Dark wallpapers
+
+Wallpaper choice is independent of the currently active desktop theme. A user may intentionally use a Dark or Deep Dark wallpaper with the Light application theme.
+
+The default installer still applies the primary Light wallpaper, **Atmosphere — Cirrus — Light**.
+
+Wallpaper files are installed user-locally under:
 
 ```text
 ~/.local/share/backgrounds/GoreeCloud-Zorin
 ```
 
-and generates the user GNOME Background Properties catalog at:
+The generated GNOME Background Properties catalog is installed under:
 
 ```text
 ~/.local/share/gnome-background-properties/goreecloud-zorin.xml
 ```
 
-Target evidence already confirms Zorin OS 17.3 Settings consumes this user-scoped catalog and displays the complete 24-entry collection. That discovery result applies to the catalog mechanism, not to visual acceptance of the redesigned artwork.
-
-Apply the primary identity-derived wallpaper matching the active GoreeCloud theme with:
-
-```bash
-./scripts/wallpaper.sh apply current
-```
-
-Or apply any exact ID shown by `./scripts/wallpaper.sh list`.
-
-Applying a wallpaper records a GNOME settings snapshot first. Restore the latest snapshot with:
-
-```bash
-./scripts/wallpaper.sh restore
-```
-
 ## Stock Zorin wallpaper replacement
 
-The desired end state is a GoreeCloud-only wallpaper gallery. Target testing showed that purging the four stock wallpaper packages is not safe: apt also proposes removing `zorin-os-artwork` and `zorin-os-desktop`, then installing Ubuntu wallpaper packages. The implementation therefore keeps every Zorin package installed.
+The optional stock-replacement path continues to preserve Zorin packages and uses package-safe `dpkg-divert` handling for the exact audited Zorin OS 17.3 stock wallpaper files/catalogs.
 
-Replacement now uses **local `dpkg-divert` entries** for the exact audited Zorin wallpaper images and GNOME background catalog files. Applying the replacement moves only those package-owned files from their normal `/usr/share/backgrounds` and `/usr/share/gnome-background-properties` locations into:
+It must never purge `zorin-os-artwork`, `zorin-os-desktop`, or their wallpaper dependencies merely to create a GoreeCloud-only gallery.
 
-```text
-/var/lib/goreecloud-zorin/stock-wallpaper-diversions
-```
-
-That makes the stock set disappear from GNOME/Zorin wallpaper discovery while preserving package ownership and desktop metapackages. Future package operations respect the diversions rather than restoring the stock files into the visible gallery.
-
-Inspect the plan without changing the system:
+Use:
 
 ```bash
 ./scripts/wallpaper.sh replace-stock plan
-```
-
-Apply it after the GoreeCloud collection is installed:
-
-```bash
 ./scripts/wallpaper.sh replace-stock apply
-```
-
-Check status or restore the stock files:
-
-```bash
 ./scripts/wallpaper.sh replace-stock status
 ./scripts/wallpaper.sh replace-stock restore
 ```
 
-`finalize` removes the temporary recovery archive but deliberately leaves the package-safe diversions active. It does not purge Zorin packages.
-
-The workflow verifies the exact Zorin OS 17.3 package versions and ownership evidence before making changes. It also records the unsafe apt purge simulation as diagnostic evidence, but there is no code path that executes that purge.
-
 ## Validation
 
-`python3 ./scripts/validate_wallpapers.py` verifies:
+`python3 ./scripts/validate_wallpapers.py` enforces:
 
-- exactly 24 catalog entries across the four required categories;
-- Light, Dark, and Deep Dark mappings;
-- V1.6 Anchor/source-pin manifest metadata;
-- pinned branding authority and synchronized canonical SVG SHA-256 values;
-- canonical identity viewBoxes;
-- identity/category mapping for every wallpaper;
-- presence of canonical geometry in every rendered derivative;
-- wallpaper source does not consume semantic interaction/status color tokens;
-- 3840×2160 rendered dimensions and viewBox;
-- no script elements or remote/file/data href resources;
-- generated GNOME background catalog count and filenames.
+- manifest schema version 4;
+- exactly 30 wallpapers;
+- exactly five required categories;
+- exactly six variants per category;
+- exactly ten wallpapers per appearance mode;
+- exactly two families per category;
+- Light/Dark/Deep Dark coverage for every family;
+- exactly ten active source templates;
+- Glaze-native environmental role and art-direction metadata;
+- absence of semantic UI-state tokens in wallpaper templates;
+- absence of legacy identity-injection tokens in active templates;
+- valid, local-only SVG with no script or external/data/file href resources;
+- 3840×2160 dimensions and `0 0 3840 2160` viewBox;
+- complete 30-entry GNOME catalog with no hidden GoreeCloud entries.
 
-`python3 ./scripts/validate_system_wallpapers.py` verifies that the stock replacement contract remains pinned to the exact audited Zorin package/file set, requires the `dpkg-divert` strategy, protects `zorin-os-artwork` and `zorin-os-desktop`, and rejects executable package-purge code.
+`python3 ./scripts/validate_light_catalog.py` verifies gallery ordering:
 
-Source validation proves reproducibility and identity-source integrity. It does not prove visual quality on the target display.
+- 10 Light;
+- 10 Dark;
+- 10 Deep Dark;
+- all 30 visible.
 
-## Remaining target acceptance
+`python3 ./scripts/validate_v16_anchor.py` additionally requires the V1.6 build to produce exactly 30 wallpaper assets.
 
-Install the redesigned collection on the Zorin OS 17.3 laptop, reopen Settings → Background, review the 24 thumbnails and representative full-desktop renders, and verify that Unified Clean, Facet, Sentinel Fold, and Privacy Shield are visibly faithful to their canonical artwork in Light/Dark/Deep Dark contexts.
+`python3 ./scripts/validate_system_wallpapers.py` requires the optional stock replacement path to expect exactly 30 GoreeCloud replacements while preserving the package-safety contract.
 
-For the current V1.6 adaptation, review the same representative set against the Frost/Graphite environment and include bright, dark, saturated, and detailed wallpaper stress cases, increased contrast, reduced transparency where applicable, and 200% text before any release promotion.
+## Target acceptance
+
+Source validation proves structure and reproducibility, not visual quality.
+
+Before release promotion, test this exact collection on the representative Zorin OS 17.3 laptop and review:
+
+- the complete 30-thumbnail Settings gallery;
+- one representative wallpaper from each category in Light mode;
+- representative Dark and Deep Dark compositions;
+- desktop icon readability;
+- panel/dock readability;
+- window-edge contrast;
+- bright and dark stress cases;
+- 200% text scaling;
+- increased-contrast or accessibility settings where applicable;
+- wallpaper switching and settings persistence.
+
+Any composition that is distracting, visually noisy, too logo-like, weak behind icons, or inconsistent with V1.6 should be corrected before the downstream Zorin theme leaves Development.
