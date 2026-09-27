@@ -1,95 +1,119 @@
-# GoreeCloud Zorin — Application Icon Normalization
+# GoreeCloud Zorin — Application Icon Presentation
 
 ## Status
 
-Development / rollback-safe.
+Development / recovery-backed.
 
-The first runtime third-party icon-wrapper implementation failed representative Zorin OS 17.3 visual acceptance on September 27, 2026. GNOME rendered the Glaze presentation plate but failed to render most wrapped third-party application artwork inside it, producing blank rounded-square icons in the launcher and dock.
+The first runtime third-party icon-wrapper implementation failed representative Zorin OS 17.3 visual acceptance on September 27, 2026. GNOME rendered the Glaze presentation plate while failing to render most wrapped third-party artwork, producing blank rounded-square icons in the launcher and dock.
 
-That failed runtime path is disabled in the current source.
+That failed wrapper path is disabled and its active normalizer script has been removed.
+
+## Verified recovery state
+
+Target recovery restored the previous `GoreeCloud-Zorin` icon theme. A representative launcher screenshot then confirmed that recognizable original third-party artwork was visible again, including mixed native and third-party applications. The blank wrapper regression was no longer present.
 
 ## Current safe behavior
 
-The `GoreeCloud-Zorin` icon theme continues to provide GoreeCloud/system icon overrides and inherits the rest from:
+The `GoreeCloud-Zorin` icon theme continues to provide GoreeCloud/system icon overrides and inherits unoverridden artwork from:
 
 ```text
 ZorinBlue → Adwaita → hicolor
 ```
 
-Third-party application icons therefore remain their original renderable artwork unless an explicit first-party-safe override already exists.
+Third-party application icon files are not rewritten, wrapped, masked, or recolored.
 
-The installers do not:
-
-- generate third-party runtime wrapper icons;
-- modify third-party application packages;
-- rewrite third-party `.desktop` files;
-- replace external product identities with GoreeCloud marks.
-
-Use the icon-only installer to restore or refresh the safe base theme:
+The supported icon-only recovery/install path is:
 
 ```bash
 bash ./scripts/install_icons.sh
 ```
 
-The refresh helper intentionally does not regenerate wrappers:
+The runtime wrapper refresh path remains disabled:
 
 ```bash
 bash ./scripts/refresh_icons.sh
 ```
 
-It reports that runtime normalization is disabled and points back to the safe base-theme installer.
+That command only reports the disabled state and points back to the safe base icon installer.
+
+## Replacement design: Shell application tiles
+
+The replacement candidate improves visual consistency at the GNOME Shell application-tile layer rather than by replacing the icon resource.
+
+The current source applies the Glaze treatment to:
+
+```text
+.overview-tile
+.grid-search-result
+```
+
+The original application artwork remains untouched inside the tile.
+
+Current tile contract:
+
+| Property | Value |
+| --- | ---: |
+| Padding | 8 px |
+| Internal spacing | 6 px |
+| Corner radius | 16 px |
+| Border | 1 px Glaze Shell border |
+| Base surface | Glaze Shell elevated surface |
+| Focus ring | minimum 2 px |
+| Hover | Glaze hover surface + accent-soft border |
+| Active | Glaze active surface |
+
+This follows the existing Zorin Shell styling model, which already treats overview/search application items as rounded presentation tiles. GoreeCloud changes the shared tile rhythm, not the third-party identity asset.
+
+## Target-only launcher update
+
+For representative target review, install only the generated GoreeCloud Shell presentation:
+
+```bash
+bash ./scripts/install_launcher_presentation.sh
+```
+
+That installer:
+
+- rebuilds the three GoreeCloud Shell variants from the canonical V1.6 palette;
+- composes them against the exact verified local Zorin OS 17.3 Shell base;
+- replaces only installed `gnome-shell` directories;
+- stores the previous Shell directories in timestamped recovery storage;
+- re-emits the currently selected GoreeCloud User Theme when necessary;
+- does not change GTK application theme, icon theme, cursor theme, or wallpaper settings;
+- does not modify any third-party application icon or launcher.
 
 ## Failure record
 
-The failed Development implementation attempted to:
+The failed Development implementation attempted to discover installed third-party icon sources and create Glaze SVG wrappers at multiple optical sizes. Synthetic CI validated the XML/resource structure, but real-device GNOME rendering showed that this was not sufficient runtime evidence.
 
-- discover installed third-party icon sources;
-- copy those sources beneath the GoreeCloud icon theme;
-- generate Glaze plate wrappers at scalable and 24/32/48/64 optical sizes;
-- reference the copied original artwork from inside each wrapper.
+The incident establishes an explicit rule for this downstream theme:
 
-Source validation and synthetic CI fixtures passed, but real Zorin OS 17.3 visual evidence showed that the wrapper resource path was not reliably rendered by the actual GNOME launcher/icon stack.
-
-The failure demonstrates that structural XML validity and source existence are insufficient acceptance evidence for runtime icon rendering.
-
-## Replacement requirements
-
-The next normalization design must preserve the application's directly renderable original icon and improve consistency at the presentation/layout layer rather than by replacing the icon resource with a wrapper that depends on nested resource loading.
-
-A future replacement should satisfy all of the following:
-
-- original third-party identity remains recognizable and authoritative;
-- no blank placeholder or plate-only state is possible;
-- no mutation of third-party application packages;
-- no launcher rewriting unless separately designed, recovery-backed, and explicitly validated;
-- consistent optical padding and visual weight where the target Shell/launcher safely supports it;
-- clean fallback to inherited artwork when a presentation treatment cannot be applied;
-- representative real-device acceptance in the Zorin app grid and dock;
-- light and dark wallpaper stress testing;
-- compact-size legibility;
-- accessibility review;
-- no Stable qualification based only on synthetic CI.
+> A third-party icon presentation feature must never replace a directly renderable icon with a wrapper unless representative target evidence proves the complete original artwork renders inside that wrapper.
 
 ## Validation
 
-`scripts/validate_desktop_assets.py` currently enforces the rollback-safe state:
+`scripts/validate_desktop_assets.py` currently enforces:
 
-- runtime third-party wrappers are disabled;
-- third-party packages and launchers are not modified;
-- original identity preservation remains required;
-- unresolved/unoverridden applications continue through inherited icon themes;
-- the GoreeCloud first-party/base icon theme and cursor contracts remain validated.
-
-The previous normalizer source may remain temporarily in the repository as Development provenance, but no supported installer or refresh path may invoke it while the failure is unresolved.
+- runtime third-party icon wrappers remain disabled;
+- no third-party application package or `.desktop` mutation;
+- original third-party identity preservation;
+- inherited fallback for unoverridden application icons;
+- safe Shell tile presentation is enabled;
+- tile presentation targets only `.overview-tile` and `.grid-search-result`;
+- 8px padding, 6px spacing, 16px radius, and at least a 2px focus ring;
+- the required Glaze Shell surface/border/focus fragments remain in the generated Shell template;
+- disabled wrapper optical directories are not advertised by the icon theme.
 
 ## Target acceptance
 
-The next candidate must be reviewed on the representative Zorin OS 17.3 target with screenshots showing:
+The launcher-tile candidate must be reviewed on the representative Zorin OS 17.3 target with screenshots showing:
 
-- launcher grid;
-- dock/taskbar;
-- a mix of native, Flatpak, Snap, and third-party application icons;
-- first-party GoreeCloud icons;
-- light and dark desktop backgrounds.
+- the application menu with several full rows;
+- selected/focused application state;
+- mixed icon families such as browser, creative, utility, GNOME, Flatpak/Snap, and GoreeCloud apps;
+- the dock/taskbar;
+- light and dark wallpaper conditions.
 
-The icon-normalization work remains open until those screenshots show consistent organization without sacrificing original icon rendering.
+Acceptance requires that the tiles make the launcher feel more ordered **without** obscuring, shrinking, clipping, recoloring, or replacing the original application icons.
+
+The PR remains Draft until that visual review passes.
