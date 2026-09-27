@@ -9,7 +9,7 @@
   "replacement": {
     "user_background_dir": "~/.local/share/backgrounds/GoreeCloud-Zorin",
     "user_catalog": "~/.local/share/gnome-background-properties/goreecloud-zorin.xml",
-    "expected_wallpaper_count": 24
+    "expected_wallpaper_count": 30
   },
   "strategy": {
     "mode": "dpkg-divert",
