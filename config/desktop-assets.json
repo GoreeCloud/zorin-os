@@ -1,12 +1,12 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "status": "Development",
   "target": "Zorin OS 17.3",
   "design_direction": "light-first",
   "icon_theme": {
     "id": "GoreeCloud-Zorin",
     "name": "GoreeCloud Zorin",
-    "comment": "Light-first GoreeCloud icon theme for Zorin OS",
+    "comment": "Glaze-normalized GoreeCloud icon theme for Zorin OS",
     "inherits": [
       "ZorinBlue",
       "Adwaita",
@@ -23,7 +23,56 @@
       "graphite": "#151C22",
       "muted": "#61717C"
     },
-    "minimum_generated_icons": 16
+    "minimum_generated_icons": 16,
+    "normalization": {
+      "enabled": true,
+      "mode": "glaze-plate-preserve-third-party-identity",
+      "source_authority": "GLAZE UI V1.6 inherited icon construction and identity contracts",
+      "canvas": 1024,
+      "presentation_inset": 64,
+      "safe_area_inset": 128,
+      "content_inset": 176,
+      "core_identity_inset": 224,
+      "plate_radius": 220,
+      "optical_sizes": [
+        24,
+        32,
+        48,
+        64
+      ],
+      "skip_prefixes": [
+        "goreecloud",
+        "com.goreecloud",
+        "org.goreecloud",
+        "io.goreecloud"
+      ],
+      "protected_icon_names": [
+        "start-here",
+        "goreecloud"
+      ],
+      "palette": {
+        "plate_top": "#FBFDFE",
+        "plate_bottom": "#DCECF6",
+        "outline": "#8FC4E8",
+        "outline_opacity": "0.70",
+        "highlight": "#FFFFFF",
+        "highlight_opacity": "0.72",
+        "shadow": "#151C22",
+        "shadow_opacity": "0.14"
+      },
+      "behavior": {
+        "modify_desktop_files": false,
+        "modify_application_packages": false,
+        "preserve_original_identity": true,
+        "allow_standard_framing": true,
+        "allow_masking": false,
+        "unresolved_icons_inherit": true,
+        "source_formats": [
+          "svg",
+          "png"
+        ]
+      }
+    }
   },
   "cursor_theme": {
     "id": "GoreeCloud-Zorin-Cursors",
