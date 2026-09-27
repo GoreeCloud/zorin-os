@@ -28,10 +28,6 @@ if [[ -e "$target" || -L "$target" ]]; then
 fi
 cp -a -- "$TEMP_ROOT/icons/$ICON_THEME" "$target"
 
-REPORT="$target/goreecloud-normalization-report.json"
-python3 "$ROOT/scripts/normalize_app_icons.py" \
-  --theme-root "$target" \
-  --report "$REPORT"
 
 if [[ "$LEGACY_ICON_DEST" != "$ICON_DEST" ]]; then
   mkdir -p -- "$LEGACY_ICON_DEST"
@@ -63,8 +59,7 @@ fi
 echo
 echo "Installed GoreeCloud icon theme:"
 echo "  $target"
-echo "Third-party app normalization report:"
-echo "  $REPORT"
+echo "Third-party application icons use inherited/original artwork; runtime wrappers are disabled."
 if [[ "$backed_up" -eq 1 ]]; then
   echo "Previous GoreeCloud icon theme preserved at:"
   echo "  $RECOVERY_ROOT/$ICON_THEME"
