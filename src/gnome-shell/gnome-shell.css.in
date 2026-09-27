@@ -306,7 +306,12 @@ stage {
   color: {{TEXT}};
 }
 
-.calendar-day-base:selected {
+.calendar-day-base:selected,
+.calendar-day-base.calendar-today,
+.calendar-day-base.calendar-today:hover,
+.calendar-day-base.calendar-today:focus,
+.calendar-day-base.calendar-today:active,
+.calendar-day-base.calendar-today:selected {
   background-image: none;
   background-color: {{ACCENT}};
   background-gradient-direction: horizontal;
