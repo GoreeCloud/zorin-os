@@ -74,6 +74,20 @@
         "runtime_icon_wrappers": false
       },
       "status": "Failed target visual acceptance on 2026-09-27; runtime wrappers must not be installed"
+    },
+    "launcher_presentation": {
+      "enabled": true,
+      "mode": "shell-app-tile",
+      "preserves_original_icon_artwork": true,
+      "target_selectors": [
+        ".overview-tile",
+        ".grid-search-result"
+      ],
+      "padding_px": 8,
+      "spacing_px": 6,
+      "radius_px": 16,
+      "focus_ring_px": 2,
+      "visual_role": "shared Glaze card around untouched application identity"
     }
   },
   "cursor_theme": {
