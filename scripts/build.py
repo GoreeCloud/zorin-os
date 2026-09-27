@@ -34,8 +34,8 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=PALETTES,
         help=(
-            "palette contract to render; defaults to config/palettes.json. "
-            "Use config/palettes-v1.2.json for the V1.2 development preview."
+            "palette contract to render; defaults to the canonical GLAZE UI V1.6 "
+            "desktop adaptation in config/palettes.json."
         ),
     )
     return parser.parse_args()
