@@ -203,29 +203,19 @@ def main() -> int:
         fail("cursor theme ID changed unexpectedly")
 
     normalization = icons.get("normalization", {})
-    if not normalization.get("enabled"):
-        fail("third-party app icon normalization must remain enabled")
-    if normalization.get("mode") != "glaze-plate-preserve-third-party-identity":
-        fail("unexpected third-party icon normalization mode")
-    if int(normalization.get("canvas", 0)) != 1024:
-        fail("icon normalization canvas must remain 1024")
-    if int(normalization.get("presentation_inset", -1)) != 64:
-        fail("icon normalization must preserve the Glaze 64px presentation inset")
-    if int(normalization.get("safe_area_inset", -1)) != 128:
-        fail("icon normalization must preserve the Glaze 128px safe-area inset")
-    content_inset = int(normalization.get("content_inset", -1))
-    core_inset = int(normalization.get("core_identity_inset", -1))
-    if not 128 <= content_inset <= core_inset == 224:
-        fail("normalized third-party identity must stay between safe and core Glaze zones")
-    if [int(value) for value in normalization.get("optical_sizes", [])] != [24, 32, 48, 64]:
-        fail("icon normalization optical-size ladder must remain 24/32/48/64")
+    if normalization.get("enabled") is not False:
+        fail("failed runtime third-party icon wrappers must remain disabled")
+    if normalization.get("mode") != "disabled-after-target-visual-failure":
+        fail("icon normalization mode must record the target visual failure")
     behavior = normalization.get("behavior", {})
+    if behavior.get("runtime_icon_wrappers") is not False:
+        fail("runtime third-party icon wrappers must not be generated")
     if behavior.get("modify_desktop_files") or behavior.get("modify_application_packages"):
-        fail("icon normalization must not modify third-party launchers or packages")
+        fail("icon handling must not modify third-party launchers or packages")
     if behavior.get("preserve_original_identity") is not True:
-        fail("third-party icon normalization must preserve original identity")
+        fail("third-party original identity preservation must remain required")
     if behavior.get("unresolved_icons_inherit") is not True:
-        fail("unresolved third-party icons must fall back to inherited themes")
+        fail("third-party app icons must continue to inherit when not overridden")
 
     design_revision = int(cursors.get("design_revision", 0))
     expected_runtime_id = f"{cursors['id']}-r{design_revision}"
@@ -323,86 +313,9 @@ def main() -> int:
         ).read_bytes() != identity.read_bytes():
             fail("start-here icon does not preserve the canonical GoreeCloud mark")
 
-        normalizer = ROOT / "scripts" / "normalize_app_icons.py"
-        if not normalizer.is_file():
-            fail("missing runtime app icon normalizer")
-
-        fixture_desktop = tmp_path / "desktop-fixture"
-        fixture_icons = tmp_path / "hicolor-fixture" / "scalable" / "apps"
-        fixture_desktop.mkdir(parents=True)
-        fixture_icons.mkdir(parents=True)
-        (fixture_desktop / "thirdparty.desktop").write_text(
-            "[Desktop Entry]\nType=Application\nName=Third Party\nIcon=thirdparty-test\n",
-            encoding="utf-8",
-        )
-        (fixture_desktop / "goreecloud.desktop").write_text(
-            "[Desktop Entry]\nType=Application\nName=GoreeCloud Test\nIcon=goreecloud-test\n",
-            encoding="utf-8",
-        )
-        (fixture_icons / "thirdparty-test.svg").write_text(
-            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">'
-            '<circle cx="32" cy="32" r="24" fill="#8844CC"/></svg>',
-            encoding="utf-8",
-        )
-        normalization_report = tmp_path / "normalization-report.json"
-        subprocess.run(
-            [
-                sys.executable,
-                str(normalizer),
-                "--theme-root",
-                str(icon_root),
-                "--desktop-root",
-                str(fixture_desktop),
-                "--icon-root",
-                str(tmp_path / "hicolor-fixture"),
-                "--report",
-                str(normalization_report),
-            ],
-            check=True,
-        )
-        report = json.loads(normalization_report.read_text(encoding="utf-8"))
-        if report.get("normalized_icon_names") != 1:
-            fail("runtime icon normalizer must normalize the safe third-party fixture")
-        normalized_names = {
-            item.get("icon_name") for item in report.get("normalized", [])
-        }
-        if normalized_names != {"thirdparty-test"}:
-            fail(f"unexpected normalized fixture set: {normalized_names}")
-        skipped_names = {
-            item.get("icon_name") for item in report.get("skipped", [])
-        }
-        if "goreecloud-test" not in skipped_names:
-            fail("runtime icon normalizer must preserve first-party GoreeCloud identity")
-
-        wrapper_paths = [
-            icon_root / "scalable" / "apps" / "thirdparty-test.svg",
-            *[
-                icon_root / f"{size}x{size}" / "apps" / "thirdparty-test.svg"
-                for size in normalization["optical_sizes"]
-            ],
-        ]
-        for wrapper in wrapper_paths:
-            if not wrapper.is_file():
-                fail(f"runtime icon normalizer is missing wrapper: {wrapper}")
-            root = ET.parse(wrapper).getroot()
-            images = [
-                node for node in root.iter()
-                if node.tag.rsplit("}", 1)[-1].lower() == "image"
-            ]
-            if len(images) != 1:
-                fail(f"{wrapper}: normalized wrapper must contain one source image")
-            href = images[0].attrib.get("href") or images[0].attrib.get(
-                "{http://www.w3.org/1999/xlink}href"
-            )
-            if not href or href.startswith(("http:", "https:", "file:", "data:", "/")):
-                fail(f"{wrapper}: normalized wrapper must reference only a local relative source")
-            source = (wrapper.parent / href).resolve()
-            icon_root_resolved = icon_root.resolve()
-            if source != icon_root_resolved and icon_root_resolved not in source.parents:
-                fail(f"{wrapper}: normalized source escapes the icon theme")
-            if not source.is_file():
-                fail(f"{wrapper}: normalized source file is missing")
-
+        # Runtime third-party wrappers are intentionally disabled after
+        # representative target visual failure. The base icon theme must keep
+        # third-party application artwork on inherited Zorin/Adwaita/hicolor.
         animated_names = set(cursors.get("animated_cursor_names", []))
         cursor_dir = cursor_root / "cursors"
         for name in cursors["required_cursor_names"]:
