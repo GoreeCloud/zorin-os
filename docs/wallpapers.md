@@ -6,7 +6,7 @@ Development. Source implementation is identity-derived; target-device visual acc
 
 The earlier 24-wallpaper abstract collection was rejected during target review because its compositions did not match the current approved GoreeCloud, Glaze UI, Wardveil Security, and Privacy Shield artwork closely enough. That visual direction is superseded by the current identity-derived source and must not be treated as accepted wallpaper artwork.
 
-The installed/default theme path remains the Glaze UI V1.1-compatible path while the repository carries a parallel **Glaze UI V1.2 development preview**. V1.2 is not Stable and does not inherit V1.1 acceptance automatically.
+The installed/default theme and wallpaper path now uses the repository's **GLAZE UI V1.6 / 1.6.0 Official Anchor** desktop adaptation in `config/palettes.json`. Downstream Zorin acceptance remains separate; the older V1.2 preview palette is retained only as migration provenance.
 
 ## Scope
 
@@ -78,13 +78,13 @@ Wallpaper definitions are recorded in `config/wallpapers.json`. All 24 are gener
 assets/wallpapers/templates/
 ```
 
-Build the current V1.1-compatible collection with:
+Build the current V1.6 Anchor-aligned collection with:
 
 ```bash
 python3 ./scripts/build_wallpapers.py --output /tmp/goreecloud-wallpapers
 ```
 
-Build the same identity-derived source against the V1.2 development environmental palette with:
+The historical V1.2 preview can still be rendered for regression comparison with:
 
 ```bash
 python3 ./scripts/build_wallpapers.py \
@@ -94,17 +94,17 @@ python3 ./scripts/build_wallpapers.py \
 
 The builder injects the verified canonical SVG interior into a nested SVG using the original canonical viewBox. It does not trace, approximate, recolor, or regenerate the logo geometry.
 
-## V1.2 preview boundary
+## Historical V1.2 preview boundary
 
-`config/palettes-v1.2.json` is a development contract, not a replacement for the accepted predecessor. It introduces the proposed Frost White, Ice Blue, Clear Translucency, Cool Graphite, and Blue-Black environment while preserving the current theme IDs so the same Zorin integration can be exercised in a controlled preview build.
+`config/palettes-v1.2.json` is retained only as historical migration evidence. Current install, wallpaper, validation, and documentation paths use `config/palettes.json`, which records the V1.6 Official Anchor source pin and the downstream Zorin desktop adaptation.
 
 Validate the preview contract with:
 
 ```bash
-python3 ./scripts/validate_v12_preview.py
+python3 ./scripts/validate_v16_anchor.py
 ```
 
-That check validates the V1.2 lifecycle/version metadata, the Light/Dark/Deep Dark signature colors, baseline contrast gates, and successful rendering of all theme and wallpaper variants from the preview palette. It is a source gate only; target-device visual/accessibility acceptance remains required.
+That check validates the V1.6 Anchor/source pins, the Light/Dark/Deep Dark contract, semantic and focus contrast gates, desktop material/target floors, wallpaper alignment, and successful rendering of all theme and wallpaper variants. It remains a source gate only; target-device visual/accessibility acceptance is still required.
 
 ## User-local install and catalog
 
@@ -184,7 +184,7 @@ The workflow verifies the exact Zorin OS 17.3 package versions and ownership evi
 
 - exactly 24 catalog entries across the four required categories;
 - Light, Dark, and Deep Dark mappings;
-- V1.1 manifest compatibility metadata;
+- V1.6 Anchor/source-pin manifest metadata;
 - pinned branding authority and synchronized canonical SVG SHA-256 values;
 - canonical identity viewBoxes;
 - identity/category mapping for every wallpaper;
@@ -202,4 +202,4 @@ Source validation proves reproducibility and identity-source integrity. It does 
 
 Install the redesigned collection on the Zorin OS 17.3 laptop, reopen Settings → Background, review the 24 thumbnails and representative full-desktop renders, and verify that Unified Clean, Facet, Sentinel Fold, and Privacy Shield are visibly faithful to their canonical artwork in Light/Dark/Deep Dark contexts.
 
-For V1.2, review the same representative set against the Frost/Graphite preview and include bright, dark, saturated, and detailed wallpaper stress cases, increased contrast, reduced transparency where applicable, and 200% text before promoting the preview.
+For the current V1.6 adaptation, review the same representative set against the Frost/Graphite environment and include bright, dark, saturated, and detailed wallpaper stress cases, increased contrast, reduced transparency where applicable, and 200% text before any release promotion.
