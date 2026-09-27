@@ -81,7 +81,7 @@ The icon contract is recorded in:
 config/desktop-assets.json
 ```
 
-Build the icon theme without installing it:
+Build the deterministic base icon theme without installing it:
 
 ```bash
 python3 ./scripts/build_icons.py --output /tmp/goreecloud-icons
@@ -93,9 +93,61 @@ The generated icon theme is named:
 GoreeCloud-Zorin
 ```
 
-It uses the light-first Glaze/GoreeCloud palette: Frost White, Crystal White, Ice Blue, Glacier Blue, GoreeCloud Primary Blue, Deep Blue, and graphite structure. The initial custom set covers core folders/places, home/desktop/trash, storage/devices, computer/phone/flash media, and `start-here`/GoreeCloud identity. Unoverridden icons inherit from the platform icon stack rather than disappearing.
+The base theme uses the light-first Glaze/GoreeCloud palette for first-party system assets and inherits unoverridden platform icons instead of allowing missing artwork.
 
-The `start-here` and GoreeCloud identity icons preserve the synchronized canonical GoreeCloud mark already pinned by the repository branding authority.
+### Third-party application normalization
+
+The installer also performs a user-local third-party application-icon normalization pass:
+
+```text
+installed .desktop entries
+        ↓
+resolved original SVG/PNG identity
+        ↓
+Glaze optical safe-area scaling
+        ↓
+neutral Glaze presentation plate
+        ↓
+24 / 32 / 48 / 64 / scalable wrappers
+```
+
+The normalizer follows the inherited Glaze V1 icon-construction and identity contracts:
+
+- preserve the external product's original identity;
+- do not redraw, recolor into GoreeCloud branding, or replace third-party trademarks;
+- use standard framing/padding to improve launcher-grid consistency;
+- keep identity geometry inside the Glaze safe/primary optical zones;
+- provide purpose-sized 24px, 32px, 48px, and 64px wrappers plus scalable presentation;
+- leave GoreeCloud-prefixed first-party identities untouched;
+- reject SVG sources containing scripts, foreign objects, or external/data/file resources;
+- never modify third-party application packages or their `.desktop` files;
+- fall back to inherited Zorin/Adwaita/hicolor artwork when a source icon cannot be resolved safely.
+
+The presentation layer uses a restrained Frost/Crystal/Ice plate, soft Glacier outline, controlled highlight, and low-opacity Graphite depth. It deliberately normalizes visual weight without forcing every third-party mark into a new GoreeCloud symbol.
+
+A normalization report is written into the installed icon theme at:
+
+```text
+~/.local/share/icons/GoreeCloud-Zorin/goreecloud-normalization-report.json
+```
+
+After installing new applications, refresh the icon wrappers with:
+
+```bash
+bash ./scripts/refresh_icons.sh
+```
+
+Preview what would be normalized without writing changes:
+
+```bash
+bash ./scripts/refresh_icons.sh --dry-run
+```
+
+Apps whose launcher uses an absolute icon-file path cannot be overridden through the freedesktop icon-theme lookup without rewriting the third-party launcher. GoreeCloud intentionally does not rewrite those launchers in this Development implementation; they remain inherited/original and are reported as skipped.
+
+The core custom set still covers folders/places, home/desktop/trash, storage/devices, computer/phone/flash media, and `start-here`/GoreeCloud identity. The `start-here` and GoreeCloud identity icons preserve the synchronized canonical GoreeCloud mark already pinned by the repository branding authority.
+
+See `docs/icon-normalization.md` for the detailed contract and target-review procedure.
 
 ## Cursor theme
 
@@ -186,6 +238,8 @@ python3 ./scripts/validate_system_wallpapers.py
 ```
 
 The light-first catalog gate verifies that all 30 wallpapers are visible and ordered as 10 Light, 10 Dark, then 10 Deep Dark.
+
+Icon validation now also exercises a synthetic third-party launcher/icon pair, verifies local-only normalized source references, verifies the 24/32/48/64/scalable wrapper ladder, and verifies that GoreeCloud-prefixed first-party identity is excluded from third-party normalization.
 
 Cursor validation verifies the complete configured size ladder, animated-frame/delay contract, non-empty Xcursor payloads, and the neutral Frost/Graphite primary-pointer contract so the default pointer cannot regress to a blue-heavy treatment unnoticed.
 
