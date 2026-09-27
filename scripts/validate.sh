@@ -204,7 +204,7 @@ if wallpaper_config.get("design_system", {}).get("version") != config["design_sy
     raise SystemExit("Wallpaper manifest Glaze UI version does not match the theme palette version")
 wallpapers = wallpaper_config.get("wallpapers", [])
 if len(wallpapers) != 3:
-    raise SystemExit("Expected exactly three GoreeCloud Horizon wallpaper variants")
+    raise SystemExit("Expected exactly three primary Glaze Originals wallpaper variants")
 
 wallpaper_rendered = generated / "_wallpapers"
 subprocess.run(
@@ -222,7 +222,7 @@ wallpaper_modes = set()
 for wallpaper in wallpapers:
     required_wallpaper_keys = {
         "id", "mode", "theme_id", "file", "canvas", "accent", "accent_soft",
-        "atmosphere_amber", "identity", "source", "generated",
+        "atmosphere_amber", "role", "art_direction", "source", "generated",
     }
     missing = required_wallpaper_keys - set(wallpaper)
     if missing:
@@ -247,7 +247,7 @@ for wallpaper in wallpapers:
             )
 
     if wallpaper["generated"] is not True:
-        raise SystemExit(f"Primary wallpaper must be generated from canonical identity source: {wallpaper['id']}")
+        raise SystemExit(f"Primary wallpaper must be generated from a Glaze-native source template: {wallpaper['id']}")
     relative = Path(wallpaper["file"])
     expected_relative = Path("generated") / f"{wallpaper['id']}.svg"
     if relative != expected_relative:
@@ -257,7 +257,7 @@ for wallpaper in wallpapers:
     source = root / wallpaper["source"]
     if not source.is_file() or source.suffix != ".in":
         raise SystemExit(
-            f"Wallpaper canonical-identity template is missing or invalid: {wallpaper['source']}"
+            f"Wallpaper Glaze-native template is missing or invalid: {wallpaper['source']}"
         )
 
     path = wallpaper_rendered / f"{wallpaper['id']}.svg"
