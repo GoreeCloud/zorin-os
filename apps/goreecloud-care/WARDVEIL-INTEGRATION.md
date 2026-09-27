@@ -52,7 +52,7 @@ Care does not currently accept Wardveil runtime-authorization envelopes for `apt
 
 ## Exact-source automated prequalification
 
-Current exact Care candidate:
+Latest completed exact-candidate prequalification checkpoint before this documentation reconciliation:
 
 - source revision: `188a60c5277f5b2d9a9b6499ba500b5340dd8eb6`;
 - runtime: `0.2.0-dev3`;
@@ -62,6 +62,8 @@ Current exact Care candidate:
 - theme-source validation: run `36356321241` — success;
 - Platform Contract validation: run `36356321526` — success;
 - primary qualification artifact: `10944555293`.
+
+This file is itself part of the packaged source. Any edit to it creates a new source/package identity, so the checkpoint above must not be relabeled as evidence for a later PR head. Live GitHub PR #17 and its exact-head workflows are authoritative for the current candidate identity and qualification state.
 
 The exact-head qualification passed source/unit/contract validation, headless GTK task-flow and accessibility checks, package construction and inspection, same-source and Ubuntu 22.04/24.04 cross-environment reproducibility, immutable Stable `0.1.0` rollback reconstruction, installed package lifecycle, launcher-isolation checks, PolicyKit success/cancellation/failure outcome mapping, and installed Wardveil-compatible privilege-boundary prequalification.
 
@@ -78,7 +80,7 @@ The installed package keeps the privileged boundary narrow:
 
 This evidence is source/install/lifecycle prequalification, not representative-target Wardveil acceptance. It does not grant production protection, cross-service execution authority, release status, or lifecycle promotion.
 
-Wardveil review issue `GoreeCloud/wardveil#177` records the current decision as **CHANGES REQUIRED**. The remaining Wardveil-specific evidence gap is exact-candidate representative Zorin OS 17.3 native/PolicyKit acceptance for this exact source/package identity. Historical Stable/dev1/dev2 target evidence does not transfer.
+Wardveil review issue `GoreeCloud/wardveil#177` records the latest authority decision. The remaining Wardveil-specific evidence gap is exact-candidate representative Zorin OS 17.3 native/PolicyKit acceptance for the then-current PR #17 source/package identity. Historical Stable/dev1/dev2 target evidence does not transfer, and any later source/package identity requires fresh exact-head validation and review binding.
 
 ## Acceptance boundary
 
@@ -86,7 +88,7 @@ Care-side source evidence now covers the Wardveil adoption requirements that can
 
 Still required before any Wardveil protection claim or production-conformant Wardveil status:
 
-- exact-candidate representative Zorin OS 17.3 installed-boundary and native PolicyKit acceptance for source `188a60c5277f5b2d9a9b6499ba500b5340dd8eb6` / package SHA-256 `5a4aab81c4869a068f075371d1e6e94bcef25fcdca217ac3fdd429860f81451a`;
+- exact-candidate representative Zorin OS 17.3 installed-boundary and native PolicyKit acceptance for the current PR #17 source revision and its exact qualified package SHA-256;
 - any remaining security-relevant desktop PolicyKit-agent acceptance required by release policy;
 - exact-candidate Privacy Shield acceptance where it affects the shared security-evidence boundary;
 - governed Wardveil adoption/promotion explicitly permitting the narrowly scoped claim; and
