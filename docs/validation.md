@@ -89,7 +89,7 @@ The Development installer uses an evidence-bound composition step instead of att
 3. Light uses the verified local `ZorinBlue-Light` base. Dark and Deep Dark use the verified local `ZorinBlue-Dark` base.
 4. The compositor copies the complete local GTK 3, GTK 4, and GNOME Shell base directories, including supporting assets, into temporary generated theme folders.
 5. The standalone GTK 3 Adwaita import is removed only for target-base composition, preventing a second compatibility base from being imported after the verified Zorin GTK 3 foundation.
-6. GoreeCloud Glaze UI V1.1 semantic overrides are appended after each verified local base.
+6. GoreeCloud GLAZE UI V1.6 desktop semantic overrides are appended after each verified local base.
 7. GTK 3 generic selected rows and checked-switch image/slider states are explicitly remapped because the verified Settings executable consumes GTK 3 and the verified Zorin base hard-codes those pale-cyan states there. The switch remap is target-verified; the generic selected-row remap remains insufficient for Settings Search and is not accepted as the final row fix.
 8. `gtk-dark.css` is composed to the explicit selected GoreeCloud variant where applicable so a separate dark-preference path does not silently replace the selected Applications variant during this acceptance cycle.
 9. The empty `.libadwaita` opt-in marker is restored after GTK 4 composition for applications that actually use the GTK 4/libadwaita path.
