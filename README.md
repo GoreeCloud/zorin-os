@@ -95,28 +95,37 @@ GoreeCloud-Zorin
 
 The base theme uses the light-first Glaze/GoreeCloud palette for first-party system assets and inherits unoverridden platform icons instead of allowing missing artwork.
 
-### Third-party application normalization
+### Third-party application presentation
 
-The first runtime wrapper implementation is **disabled** after representative Zorin OS 17.3 visual testing showed that GNOME rendered the Glaze presentation plates but failed to render most wrapped third-party app artwork inside them.
+The first runtime icon-wrapper experiment is **disabled** after representative Zorin OS 17.3 visual testing showed that GNOME rendered the Glaze wrapper plates while failing to render most wrapped third-party artwork.
 
-Current safe behavior:
+The current safe design keeps every third-party icon on its directly renderable original Zorin/Adwaita/hicolor path and organizes the launcher at the **whole application-tile layer** instead.
 
-- `GoreeCloud-Zorin` continues to provide GoreeCloud/system icon overrides;
-- third-party application icons inherit their original Zorin/Adwaita/hicolor artwork;
-- no third-party application package or `.desktop` launcher is modified;
-- `./scripts/install.sh` and `bash ./scripts/install_icons.sh` do not generate third-party icon wrappers;
-- `bash ./scripts/refresh_icons.sh` reports that runtime normalization is disabled and points back to the safe icon-only installer;
-- the failed normalizer source is retained temporarily as Development provenance while the replacement presentation method is designed and validated.
+Current behavior:
 
-Install or restore only the safe icon theme, without changing GTK/Shell themes, cursors, or wallpaper settings:
+- third-party application artwork is not rewritten, wrapped, masked, or recolored;
+- GoreeCloud/system icon overrides remain in `GoreeCloud-Zorin`;
+- the failed runtime normalizer is removed from the active scripts path;
+- `.overview-tile` and `.grid-search-result` receive a shared Glaze card treatment with 8px padding, 6px internal spacing, 16px radius, restrained border/elevation, and a 2px focus ring;
+- the icon itself remains untouched inside that tile;
+- full and icon-only installers do not generate third-party wrappers;
+- the refresh helper reports that runtime wrapping is disabled.
+
+Install or restore only the safe base icon theme:
 
 ```bash
 bash ./scripts/install_icons.sh
 ```
 
-The replacement direction is to preserve each application's original renderable icon and improve launcher consistency at the presentation/layout layer rather than by wrapping third-party image resources. That replacement remains Development until exact-revision target validation proves it works.
+Install only the new launcher/Shell presentation, with timestamped recovery and without changing GTK, icon, cursor, or wallpaper settings:
 
-See `docs/icon-normalization.md` for the failure record and replacement requirements.
+```bash
+bash ./scripts/install_launcher_presentation.sh
+```
+
+The launcher presentation is still Development and requires exact-revision Zorin OS 17.3 screenshots before acceptance.
+
+See `docs/icon-normalization.md` for the failure record, recovery behavior, and replacement contract.
 
 ## Cursor theme
 
