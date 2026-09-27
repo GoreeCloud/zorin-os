@@ -3,7 +3,7 @@ set -euo pipefail
 
 ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 MANIFEST="$ROOT/config/wallpapers.json"
-PALETTE_CONFIG="${GOREECLOUD_PALETTE_CONFIG:-$ROOT/config/palettes-v1.2.json}"
+PALETTE_CONFIG="${GOREECLOUD_PALETTE_CONFIG:-$ROOT/config/palettes.json}"
 DEST_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/backgrounds/GoreeCloud-Zorin"
 CATALOG_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/gnome-background-properties"
 CATALOG_FILE="$CATALOG_DIR/goreecloud-zorin.xml"
@@ -25,7 +25,7 @@ The GoreeCloud gallery is light-first, not light-only. GNOME Settings exposes
 all 24 wallpapers: the eight Light variants first, followed by eight Dark and
 eight Deep Dark variants. The default applied wallpaper remains Light.
 
-The default installed wallpaper palette is Glaze UI V1.2 Development.
+The default installed wallpaper palette is the GoreeCloud Zorin adaptation of GLAZE UI V1.6 / 1.6.0 Official Anchor.
 
 replace-stock keeps Zorin packages installed and diverts only the exact audited
 stock wallpaper/catalog files out of GNOME discovery paths.
