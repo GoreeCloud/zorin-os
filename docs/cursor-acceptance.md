@@ -2,7 +2,7 @@
 
 Status: Development / target-device acceptance aid.
 
-This checklist is for GoreeCloud cursor design revision 2 on the verified Zorin OS 17.3 target. It does not promote the cursor theme, the desktop theme, or Glaze UI V1.2 to Stable.
+This checklist is for GoreeCloud cursor design revision 2 on the verified Zorin OS 17.3 target. It does not promote the cursor theme or desktop theme, and the shared GLAZE UI V1.6 Official Anchor does not substitute for downstream Zorin acceptance.
 
 ## Preconditions
 
