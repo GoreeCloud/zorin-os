@@ -17,8 +17,15 @@
 @define-color gc_accent {{ACCENT}};
 @define-color gc_accent_hover {{ACCENT_HOVER}};
 @define-color gc_accent_soft {{ACCENT_SOFT}};
+@define-color gc_focus {{FOCUS}};
 @define-color gc_on_accent {{ON_ACCENT}};
 @define-color gc_selection {{SELECTION}};
+@define-color gc_success {{SUCCESS}};
+@define-color gc_on_success {{ON_SUCCESS}};
+@define-color gc_warning {{WARNING}};
+@define-color gc_on_warning {{ON_WARNING}};
+@define-color gc_information {{INFORMATION}};
+@define-color gc_on_information {{ON_INFORMATION}};
 @define-color gc_destructive {{DESTRUCTIVE}};
 @define-color gc_destructive_hover {{DESTRUCTIVE_HOVER}};
 @define-color gc_atmosphere_amber {{ATMOSPHERE_AMBER}};
@@ -47,6 +54,9 @@
 @define-color selected_fg_color {{TEXT}};
 @define-color borders {{BORDER}};
 @define-color unfocused_borders {{BORDER}};
+@define-color success_color {{SUCCESS}};
+@define-color warning_color {{WARNING}};
+@define-color error_color {{DESTRUCTIVE}};
 
 /* Glaze UI surface hierarchy: canvas -> surface -> elevated/deep. */
 .background,
@@ -96,6 +106,17 @@ button {
 button:hover {
   border-color: @gc_accent_soft;
   background-color: @gc_elevated;
+}
+
+/* GLAZE UI V1.6 focus remains visible independently of hover, color theme,
+ * reduced motion, or transparency. GTK 3 supports a real 2px focus outline
+ * with a 2px offset, matching the shared interaction-state floor. */
+button:focus {
+  border-color: @gc_focus;
+  outline-color: @gc_focus;
+  outline-style: solid;
+  outline-width: 2px;
+  outline-offset: 2px;
 }
 
 button:active,
@@ -182,8 +203,12 @@ combobox button {
 entry:focus,
 spinbutton:focus,
 combobox button:focus {
-  border-color: @gc_accent;
-  box-shadow: inset 0 0 0 1px @gc_accent;
+  border-color: @gc_focus;
+  outline-color: @gc_focus;
+  outline-style: solid;
+  outline-width: 2px;
+  outline-offset: 2px;
+  box-shadow: inset 0 0 0 1px @gc_focus;
 }
 
 entry:backdrop,
