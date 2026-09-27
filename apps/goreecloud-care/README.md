@@ -1,12 +1,14 @@
 # GoreeCloud Care
 
+> **Current Development line:** `0.2.0-dev3` / `0.2.0~dev3` remains Development and nonconformant on Draft PR #17. Live PR/CI controls the exact current candidate. The Stable `0.1.0` metadata and evidence below are historical exact-release records and do not transfer automatically. Current project authority is the repository root [PROJECT-SPECIFICATIONS.md](../../PROJECT-SPECIFICATIONS.md) and [PROJECT-RECORD.md](../../PROJECT-RECORD.md).
+
 **Lifecycle:** Stable  
 **Version:** `0.1.0`  
 **Released package:** `goreecloud-care_0.1.0_all.deb`  
 **Immutable release source:** `bbc4779454c2887b810aa0ddc9e8a686a4c68ebd`  
 **Released package SHA-256:** `819cff6e0132bf6b09df0986682995c25b14c39e74982f725efd0b5a21b71160`  
 **Representative target:** Zorin OS 17.3  
-**Canonical source:** `GoreeCloud/goreecloud-zorin-os/apps/goreecloud-care/`  
+**Canonical source:** `GoreeCloud/zorin-os/apps/goreecloud-care/`  
 **License:** GPL-3.0-or-later
 
 GoreeCloud Care is a local-first GTK3 desktop maintenance application for GoreeCloud/Zorin OS. It previews maintenance candidates before deletion, keeps routine cache/temp cleanup unprivileged, isolates privileged maintenance behind a fixed PolicyKit helper, provides privacy-safe read-only reports and Maintenance Insights, and exposes narrow local status interfaces for governed platform integration.
