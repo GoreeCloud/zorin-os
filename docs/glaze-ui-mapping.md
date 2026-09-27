@@ -1,85 +1,123 @@
-# Glaze UI V1.1 Mapping for Zorin OS
+# GLAZE UI V1.6 Mapping for Zorin OS
 
 ## Status
 
-This document records the intended mapping from Glaze UI V1.1 / 1.1.0 to the GoreeCloud Zorin OS theme source.
+This document records the GoreeCloud Zorin OS desktop adaptation of **GLAZE UI V1.6 / 1.6.0 Official Anchor**.
 
-This is a **platform adaptation**, not evidence by itself that the desktop theme has passed Glaze UI conformance or target-environment acceptance.
+Upstream authority is `GoreeCloud/glaze-ui`. This repository pins the accepted V1.6 release source at `a7180679ea851389e0f3004515f9a25f420e716d` and its qualification source at `c7509c79256b04b0aa67cb9dd0737d7588e0ae4a`.
 
-## Mapping principles
+This is a downstream platform adaptation. It does not transfer upstream acceptance to the Zorin theme. The theme remains Development until its own exact-revision target acceptance is complete.
 
-Glaze UI's surface model is adapted to desktop-theme primitives as follows:
+## Governing desktop rule
 
-| Glaze UI concept | Zorin / GTK / GNOME Shell mapping |
+The V1.6 material rule is applied conservatively:
+
+> Solid where users read or make explicit critical decisions. Glazed where users interact with transient navigation, command, search, control, or feedback chrome.
+
+GTK and GNOME Shell cannot reproduce every Glaze optical behavior. Unsupported backdrop effects therefore fail toward solid or raised surfaces instead of becoming low-contrast transparency.
+
+## Surface and material mapping
+
+| Glaze UI role | Zorin / GTK / GNOME Shell mapping |
 | --- | --- |
-| Canvas | desktop application background and lowest-level window background |
-| Surface | header bars, sidebars, popovers, menus, shell panel surfaces |
-| Soft Glaze | hover and lightweight selection surfaces |
-| Glaze | menus, search, quick settings, dialogs, overview controls |
-| Deep Glaze | tooltips, OSD surfaces, deep-dark elevated containers |
-| Live Glaze | intentionally not emulated; desktop CSS cannot safely reproduce the web design system's full live/backdrop optical model |
+| Canvas | application/window background and lowest desktop content layer |
+| Solid | reading surfaces, forms, dense lists, settings content, explanatory text |
+| Raised | cards, sidebars, inspectors, floating but content-bearing panels |
+| Functional Glass | bounded Shell panel, search, quick controls, menus, transient navigation chrome |
+| Overlay | dialogs, popovers, sheets, OSDs, high-authority transient surfaces |
+| Clear Glass | not used as a default content material |
+| Unsupported backdrop | solid or raised neutral fallback |
 
-The desktop implementation keeps reading surfaces substantially solid. Translucency is limited primarily to GNOME Shell surfaces where the shell compositor already supports it.
+The adaptation avoids nested backdrop stacks and intentionally keeps Shell translucency high-opacity because GNOME Shell CSS cannot guarantee the same bounded blur semantics as the shared Glaze runtime.
 
-## Color mapping
+## Color and semantic-state mapping
 
-The Stable Glaze UI atmospheric anchors are represented directly where appropriate:
+The desktop palette uses Frost White, Ice Blue, GoreeCloud Blue, and Cool Graphite as its product/environment identity. Pigment values in `config/palettes.json` are downstream Zorin implementation values; they are not promoted as new upstream Glaze tokens.
 
-- Canvas Black `#081016`
-- Deep Graphite `#101A20`
-- Slate Graphite `#18252B`
-- Deep Teal `#0F6B6F`
-- Mineral Teal `#1C8A8D`
-- Soft Aqua `#8FD6D2`
-- Soft Amber `#D9A35F`
-- Champagne Gold `#E7C78A`
+Interaction and state roles are separate:
 
-Light-mode neutrals are desktop-specific derivatives chosen to preserve readability with the same teal family.
+- `accent` is ordinary interaction emphasis;
+- `focus` is explicit keyboard/accessibility focus and remains visibly distinct from hover;
+- `selection` is a stable selected-state surface;
+- `success`, `warning`, `information`, and `destructive` have dedicated colors;
+- the theme does not infer privacy, security, protection, connectivity, or application state;
+- semantic meaning must not rely on color alone.
 
-Deep Teal / Mineral Teal are used for interaction emphasis, focus, selected controls, progress, and other ordinary accent roles. Amber remains an atmospheric identity token rather than a warning/success/error semantic color; the theme source therefore does not force Amber into semantic widget states.
+GTK 4/libadwaita named semantic colors are mapped from these roles where the toolkit exposes them. GTK 3 retains compatible symbolic aliases without overriding application truth.
 
-## Geometry mapping
+## Geometry and target floors
 
-Glaze UI geometry is carried into the desktop theme approximately as:
+The desktop adaptation keeps the established Glaze spacing/radius hierarchy while respecting native widget constraints:
 
-- 8 px: compact menu items and tooltips;
-- 16 px: controls, fields, toggles, search, notifications;
-- 24 px: major dialogs, dash surfaces, quick settings;
-- 999 px: switches, scroll thumbs, progress tracks, and other pill/capsule geometry.
+- compact controls use a minimum 32 px pointer target;
+- quick settings and coarse/touch-like Shell controls use a 44 px minimum target;
+- common controls use approximately 16 px radii;
+- menus/tooltips use quieter compact geometry;
+- major dialogs, dash surfaces, and quick-settings containers use approximately 24 px radii;
+- switches, scroll thumbs, and progress tracks may use capsule geometry.
 
-These values are adapted where GTK or GNOME Shell widget constraints require a smaller radius.
+Density changes must not reduce the applicable target floor.
 
-## Modes
+## Focus and interaction states
 
-The theme family exposes three Glaze-aligned modes:
+GLAZE UI V1.6 requires focus to remain visible across materials, reduced motion, reduced transparency, and constrained-performance presentation.
 
-- `GoreeCloud-Zorin-Light`
-- `GoreeCloud-Zorin-Dark`
-- `GoreeCloud-Zorin-DeepDark`
+The Zorin mapping therefore uses:
 
-Deep Dark is intentionally distinct from Dark: it uses Canvas Black as the base with Deep Graphite and Slate Graphite layered above it.
+- a dedicated `focus` token rather than hover styling;
+- a minimum 2 px GTK focus outline with a 2 px offset where GTK supports it;
+- a strong 2 px structural focus ring in GNOME Shell, whose St CSS model does not offer the same outline-offset behavior;
+- separate hover, focus, pressed/active, selected, disabled, and destructive presentation where the platform exposes those states.
 
-## GTK 4 / libadwaita mapping
+Hover is never the only visible interaction path.
 
-Target-device Dark-mode screenshots showed that selecting the GTK 3 + Shell theme did not bring the Files application onto the expected GoreeCloud canvas/surface hierarchy. The Development source therefore now includes a GTK 4 stylesheet and Zorin's explicit `.libadwaita` opt-in marker so native libadwaita applications can be tested instead of being treated as out of scope.
+## Appearance modes
 
-The GTK 4 mapping intentionally focuses on stable libadwaita named color roles and common widget states rather than copying another theme's complete stylesheet. It maps:
+The family exposes:
 
-- `window_bg_color` and `view_bg_color` to the GoreeCloud canvas;
-- headerbar, sidebar, dialog, popover, and card roles to GoreeCloud surface/elevated layers;
-- accent/destructive roles to the existing GoreeCloud semantic tokens;
-- selected navigation rows, checked controls, focus, progress, scrollbars, and common geometry to the same interaction hierarchy used by GTK 3.
+- `GoreeCloud-Zorin-Light` — primary light-first experience;
+- `GoreeCloud-Zorin-Dark` — secondary dark compatibility experience;
+- `GoreeCloud-Zorin-DeepDark` — secondary deep-dark compatibility experience.
 
-Zorin OS 17+ requires an empty `gtk-4.0/.libadwaita` marker for this opt-in path. The marker is generated only as part of this Development acceptance candidate and does not constitute compatibility evidence by itself.
+Each mode uses the same semantic role structure and accessibility floors.
 
-## Platform limitations
+## GTK 3
 
-GTK, libadwaita, and GNOME Shell CSS do not reproduce the exact optical and backdrop-blur behavior of Glaze UI's web implementation. The mapping prioritizes hierarchy, contrast, geometry, color, and interaction-state consistency instead of simulating unsupported effects.
+GTK 3 remains based on the exact locally installed, hash-verified Zorin OS 17.3 theme. GoreeCloud overrides are appended only after the verified base is copied into the generated theme.
 
-GTK 2 remains a discovery compatibility shim rather than a full visual implementation. Browser chrome, Flatpak/Snap packaging, and application-provided CSS can also retain their own visual styling.
+The mapping covers symbolic GTK colors, header bars, buttons, fields, selections, switches, menus, sidebars, Files/Settings target selectors, focus, progress, scrollbars, and common geometry.
 
-## Accessibility intent
+## GTK 4 / libadwaita
 
-The theme deliberately avoids decorative animation and therefore does not introduce a new motion dependency. Interaction states retain visible boundaries, selected states use strong contrast, and focus states use a teal border/inner ring where supported.
+Zorin OS 17+ requires the generated empty `gtk-4.0/.libadwaita` marker before native libadwaita applications can load the third-party theme path used by this project.
 
-Actual contrast, keyboard focus visibility, legibility, state clarity, GTK 4/libadwaita compatibility, and Shell behavior must still be accepted on the target Zorin OS 17.3 laptop before release qualification.
+The GTK 4 mapping covers window/view/header/sidebar/card/dialog/popover roles, accent and semantic colors, selected navigation rows, checked controls, focus, progress, scrollbars, and Zorin-target Files/Settings selectors.
+
+The composer rewrites only the exact selected-row and checked-switch blocks in the hash-verified Zorin 17.3 GTK 4 base before appending GoreeCloud overrides.
+
+## GNOME Shell
+
+Shell surfaces use bounded, high-opacity neutral Glaze presentation for the panel, menus, dash, search, notifications, date/calendar surfaces, quick settings, and icon buttons.
+
+Quick settings use 44 px minimum targets, dedicated focus treatment, neutral elevated surfaces, and selection/accent roles without reviving Zorin's inherited cyan gradients.
+
+## Accessibility and degradation
+
+The source-level adaptation enforces or records:
+
+- strong primary text contrast;
+- minimum muted-text and foreground/background contrast checks;
+- focus contrast checks;
+- solid/raised fallback for unsupported or reduced transparency;
+- no decorative motion dependency;
+- no color-only status contract;
+- preserved target floors under density changes;
+- protected content/action/focus/hierarchy semantics when effects are reduced.
+
+Actual keyboard behavior, high-contrast behavior, reduced-transparency behavior, 200% text legibility, GTK 4/libadwaita rendering, Shell rendering, and representative wallpaper stress cases still require target acceptance on the exact candidate revision.
+
+## Platform limits
+
+GTK, libadwaita, and GNOME Shell CSS do not implement the complete Glaze optical engine, connected transformations, runtime context adaptation, or all shared material behaviors. This theme therefore prioritizes semantic hierarchy, readability, geometry, focus, state clarity, and conservative material fallbacks rather than simulating unsupported effects.
+
+GTK 2 remains a discovery compatibility shim. Flatpak/Snap applications, browser chrome, and applications with bundled CSS may retain independent styling.
