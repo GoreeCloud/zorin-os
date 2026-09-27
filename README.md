@@ -131,7 +131,13 @@ A normalization report is written into the installed icon theme at:
 ~/.local/share/icons/GoreeCloud-Zorin/goreecloud-normalization-report.json
 ```
 
-After installing new applications, refresh the icon wrappers with:
+Install or update only the icon theme, without changing GTK/Shell themes, cursors, or the current wallpaper:
+
+```bash
+bash ./scripts/install_icons.sh
+```
+
+After installing new applications, refresh the existing icon wrappers with:
 
 ```bash
 bash ./scripts/refresh_icons.sh
