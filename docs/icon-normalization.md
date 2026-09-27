@@ -40,22 +40,23 @@ That command only reports the disabled state and points back to the safe base ic
 
 The replacement candidate improves visual consistency at the GNOME Shell application-tile layer rather than by replacing the icon resource.
 
-The current source applies the Glaze treatment to:
+Target inspection of the representative Zorin OS 17.3 system identified `gnome-shell-extension-zorin-menu 4.2.7`. Its grid container uses `.apps-grid` and each application actor uses `.app-item`.
+
+The current source therefore targets:
 
 ```text
-.overview-tile
-.grid-search-result
+.apps-grid .app-item
 ```
 
-The original application artwork remains untouched inside the tile.
+Generic `.overview-tile` / `.grid-search-result` rules remain as fallback for GNOME overview/search surfaces. The original application artwork remains untouched inside every tile.
 
 Current tile contract:
 
 | Property | Value |
 | --- | ---: |
-| Padding | 8 px |
+| Padding | 6 px |
 | Internal spacing | 6 px |
-| Corner radius | 16 px |
+| Corner radius | 14 px |
 | Border | 1 px Glaze Shell border |
 | Base surface | Glaze Shell elevated surface |
 | Focus ring | minimum 2 px |
@@ -99,8 +100,8 @@ The incident establishes an explicit rule for this downstream theme:
 - original third-party identity preservation;
 - inherited fallback for unoverridden application icons;
 - safe Shell tile presentation is enabled;
-- tile presentation targets only `.overview-tile` and `.grid-search-result`;
-- 8px padding, 6px spacing, 16px radius, and at least a 2px focus ring;
+- target-specific launcher presentation uses `.apps-grid .app-item`, with generic `.overview-tile` / `.grid-search-result` fallback rules retained;
+- 6px padding, 6px spacing, 14px radius, and at least a 2px focus ring for the verified Zorin Menu grid;
 - the required Glaze Shell surface/border/focus fragments remain in the generated Shell template;
 - disabled wrapper optical directories are not advertised by the icon theme.
 
@@ -116,4 +117,4 @@ The launcher-tile candidate must be reviewed on the representative Zorin OS 17.3
 
 Acceptance requires that the tiles make the launcher feel more ordered **without** obscuring, shrinking, clipping, recoloring, or replacing the original application icons.
 
-The PR remains Draft until that visual review passes.
+Target screenshots now pass the unselected-grid organization and DeepDark launcher presentation checkpoints while preserving original third-party artwork. The PR remains Draft because downstream Shell/accessibility acceptance is not yet complete.
