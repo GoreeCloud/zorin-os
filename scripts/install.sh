@@ -107,6 +107,11 @@ done
 cp -a -- "$TEMP_ROOT/icons/$ICON_THEME" "$ICON_DEST/$ICON_THEME"
 cp -a -- "$TEMP_ROOT/cursors/$CURSOR_THEME" "$ICON_DEST/$CURSOR_THEME"
 
+ICON_NORMALIZATION_REPORT="$ICON_DEST/$ICON_THEME/goreecloud-normalization-report.json"
+python3 "$ROOT/scripts/normalize_app_icons.py" \
+  --theme-root "$ICON_DEST/$ICON_THEME" \
+  --report "$ICON_NORMALIZATION_REPORT"
+
 # Mutter/Xcursor consumers can keep the bytes for a cursor theme cached by
 # theme identifier even after that directory is replaced in place. The cursor
 # design contract therefore carries a revisioned runtime identifier while the
@@ -250,6 +255,8 @@ echo "  Design:         GLAZE UI V1.6 / 1.6.0 Official Anchor (downstream Develo
 echo "  Applications:   $LIGHT_THEME"
 echo "  Shell:          $LIGHT_THEME"
 echo "  Icons:          $ICON_THEME"
+echo "  App icons:      third-party identities normalized with Glaze optical plates when safely resolvable"
+echo "  Icon report:    $ICON_NORMALIZATION_REPORT"
 echo "  Cursor asset:   $CURSOR_THEME"
 echo "  Cursor runtime: $CURSOR_RUNTIME_THEME"
 echo "  Wallpaper:      primary GoreeCloud light wallpaper"
