@@ -97,63 +97,26 @@ The base theme uses the light-first Glaze/GoreeCloud palette for first-party sys
 
 ### Third-party application normalization
 
-The installer also performs a user-local third-party application-icon normalization pass:
+The first runtime wrapper implementation is **disabled** after representative Zorin OS 17.3 visual testing showed that GNOME rendered the Glaze presentation plates but failed to render most wrapped third-party app artwork inside them.
 
-```text
-installed .desktop entries
-        ↓
-resolved original SVG/PNG identity
-        ↓
-Glaze optical safe-area scaling
-        ↓
-neutral Glaze presentation plate
-        ↓
-24 / 32 / 48 / 64 / scalable wrappers
-```
+Current safe behavior:
 
-The normalizer follows the inherited Glaze V1 icon-construction and identity contracts:
+- `GoreeCloud-Zorin` continues to provide GoreeCloud/system icon overrides;
+- third-party application icons inherit their original Zorin/Adwaita/hicolor artwork;
+- no third-party application package or `.desktop` launcher is modified;
+- `./scripts/install.sh` and `bash ./scripts/install_icons.sh` do not generate third-party icon wrappers;
+- `bash ./scripts/refresh_icons.sh` reports that runtime normalization is disabled and points back to the safe icon-only installer;
+- the failed normalizer source is retained temporarily as Development provenance while the replacement presentation method is designed and validated.
 
-- preserve the external product's original identity;
-- do not redraw, recolor into GoreeCloud branding, or replace third-party trademarks;
-- use standard framing/padding to improve launcher-grid consistency;
-- keep identity geometry inside the Glaze safe/primary optical zones;
-- provide purpose-sized 24px, 32px, 48px, and 64px wrappers plus scalable presentation;
-- leave GoreeCloud-prefixed first-party identities untouched;
-- reject SVG sources containing scripts, foreign objects, or external/data/file resources;
-- never modify third-party application packages or their `.desktop` files;
-- fall back to inherited Zorin/Adwaita/hicolor artwork when a source icon cannot be resolved safely.
-
-The presentation layer uses a restrained Frost/Crystal/Ice plate, soft Glacier outline, controlled highlight, and low-opacity Graphite depth. It deliberately normalizes visual weight without forcing every third-party mark into a new GoreeCloud symbol.
-
-A normalization report is written into the installed icon theme at:
-
-```text
-~/.local/share/icons/GoreeCloud-Zorin/goreecloud-normalization-report.json
-```
-
-Install or update only the icon theme, without changing GTK/Shell themes, cursors, or the current wallpaper:
+Install or restore only the safe icon theme, without changing GTK/Shell themes, cursors, or wallpaper settings:
 
 ```bash
 bash ./scripts/install_icons.sh
 ```
 
-After installing new applications, refresh the existing icon wrappers with:
+The replacement direction is to preserve each application's original renderable icon and improve launcher consistency at the presentation/layout layer rather than by wrapping third-party image resources. That replacement remains Development until exact-revision target validation proves it works.
 
-```bash
-bash ./scripts/refresh_icons.sh
-```
-
-Preview what would be normalized without writing changes:
-
-```bash
-bash ./scripts/refresh_icons.sh --dry-run
-```
-
-Apps whose launcher uses an absolute icon-file path cannot be overridden through the freedesktop icon-theme lookup without rewriting the third-party launcher. GoreeCloud intentionally does not rewrite those launchers in this Development implementation; they remain inherited/original and are reported as skipped.
-
-The core custom set still covers folders/places, home/desktop/trash, storage/devices, computer/phone/flash media, and `start-here`/GoreeCloud identity. The `start-here` and GoreeCloud identity icons preserve the synchronized canonical GoreeCloud mark already pinned by the repository branding authority.
-
-See `docs/icon-normalization.md` for the detailed contract and target-review procedure.
+See `docs/icon-normalization.md` for the failure record and replacement requirements.
 
 ## Cursor theme
 
@@ -245,7 +208,7 @@ python3 ./scripts/validate_system_wallpapers.py
 
 The light-first catalog gate verifies that all 30 wallpapers are visible and ordered as 10 Light, 10 Dark, then 10 Deep Dark.
 
-Icon validation now also exercises a synthetic third-party launcher/icon pair, verifies local-only normalized source references, verifies the 24/32/48/64/scalable wrapper ladder, and verifies that GoreeCloud-prefixed first-party identity is excluded from third-party normalization.
+Icon validation now enforces that the failed runtime third-party wrapper path remains disabled, that third-party packages/launchers are not modified, and that inherited original application artwork remains the safe fallback.
 
 Cursor validation verifies the complete configured size ladder, animated-frame/delay contract, non-empty Xcursor payloads, and the neutral Frost/Graphite primary-pointer contract so the default pointer cannot regress to a blue-heavy treatment unnoticed.
 
