@@ -88,24 +88,61 @@ stage {
   background-image: none;
 }
 
+/* Keep third-party icon artwork untouched. Normalize the application grid at
+ * the whole-tile layer instead: a quiet Glaze card gives mixed icon families
+ * one shared visual rhythm without masking, recoloring, or wrapping them. */
+.overview-tile,
+.grid-search-result {
+  padding: 8px;
+  spacing: 6px;
+  border: 1px solid {{SHELL_BORDER}};
+  border-radius: 16px;
+  background-image: none;
+  background-color: {{SHELL_ELEVATED}};
+  box-shadow: inset 0 1px 0 {{EDGE_LIGHT}};
+  transition-duration: 150ms;
+}
+
+.overview-tile:hover,
+.grid-search-result:hover {
+  border-color: {{ACCENT_SOFT}};
+  background-color: {{SHELL_HOVER}};
+}
+
+.overview-tile:focus,
+.overview-tile:selected,
+.grid-search-result:focus,
+.grid-search-result:selected {
+  border-color: {{FOCUS}};
+  background-color: {{SHELL_HOVER}};
+  box-shadow: inset 0 0 0 2px {{FOCUS}}, inset 0 1px 0 {{EDGE_LIGHT}};
+}
+
+.overview-tile:active,
+.grid-search-result:active {
+  border-color: {{ACCENT_SOFT}};
+  background-color: {{SHELL_ACTIVE}};
+  box-shadow: inset 0 1px 0 {{EDGE_LIGHT}};
+}
+
 .app-well-app:hover .overview-icon,
 .app-well-app:focus .overview-icon,
 .show-apps:hover .overview-icon,
 .show-apps:focus .overview-icon {
-  border-color: {{ACCENT_SOFT}};
+  border-color: transparent;
   background-image: none;
-  background-color: {{SHELL_HOVER}};
-  box-shadow: inset 0 1px 0 {{EDGE_LIGHT}};
+  background-color: transparent;
+  box-shadow: none;
 }
 
 .app-well-app:active .overview-icon,
 .app-well-app:checked .overview-icon,
 .show-apps:active .overview-icon,
 .show-apps:checked .overview-icon {
-  border-color: {{ACCENT_SOFT}};
+  border-color: transparent;
   background-image: none;
-  background-color: {{SHELL_ACTIVE}};
-  box-shadow: inset 0 1px 0 {{EDGE_LIGHT}};
+  background-color: transparent;
+  box-shadow: none;
 }
 
 .search-entry {
