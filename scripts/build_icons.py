@@ -226,19 +226,38 @@ def main() -> int:
     for path in dirs.values():
         path.mkdir(parents=True, exist_ok=True)
 
+    normalization = cfg.get("normalization", {})
+    optical_sizes = [int(value) for value in normalization.get("optical_sizes", [])]
+    optical_app_dirs = [f"{size}x{size}/apps" for size in optical_sizes]
+    for rel in optical_app_dirs:
+        (theme / rel).mkdir(parents=True, exist_ok=True)
+
     inherits = ",".join(cfg["inherits"])
-    write(
-        theme / "index.theme",
+    theme_directories = [
+        "scalable/places",
+        "scalable/devices",
+        "scalable/apps",
+        *optical_app_dirs,
+    ]
+    index = (
         "[Icon Theme]\n"
         f"Name={cfg['name']}\n"
         f"Comment={cfg['comment']}\n"
         f"Inherits={inherits}\n"
         "Example=folder\n"
-        "Directories=scalable/places,scalable/devices,scalable/apps\n\n"
+        f"Directories={','.join(theme_directories)}\n\n"
         "[scalable/places]\nSize=64\nType=Scalable\nMinSize=16\nMaxSize=512\nContext=Places\n\n"
         "[scalable/devices]\nSize=64\nType=Scalable\nMinSize=16\nMaxSize=512\nContext=Devices\n\n"
-        "[scalable/apps]\nSize=64\nType=Scalable\nMinSize=16\nMaxSize=512\nContext=Applications\n",
+        "[scalable/apps]\nSize=64\nType=Scalable\nMinSize=16\nMaxSize=512\nContext=Applications\n\n"
     )
+    for size, rel in zip(optical_sizes, optical_app_dirs):
+        index += (
+            f"[{rel}]\n"
+            f"Size={size}\n"
+            "Type=Fixed\n"
+            "Context=Applications\n\n"
+        )
+    write(theme / "index.theme", index)
 
     place_icons = {
         "folder": folder_icon(),
