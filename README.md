@@ -106,7 +106,7 @@ Current behavior:
 - third-party application artwork is not rewritten, wrapped, masked, or recolored;
 - GoreeCloud/system icon overrides remain in `GoreeCloud-Zorin`;
 - the failed runtime normalizer is removed from the active scripts path;
-- `.overview-tile` and `.grid-search-result` receive a shared Glaze card treatment with 8px padding, 6px internal spacing, 16px radius, restrained border/elevation, and a 2px focus ring;
+- the verified Zorin Menu 4.2.7 application grid uses `.apps-grid .app-item` and receives a shared Glaze card treatment with 6px padding, 6px internal spacing, 14px radius, restrained border/elevation, and a 2px focus ring; generic `.overview-tile` / `.grid-search-result` rules remain as fallback;
 - the icon itself remains untouched inside that tile;
 - full and icon-only installers do not generate third-party wrappers;
 - the refresh helper reports that runtime wrapping is disabled.
@@ -123,7 +123,7 @@ Install only the new launcher/Shell presentation, with timestamped recovery and 
 bash ./scripts/install_launcher_presentation.sh
 ```
 
-The launcher presentation is still Development and requires exact-revision Zorin OS 17.3 screenshots before acceptance.
+The launcher presentation remains Development overall, but exact-revision Zorin OS 17.3 screenshots have now passed the unselected-grid organization and DeepDark presentation checkpoints. Remaining Shell acceptance includes the corrected calendar-today state and broader accessibility/runtime review.
 
 See `docs/icon-normalization.md` for the failure record, recovery behavior, and replacement contract.
 
