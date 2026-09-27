@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160" role="img" aria-labelledby="title desc">
+  <title id="title">{{category}} — {{family}} {{mode_label}}</title>
+  <desc id="desc">Glaze UI celestial wallpaper with restrained orbital geometry, cold luminous arcs, and broad quiet space.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="{{deep}}"/><stop offset=".55" stop-color="{{canvas}}"/><stop offset="1" stop-color="{{surface}}"/></linearGradient>
+    <radialGradient id="glow" cx=".76" cy=".45" r=".46"><stop stop-color="{{clear_sky_blue}}" stop-opacity=".24"/><stop offset="1" stop-color="{{clear_sky_blue}}" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="3840" height="2160" fill="url(#bg)"/><rect width="3840" height="2160" fill="url(#glow)"/>
+  <g fill="none" transform="rotate(-18 2920 1030)">
+    <ellipse cx="2920" cy="1030" rx="840" ry="320" stroke="{{ice_blue}}" stroke-opacity=".18" stroke-width="5"/>
+    <ellipse cx="2920" cy="1030" rx="650" ry="245" stroke="{{glacier_blue}}" stroke-opacity=".14" stroke-width="3"/>
+  </g>
+  <circle cx="2920" cy="1030" r="180" fill="{{crystal_white}}" opacity=".12"/>
+  <circle cx="2240" cy="790" r="34" fill="{{clear_sky_blue}}" opacity=".62"/>
+  <circle cx="3480" cy="1240" r="22" fill="{{frost_white}}" opacity=".54"/>
+  <path d="M420 420L640 420M530 310V530M860 780L980 780M920 720V840" stroke="{{frost_white}}" stroke-opacity=".18" stroke-width="4" stroke-linecap="round"/>
+</svg>
