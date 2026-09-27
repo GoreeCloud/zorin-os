@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160" role="img" aria-labelledby="title desc">
+  <title id="title">{{category}} — {{family}} {{mode_label}}</title>
+  <desc id="desc">Glaze UI architectural wallpaper using monumental frosted planes, perspective light, and an open atrium void.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="{{canvas}}"/><stop offset=".58" stop-color="{{surface}}"/><stop offset="1" stop-color="{{deep}}"/></linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="{{crystal_white}}" stop-opacity=".20"/><stop offset=".6" stop-color="{{ice_blue}}" stop-opacity=".08"/><stop offset="1" stop-color="{{glacier_blue}}" stop-opacity=".03"/></linearGradient>
+  </defs>
+  <rect width="3840" height="2160" fill="url(#bg)"/>
+  <path d="M2300 160L3680 520V1960L2300 1640Z" fill="url(#glass)" stroke="{{border}}" stroke-opacity=".28" stroke-width="4"/>
+  <path d="M2850 310L3500 490V1780L2850 1610Z" fill="{{surface}}" opacity=".12" stroke="{{ice_blue}}" stroke-opacity=".18" stroke-width="3"/>
+  <path d="M2050 1960L2700 1290L3800 1550V2160H2050Z" fill="{{elevated}}" opacity=".28"/>
+  <g stroke="{{crystal_white}}" stroke-opacity=".13" stroke-width="4"><path d="M2540 230V1700"/><path d="M3090 370V1770"/><path d="M3380 450V1840"/></g>
+</svg>
