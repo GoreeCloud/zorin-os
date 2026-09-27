@@ -69,6 +69,8 @@ def main() -> int:
                 str(rendered),
                 "--output",
                 str(catalog_path),
+                "--mode",
+                "light",
             ],
             check=True,
         )
