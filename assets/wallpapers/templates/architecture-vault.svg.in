@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160" role="img" aria-labelledby="title desc">
+  <title id="title">{{category}} — {{family}} {{mode_label}}</title>
+  <desc id="desc">Glaze UI architectural wallpaper with repeated vaulted arcs, graphite depth, and cold glass highlights.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="0"><stop stop-color="{{surface}}"/><stop offset=".5" stop-color="{{canvas}}"/><stop offset="1" stop-color="{{deep}}"/></linearGradient>
+    <radialGradient id="glow" cx=".78" cy=".5" r=".52"><stop stop-color="{{ice_blue}}" stop-opacity=".16"/><stop offset="1" stop-color="{{ice_blue}}" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="3840" height="2160" fill="url(#bg)"/><rect width="3840" height="2160" fill="url(#glow)"/>
+  <g fill="none" stroke="{{cloud_gray}}" stroke-opacity=".20" stroke-width="8">
+    <path d="M2100 1860V1030C2100 520 2480 240 2920 240C3360 240 3740 520 3740 1030V1860"/>
+    <path d="M2320 1860V1080C2320 690 2580 470 2920 470C3260 470 3520 690 3520 1080V1860"/>
+    <path d="M2540 1860V1130C2540 850 2700 700 2920 700C3140 700 3300 850 3300 1130V1860"/>
+  </g>
+  <path d="M2080 1860H3760" stroke="{{glacier_blue}}" stroke-opacity=".14" stroke-width="10" stroke-linecap="round"/>
+</svg>
