@@ -15,7 +15,7 @@ The repository currently provides:
 - `GoreeCloud-Zorin-DeepDark` — secondary compatibility theme;
 - `GoreeCloud-Zorin` — light-first icon theme;
 - `GoreeCloud-Zorin-Cursors` — neutral Frost White + Graphite Xcursor theme with restrained GoreeCloud Blue activity/action accents;
-- 24 identity-derived wallpaper source derivatives, with only 8 Light wallpapers exposed in Settings;
+- 30 original Glaze UI wallpaper variants across Atmosphere, Terrain, Celestial, Architecture, and Digital categories;
 - recovery-backed replacement of the audited Zorin OS 17.3 stock wallpaper set without removing Zorin desktop packages.
 
 The default installer now renders and composes the desktop against the repository's **GLAZE UI V1.6 / 1.6.0 Official Anchor** desktop adaptation in `config/palettes.json`. The palette pins the accepted upstream release source `a7180679ea851389e0f3004515f9a25f420e716d`; the older `config/palettes-v1.2.json` file is retained only as historical migration provenance.
@@ -41,9 +41,9 @@ The default install:
 - activates `GoreeCloud-Zorin-Light` for Shell when the User Themes extension schema is available;
 - activates the GoreeCloud icon theme;
 - activates the GoreeCloud cursor theme;
-- installs all 24 wallpaper source derivatives for compatibility/recovery;
-- exposes only the 8 Light wallpapers in GNOME Settings;
-- applies the primary Light wallpaper.
+- installs all 30 Glaze Originals wallpaper variants;
+- exposes the complete light-first gallery in GNOME Settings: 10 Light, 10 Dark, then 10 Deep Dark;
+- applies the primary Light Atmosphere — Cirrus wallpaper.
 
 Existing GoreeCloud theme/icon/cursor directories are moved into timestamped recovery storage before replacement.
 
@@ -117,11 +117,22 @@ The generator uses only the Python standard library and does not require `xcurso
 
 ## Wallpaper collection
 
-The repository defines **24 3840×2160 SVG wallpaper source derivatives** across GoreeCloud, Glaze UI, Wardveil Security, and Privacy Shield.
+The repository defines **30 original 3840×2160 SVG wallpapers** designed with the Glaze UI V1.6 visual language. The catalog intentionally moves away from the earlier logo-centric set and treats wallpaper as environmental desktop art rather than a branding billboard.
 
-The installed GNOME catalog is deliberately light-first: exactly **8 Light wallpapers are visible**, while the 16 Dark/Deep Dark compatibility derivatives remain installed as `deleted=true` catalog entries. This keeps source/recovery contracts complete without presenting dark wallpapers in Settings.
+The collection contains five categories with two distinct families each:
 
-The wallpaper source is identity-derived rather than generic abstract artwork. Canonical branding authority is `GoreeCloud/goreecloud-branding-assets`; `config/wallpaper-identities.json` pins the authority commit, source path, synchronized copy, SHA-256, and viewBox used by generation.
+| Category | Families | Variants |
+| --- | --- | ---: |
+| Atmosphere | Cirrus, Halo | 6 |
+| Terrain | Tundra, Strata | 6 |
+| Celestial | Orbit, Aurora | 6 |
+| Architecture | Atrium, Vault | 6 |
+| Digital | Mesh, Current | 6 |
+| **Total** | **10 families × Light/Dark/Deep Dark** | **30** |
+
+Every family is rendered in Light, Dark, and Deep Dark. GNOME Settings remains **light-first, not light-only**: 10 Light wallpapers appear first, followed by 10 Dark and 10 Deep Dark wallpapers. Users may choose any wallpaper independently of the active desktop theme.
+
+The source is pure repository-native vector artwork. It does not depend on stock imagery, external URLs, embedded raster data, or generated chat images. Shared Glaze identity comes from the V1.6 Frost/Crystal/Ice/Glacier/Graphite optical references, bounded translucency, restrained edge light, low-frequency composition, and generous quiet workspace regions. Semantic interaction colors such as focus, destructive, warning, success, and selection are prohibited as wallpaper presentation inputs.
 
 Install or refresh wallpapers:
 
@@ -135,7 +146,7 @@ Apply the default Light wallpaper:
 ./scripts/wallpaper.sh apply default
 ```
 
-List the visible Light collection:
+List the complete collection:
 
 ```bash
 ./scripts/wallpaper.sh list
@@ -174,7 +185,7 @@ python3 ./scripts/validate_v16_anchor.py
 python3 ./scripts/validate_system_wallpapers.py
 ```
 
-The light-catalog gate verifies that all 24 compatibility entries remain valid while only the exact 8 Light wallpaper IDs are visible in the GNOME catalog.
+The light-first catalog gate verifies that all 30 wallpapers are visible and ordered as 10 Light, 10 Dark, then 10 Deep Dark.
 
 Cursor validation verifies the complete configured size ladder, animated-frame/delay contract, non-empty Xcursor payloads, and the neutral Frost/Graphite primary-pointer contract so the default pointer cannot regress to a blue-heavy treatment unnoticed.
 
