@@ -1,11 +1,10 @@
-# GoreeCloud Care — Feature Roadmap
+# GoreeCloud Care — Planned Features
 
 **Status:** Active roadmap control  
 **As of:** 2026-09-08  
 **Authoritative project record:** Project Specification — Care  
 **Canonical repository:** GoreeCloud/goreecloud-zorin-os
 - **Component path:** `apps/goreecloud-care/`
-**Drive control:** `GoreeCloud/Feature Roadmap/GoreeCloud Care/FEATURE-ROADMAP.docx`
 
 ## Purpose
 
@@ -20,11 +19,9 @@ This file is the repository-side feature roadmap control for GoreeCloud Care. It
 | CARE-003 | Rebind or refresh Privacy Shield, Wardveil Security, Everkeep, representative-target, and Glaze evidence when their exact-source freshness rules require it. | High | Planned / gated |
 | CARE-004 | Perform explicit Stable promotion only after every applicable exact Stable gate passes. | High | Blocked until gates close |
 
-## Maintenance and synchronization
+## Repository-native maintenance
 
-This roadmap and the corresponding Drive `FEATURE-ROADMAP.docx` must remain materially synchronized with one another and with the authoritative project or service record. Update both copies whenever feature scope, priority, dependency, implementation status, cancellation, supersession, recommendation, or verification state materially changes.
-
-No feature may be represented as complete or Stable solely because it appears in this roadmap. Completion and lifecycle claims require the applicable authoritative implementation, validation, review, release, and production evidence.
+Google Drive roadmap synchronization is retired. Maintain this file from authoritative repository/project evidence and applicable task records.
 
 ## Reconciliation rule
 
