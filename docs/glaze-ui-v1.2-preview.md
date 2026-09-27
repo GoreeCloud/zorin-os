@@ -1,5 +1,7 @@
 # Glaze UI V1.2 Preview — Zorin OS
 
+> **Historical migration record.** The current default desktop contract is GLAZE UI V1.6 / 1.6.0 Official Anchor in `config/palettes.json`. This document is retained only to explain the earlier V1.2 preview path and must not be used as current lifecycle or installation guidance.
+
 ## Status
 
 **Development preview. Not Stable.**
