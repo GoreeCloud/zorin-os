@@ -4,6 +4,8 @@ This repository contains the Development-stage GoreeCloud desktop experience for
 
 The project is **light-first**. `GoreeCloud-Zorin-Light` is the primary experience and the installer activates it together with the GoreeCloud icon theme, cursor theme, and primary light wallpaper. Dark and Deep Dark remain secondary compatibility variants.
 
+The shared design-system source is consumer-eligible at GLAZE UI V1.6, but this repository remains **Development / Draft** until its own exact-revision Zorin OS 17.3 visual, accessibility, and runtime acceptance is complete. Upstream Anchor status is not treated as downstream release approval.
+
 ## Desktop assets
 
 The repository currently provides:
@@ -16,13 +18,13 @@ The repository currently provides:
 - 24 identity-derived wallpaper source derivatives, with only 8 Light wallpapers exposed in Settings;
 - recovery-backed replacement of the audited Zorin OS 17.3 stock wallpaper set without removing Zorin desktop packages.
 
-The default installer now renders and composes the desktop against the **Glaze UI V1.2 Development** palette in `config/palettes-v1.2.json`. The V1.1 palette remains available as the stable predecessor/compatibility contract in `config/palettes.json`.
+The default installer now renders and composes the desktop against the repository's **GLAZE UI V1.6 / 1.6.0 Official Anchor** desktop adaptation in `config/palettes.json`. The palette pins the accepted upstream release source `a7180679ea851389e0f3004515f9a25f420e716d`; the older `config/palettes-v1.2.json` file is retained only as historical migration provenance.
 
 ## Verified target
 
 The installer supports the exact verified Zorin OS 17.3 theme package target. It fail-closes unless the local `zorin-desktop-themes` package and recorded GTK 3, GTK 4/libadwaita, and GNOME Shell base hashes match the tested environment.
 
-The repository does not redistribute Zorin base-theme bytes. During installation, the composer reads and verifies the already-installed local Zorin theme files, copies them into temporary generated GoreeCloud themes, rewrites only the verified target GTK 4 selected/checked state blocks, and appends GoreeCloud semantic overrides using the selected V1.2 palette contract.
+The repository does not redistribute Zorin base-theme bytes. During installation, the composer reads and verifies the already-installed local Zorin theme files, copies them into temporary generated GoreeCloud themes, rewrites only the verified target GTK 4 selected/checked state blocks, and appends GoreeCloud semantic overrides using the selected V1.6 desktop palette contract.
 
 ## Install the GoreeCloud desktop experience
 
@@ -32,7 +34,7 @@ The repository does not redistribute Zorin base-theme bytes. During installation
 
 The default install:
 
-- generates and installs all three Applications/Shell variants under `~/.local/share/themes` using Glaze UI V1.2 Development;
+- generates and installs all three Applications/Shell variants under `~/.local/share/themes` using the GLAZE UI V1.6 Official Anchor desktop adaptation;
 - builds and installs `GoreeCloud-Zorin` under `~/.local/share/icons`;
 - builds and installs `GoreeCloud-Zorin-Cursors` under `~/.local/share/icons`;
 - activates `GoreeCloud-Zorin-Light` for Applications;
@@ -168,7 +170,7 @@ Run the complete source validation set with:
 python3 ./scripts/validate_wallpapers.py
 python3 ./scripts/validate_light_catalog.py
 python3 ./scripts/validate_desktop_assets.py
-python3 ./scripts/validate_v12_preview.py
+python3 ./scripts/validate_v16_anchor.py
 python3 ./scripts/validate_system_wallpapers.py
 ```
 
@@ -176,7 +178,7 @@ The light-catalog gate verifies that all 24 compatibility entries remain valid w
 
 Cursor validation verifies the complete configured size ladder, animated-frame/delay contract, non-empty Xcursor payloads, and the neutral Frost/Graphite primary-pointer contract so the default pointer cannot regress to a blue-heavy treatment unnoticed.
 
-CI runs ShellCheck plus wallpaper source/rendering, light-first catalog visibility, icon/cursor, V1.2 preview, stock-wallpaper safety, and generated GTK theme validation.
+CI runs ShellCheck plus wallpaper source/rendering, light-first catalog visibility, icon/cursor, V1.6 Anchor contract, stock-wallpaper safety, and generated GTK theme validation.
 
 ## Target diagnostics
 
