@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160" role="img" aria-labelledby="title desc">
+  <title id="title">{{category}} — {{family}} {{mode_label}}</title>
+  <desc id="desc">Glaze UI terrain wallpaper interpreting frozen tundra as broad low-frequency planes with crystalline horizon light.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="{{canvas}}"/><stop offset=".62" stop-color="{{surface}}"/><stop offset="1" stop-color="{{deep}}"/></linearGradient>
+    <linearGradient id="ice" x1="0" y1="0" x2="1" y2="0"><stop stop-color="{{ice_blue}}" stop-opacity=".08"/><stop offset=".6" stop-color="{{glacier_blue}}" stop-opacity=".22"/><stop offset="1" stop-color="{{clear_sky_blue}}" stop-opacity=".06"/></linearGradient>
+  </defs>
+  <rect width="3840" height="2160" fill="url(#bg)"/>
+  <path d="M-180 1460L520 1190L1120 1290L1780 1030L2430 1210L3020 900L4020 1260V2160H-180Z" fill="{{elevated}}" opacity=".34"/>
+  <path d="M-180 1600L680 1400L1340 1500L2060 1320L2740 1450L3320 1230L4020 1420V2160H-180Z" fill="{{surface}}" opacity=".46"/>
+  <path d="M-100 1450L520 1190L1120 1290L1780 1030L2430 1210L3020 900L3990 1240" fill="none" stroke="url(#ice)" stroke-width="12" stroke-linejoin="round"/>
+  <path d="M2280 1180L3020 900L3350 1020" fill="none" stroke="{{crystal_white}}" stroke-opacity=".18" stroke-width="4"/>
+</svg>
