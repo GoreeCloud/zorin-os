@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160" role="img" aria-labelledby="title desc">
+  <title id="title">{{category}} — {{family}} {{mode_label}}</title>
+  <desc id="desc">Glaze UI digital wallpaper with layered signal currents, glass traces, and controlled directional flow.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop stop-color="{{surface}}"/><stop offset=".5" stop-color="{{canvas}}"/><stop offset="1" stop-color="{{deep}}"/></linearGradient>
+    <linearGradient id="flow" x1="0" y1="0" x2="1" y2="0"><stop stop-color="{{ice_blue}}" stop-opacity="0"/><stop offset=".45" stop-color="{{glacier_blue}}" stop-opacity=".18"/><stop offset=".8" stop-color="{{clear_sky_blue}}" stop-opacity=".12"/><stop offset="1" stop-color="{{clear_sky_blue}}" stop-opacity="0"/></linearGradient>
+  </defs>
+  <rect width="3840" height="2160" fill="url(#bg)"/>
+  <g fill="none" stroke="url(#flow)" stroke-linecap="round">
+    <path d="M-180 620C760 420 1410 540 2130 810C2800 1060 3330 1010 4040 680" stroke-width="18"/>
+    <path d="M-220 940C720 760 1420 860 2130 1080C2840 1300 3360 1260 4070 930" stroke-width="10"/>
+    <path d="M-160 1270C790 1130 1490 1210 2180 1410C2850 1600 3390 1570 4020 1320" stroke-width="6"/>
+    <path d="M-120 1580C840 1480 1530 1530 2240 1690C2930 1840 3420 1810 3980 1620" stroke-width="3"/>
+  </g>
+  <g fill="{{crystal_white}}" opacity=".12"><rect x="2750" y="650" width="520" height="520" rx="160"/><rect x="3040" y="980" width="420" height="420" rx="130"/></g>
+</svg>
