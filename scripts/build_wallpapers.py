@@ -1,44 +1,38 @@
 #!/usr/bin/env python3
+"""Render the GoreeCloud Zorin wallpaper catalog from Glaze-native SVG templates."""
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
-import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_PALETTES = ROOT / "config" / "palettes.json"
 
-TOKEN_KEYS = (
+VARIANT_TOKEN_KEYS = (
     "canvas", "surface", "elevated", "deep", "text", "muted", "border",
-    "accent", "accent_hover", "accent_soft", "selection", "atmosphere_amber",
-    "on_accent",
+)
+OPTICAL_TOKEN_KEYS = (
+    "frost_white", "crystal_white", "ice_blue", "glacier_blue",
+    "clear_sky_blue", "cloud_gray", "slate_gray", "cool_graphite",
+    "deep_graphite", "blue_black", "goreecloud_primary_blue",
+    "goreecloud_deep_blue",
 )
 
-TOKEN_MAP = {
-    "accent2": "accent_hover",
-    "soft": "accent_soft",
-    "amber": "atmosphere_amber",
-    "on": "on_accent",
-}
 
-
-def parse_args():
-    p = argparse.ArgumentParser(
-        description="Render the GoreeCloud Zorin wallpaper catalog from repository source."
-    )
-    p.add_argument("--output", required=True, type=Path)
-    p.add_argument(
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument(
         "--palette-config",
         type=Path,
         default=DEFAULT_PALETTES,
         help=(
-            "palette contract used for environmental base tokens; defaults to the "
-            "canonical GLAZE UI V1.6 desktop adaptation in config/palettes.json."
+            "palette contract used for Glaze environmental tokens; defaults to "
+            "the canonical GLAZE UI V1.6 Zorin adaptation."
         ),
     )
-    return p.parse_args()
+    return parser.parse_args()
 
 
 def resolve_input(path: Path) -> Path:
@@ -52,48 +46,13 @@ def mode_label(mode: str) -> str:
     return {"light": "Light", "dark": "Dark", "deep-dark": "Deep Dark"}[mode]
 
 
-def strip_identity_wrapper(svg_text: str) -> str:
-    text = re.sub(r"^\s*<\?xml[^>]*\?>\s*", "", svg_text, count=1)
-    match = re.fullmatch(r"\s*<svg\b[^>]*>(.*)</svg>\s*", text, flags=re.S)
-    if not match:
-        raise SystemExit("Canonical identity SVG does not have one parseable outer <svg> wrapper")
-    inner = match.group(1)
-    inner = re.sub(r"\s*<title\b[^>]*>.*?</title>", "", inner, flags=re.S)
-    inner = re.sub(r"\s*<desc\b[^>]*>.*?</desc>", "", inner, flags=re.S)
-    return inner.strip()
-
-
-def identity_values(item: dict, identities: dict) -> dict[str, str]:
-    category_map = identities["category_asset"].get(item["category"])
-    if not category_map:
-        raise SystemExit(f"No canonical identity mapping for category {item['category']}")
-    asset_id = category_map.get(item["mode"])
-    if not asset_id:
-        raise SystemExit(f"No canonical identity mapping for {item['category']} / {item['mode']}")
-    asset = identities["assets"].get(asset_id)
-    if not asset:
-        raise SystemExit(f"Unknown canonical identity asset {asset_id}")
-    if asset["identity"] != item["category"]:
-        raise SystemExit(
-            f"{item['id']}: canonical identity mapping mismatch "
-            f"({asset['identity']} != {item['category']})"
-        )
-
-    path = ROOT / asset["local_path"]
-    if not path.is_file():
-        raise SystemExit(f"Missing synchronized canonical identity asset: {asset['local_path']}")
-    raw = path.read_bytes()
-    actual = hashlib.sha256(raw).hexdigest()
-    if actual != asset["sha256"]:
-        raise SystemExit(
-            f"{item['id']}: synchronized identity checksum mismatch for {asset['local_path']}"
-        )
-    text = raw.decode("utf-8")
-    return {
-        "identity_asset_id": asset_id,
-        "identity_viewbox": asset["viewBox"],
-        "identity_inner": strip_identity_wrapper(text),
-    }
+def render_template(template: str, values: dict[str, str], source: Path) -> str:
+    rendered = template
+    for key, value in values.items():
+        rendered = rendered.replace("{{" + key + "}}", value)
+    if "{{" in rendered or "}}" in rendered:
+        raise SystemExit(f"Unresolved wallpaper template token in {source}")
+    return rendered
 
 
 def main() -> int:
@@ -101,25 +60,27 @@ def main() -> int:
     manifest = json.loads((ROOT / "config/wallpapers.json").read_text(encoding="utf-8"))
     palette_path = resolve_input(args.palette_config)
     palettes = json.loads(palette_path.read_text(encoding="utf-8"))
-    identities = json.loads((ROOT / "config/wallpaper-identities.json").read_text(encoding="utf-8"))
-    palette_by_id = {v["id"]: v for v in palettes["variants"]}
+    palette_by_id = {variant["id"]: variant for variant in palettes["variants"]}
+    optical = palettes.get("optical_references", {})
+
+    missing_optical = [key for key in OPTICAL_TOKEN_KEYS if key not in optical]
+    if missing_optical:
+        raise SystemExit(
+            "Palette contract is missing wallpaper optical reference(s): "
+            + ", ".join(missing_optical)
+        )
+
     args.output.mkdir(parents=True, exist_ok=True)
-
     generated = 0
-    copied = 0
-    for item in manifest["catalog"]:
-        out = args.output / f"{item['id']}.svg"
-        if not item.get("generated"):
-            src = ROOT / item["source"]
-            if not src.is_file():
-                raise SystemExit(f"Missing wallpaper source: {item['source']}")
-            out.write_bytes(src.read_bytes())
-            copied += 1
-            continue
 
-        src = ROOT / item["source"]
-        if not src.is_file():
+    for item in manifest["catalog"]:
+        if not item.get("generated"):
+            raise SystemExit(f"{item['id']}: wallpaper catalog must use generated SVG templates")
+
+        source = ROOT / item["source"]
+        if not source.is_file():
             raise SystemExit(f"Missing wallpaper template: {item['source']}")
+
         palette = palette_by_id.get(item["theme_id"])
         if palette is None:
             raise SystemExit(
@@ -129,19 +90,16 @@ def main() -> int:
             raise SystemExit(
                 f"{item['id']}: palette mode {palette.get('mode')} does not match {item['mode']}"
             )
-        text = src.read_text(encoding="utf-8")
-        values = {key: palette[key] for key in TOKEN_KEYS}
-        for template_key, palette_key in TOKEN_MAP.items():
-            values[template_key] = palette[palette_key]
+
+        values = {key: str(palette[key]) for key in VARIANT_TOKEN_KEYS}
+        values.update({key: str(optical[key]) for key in OPTICAL_TOKEN_KEYS})
         values["mode_label"] = mode_label(item["mode"])
-        values.update(identity_values(item, identities))
-        for key, value in values.items():
-            text = text.replace("{{" + key + "}}", value)
-        if "{{" in text or "}}" in text:
-            raise SystemExit(
-                f"Unresolved wallpaper template token in {item['source']} for {item['id']}"
-            )
-        out.write_text(text, encoding="utf-8")
+        values["category"] = str(item["category"])
+        values["family"] = str(item["family"])
+
+        template = source.read_text(encoding="utf-8")
+        output = args.output / f"{item['id']}.svg"
+        output.write_text(render_template(template, values, source), encoding="utf-8")
         generated += 1
 
     design = palettes.get("design_system", {})
@@ -150,10 +108,8 @@ def main() -> int:
     label = f"Glaze UI {version}"
     if lifecycle:
         label += f" ({lifecycle})"
-    print(
-        f"Rendered wallpaper catalog from {label}: "
-        f"{copied} direct + {generated} generated = {copied + generated}"
-    )
+
+    print(f"Rendered {generated} Glaze-native wallpapers from {label} in {args.output}")
     print(f"Palette contract: {palette_path}")
     return 0
 
