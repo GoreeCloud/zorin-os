@@ -125,6 +125,38 @@ stage {
   box-shadow: inset 0 1px 0 {{EDGE_LIGHT}};
 }
 
+/* Zorin Menu 4.2.7 uses .apps-grid for its grid container and .app-item for
+ * each application actor. Target those concrete actors so unselected apps
+ * receive a visible, consistent Glaze rhythm without replacing app artwork. */
+.apps-grid .app-item {
+  padding: 6px;
+  border: 1px solid {{SHELL_BORDER}};
+  border-radius: 14px;
+  background-image: none;
+  background-color: {{SHELL_ELEVATED}};
+  box-shadow: inset 0 1px 0 {{EDGE_LIGHT}};
+  transition-duration: 150ms;
+}
+
+.apps-grid .app-item:hover {
+  border-color: {{ACCENT_SOFT}};
+  background-color: {{SHELL_HOVER}};
+}
+
+.apps-grid .app-item:focus,
+.apps-grid .app-item:selected {
+  border-color: {{FOCUS}};
+  background-color: {{SHELL_HOVER}};
+  box-shadow: inset 0 0 0 2px {{FOCUS}}, inset 0 1px 0 {{EDGE_LIGHT}};
+}
+
+.apps-grid .app-item:active,
+.apps-grid .app-item:checked {
+  border-color: {{ACCENT_SOFT}};
+  background-color: {{SHELL_ACTIVE}};
+  box-shadow: inset 0 1px 0 {{EDGE_LIGHT}};
+}
+
 .app-well-app:hover .overview-icon,
 .app-well-app:focus .overview-icon,
 .show-apps:hover .overview-icon,
