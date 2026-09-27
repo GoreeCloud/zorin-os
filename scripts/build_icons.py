@@ -227,7 +227,11 @@ def main() -> int:
         path.mkdir(parents=True, exist_ok=True)
 
     normalization = cfg.get("normalization", {})
-    optical_sizes = [int(value) for value in normalization.get("optical_sizes", [])]
+    optical_sizes = (
+        [int(value) for value in normalization.get("optical_sizes", [])]
+        if normalization.get("enabled") is True
+        else []
+    )
     optical_app_dirs = [f"{size}x{size}/apps" for size in optical_sizes]
     for rel in optical_app_dirs:
         (theme / rel).mkdir(parents=True, exist_ok=True)
