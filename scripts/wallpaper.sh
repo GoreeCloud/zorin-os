@@ -22,8 +22,8 @@ Usage:
   ./scripts/wallpaper.sh replace-stock plan|apply|status|restore|finalize
 
 The GoreeCloud gallery is light-first, not light-only. GNOME Settings exposes
-all 24 wallpapers: the eight Light variants first, followed by eight Dark and
-eight Deep Dark variants. The default applied wallpaper remains Light.
+all 30 Glaze Originals: ten Light variants first, followed by ten Dark and ten
+Deep Dark variants. The default applied wallpaper remains Light.
 
 The default installed wallpaper palette is the GoreeCloud Zorin adaptation of GLAZE UI V1.6 / 1.6.0 Official Anchor.
 
@@ -103,7 +103,7 @@ PY
   rm -rf -- "$temp_dir"
   trap - RETURN
   printf 'Installed GoreeCloud wallpaper source set to:\n  %s\n' "$DEST_DIR"
-  printf 'Installed light-first GNOME background catalog (24 visible: 8 Light / 8 Dark / 8 Deep Dark) to:\n  %s\n' "$CATALOG_FILE"
+  printf 'Installed light-first GNOME background catalog (30 visible: 10 Light / 10 Dark / 10 Deep Dark) to:\n  %s\n' "$CATALOG_FILE"
 }
 
 backup_settings() {
@@ -211,7 +211,7 @@ for item in items:
         current=item["mode"]
         print(f"\n{current.replace('-', ' ').title()}")
     print(f"  {item['id']:<38} {item['category']} — {item['family']}")
-print("\nGallery order: 8 Light, 8 Dark, 8 Deep Dark")
+print("\nGallery order: 10 Light, 10 Dark, 10 Deep Dark")
 PY
 }
 
