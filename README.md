@@ -4,6 +4,15 @@ This repository contains the Development-stage GoreeCloud desktop experience and
 
 The desktop project is **light-first**. `GoreeCloud-Zorin-Light` is the primary experience and the installer activates it together with the GoreeCloud icon theme, cursor theme, and primary light wallpaper. Dark and Deep Dark remain secondary compatibility variants.
 
+## Project governance
+
+Repository-level project authority is maintained in:
+
+- [PROJECT-SPECIFICATIONS.md](PROJECT-SPECIFICATIONS.md) — current requirements, scope, architecture, security/privacy, platform, acceptance, and lifecycle obligations.
+- [PROJECT-RECORD.md](PROJECT-RECORD.md) — significant desktop, Care, governance, migration, release, and acceptance history.
+
+The release-scoped Care `apps/goreecloud-care/SPECIFICATIONS.md` remains historical Stable-0.1.0 evidence; it is not the current repository specification.
+
 ## Native applications
 
 ### GoreeCloud Care
