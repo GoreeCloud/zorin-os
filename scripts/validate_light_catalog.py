@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "config" / "wallpapers.json"
-PALETTES = ROOT / "config" / "palettes-v1.2.json"
+PALETTES = ROOT / "config" / "palettes.json"
 EXPECTED_MODE_COUNTS = {"light": 8, "dark": 8, "deep-dark": 8}
 EXPECTED_MODE_ORDER = ["light"] * 8 + ["dark"] * 8 + ["deep-dark"] * 8
 
