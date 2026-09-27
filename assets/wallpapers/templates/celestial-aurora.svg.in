@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160" role="img" aria-labelledby="title desc">
+  <title id="title">{{category}} — {{family}} {{mode_label}}</title>
+  <desc id="desc">Glaze UI celestial wallpaper with broad auroral curtains expressed as translucent ice-blue and crystal-light ribbons.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop stop-color="{{deep}}"/><stop offset=".52" stop-color="{{canvas}}"/><stop offset="1" stop-color="{{surface}}"/></linearGradient>
+    <linearGradient id="aurora1" x1="0" y1="0" x2="1" y2=".4"><stop stop-color="{{clear_sky_blue}}" stop-opacity="0"/><stop offset=".45" stop-color="{{clear_sky_blue}}" stop-opacity=".20"/><stop offset=".78" stop-color="{{ice_blue}}" stop-opacity=".08"/><stop offset="1" stop-color="{{ice_blue}}" stop-opacity="0"/></linearGradient>
+    <linearGradient id="aurora2" x1="0" y1="0" x2="1" y2=".2"><stop stop-color="{{glacier_blue}}" stop-opacity="0"/><stop offset=".5" stop-color="{{glacier_blue}}" stop-opacity=".15"/><stop offset="1" stop-color="{{crystal_white}}" stop-opacity="0"/></linearGradient>
+  </defs>
+  <rect width="3840" height="2160" fill="url(#bg)"/>
+  <path d="M-200 280C620 160 1350 360 2020 690C2670 1010 3290 960 4040 570V1040C3340 1320 2700 1340 2010 1060C1280 760 610 620-200 760Z" fill="url(#aurora1)"/>
+  <path d="M-260 520C540 420 1230 610 1900 900C2560 1180 3220 1170 4070 810V1170C3270 1480 2610 1480 1900 1220C1190 960 510 820-260 930Z" fill="url(#aurora2)"/>
+  <g fill="{{frost_white}}" opacity=".23"><circle cx="480" cy="360" r="4"/><circle cx="760" cy="520" r="3"/><circle cx="1140" cy="300" r="5"/><circle cx="1590" cy="480" r="3"/></g>
+</svg>
