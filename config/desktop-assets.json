@@ -77,17 +77,16 @@
     },
     "launcher_presentation": {
       "enabled": true,
-      "mode": "shell-app-tile",
+      "mode": "zorin-menu-grid-app-item",
       "preserves_original_icon_artwork": true,
       "target_selectors": [
-        ".overview-tile",
-        ".grid-search-result"
+        ".apps-grid .app-item"
       ],
-      "padding_px": 8,
+      "padding_px": 6,
       "spacing_px": 6,
-      "radius_px": 16,
+      "radius_px": 14,
       "focus_ring_px": 2,
-      "visual_role": "shared Glaze card around untouched application identity"
+      "visual_role": "shared Glaze card around untouched Zorin Menu application actor"
     }
   },
   "cursor_theme": {
