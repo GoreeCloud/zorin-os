@@ -34,8 +34,8 @@ def parse_args():
         type=Path,
         default=DEFAULT_PALETTES,
         help=(
-            "palette contract used for environmental base tokens; defaults to "
-            "config/palettes.json. Use config/palettes-v1.2.json for the V1.2 preview."
+            "palette contract used for environmental base tokens; defaults to the "
+            "canonical GLAZE UI V1.6 desktop adaptation in config/palettes.json."
         ),
     )
     return p.parse_args()
