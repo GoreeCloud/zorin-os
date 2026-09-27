@@ -141,7 +141,7 @@ grep -F '@theme_fg_color' goreecloud_care/focus_resilience.py >/dev/null
 grep -F 'button:focus, checkbutton:focus' goreecloud_care/focus_resilience.py >/dev/null
 grep -F 'gir1.2-atk-1.0' scripts/build-deb.sh >/dev/null
 
-# Historical V1.2/V1.3 remain reference/foundation only; current target is V1.4.1 Optical Intelligence.
+# Historical V1.2/V1.3 remain reference/foundation only; active implementation is V1.4.1 Optical Intelligence while the manifest-required Stable target is V1.5.0.
 grep -F 'GLAZE_UI_VERSION = "1.2.0"' goreecloud_care/glaze_v12.py >/dev/null
 grep -F 'GLAZE_UI_LABEL = "GLAZE UI V1.3 — Adaptive Resonance"' goreecloud_care/glaze_v13.py >/dev/null
 grep -F 'GLAZE_UI_LABEL = "GLAZE UI V1.4 — Optical Intelligence"' goreecloud_care/glaze_v14.py >/dev/null
@@ -160,8 +160,8 @@ grep -F 'from .glaze_v14_global import install_glaze_v14_global_style' goreeclou
 grep -F 'install_glaze_v14_global_style()' goreecloud_care/__main__.py >/dev/null
 ! grep -F 'from .glaze_v13_global import' goreecloud_care/__main__.py >/dev/null
 ! grep -E 'transition[[:space:]]*:|animation[[:space:]]*:' goreecloud_care/glaze_v14.py >/dev/null
-grep -F 'glaze_ui_required: "1.4.1"' goreecloud.platform.yaml >/dev/null
-grep -F 'glaze-ui==1.4.1' goreecloud.platform.yaml >/dev/null
+grep -F 'glaze_ui_required: "1.5.0"' goreecloud.platform.yaml >/dev/null
+grep -F 'glaze-ui==1.5.0' goreecloud.platform.yaml >/dev/null
 grep -F 'version: "1.4.1"' goreecloud.platform.yaml >/dev/null
 
 # V1.4.1 fail-safe consumer adapter and performance governance must stay encoded.
