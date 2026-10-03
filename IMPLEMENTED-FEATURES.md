@@ -7,7 +7,7 @@
 ### THEME-001 — Glaze V1.7 native Zorin theme source
 
 **Source state:** Implemented  
-**Automated validation state:** Passing for current exact candidate  
+**Automated validation state:** Passing for the qualified theme payload; later documentation-only reconciliation does not change packaged theme bytes  
 **Acceptance state:** Pending  
 **Lifecycle:** Development
 
@@ -33,9 +33,9 @@ The repository contains a from-scratch GoreeCloud Glaze desktop theme under `the
 
 The implementation targets current Glaze V1.7 / 1.7.0 Stable/Anchor semantics and explicitly excludes retained dev.47 and Section 48 Development behavior transferred to V1.7.1.
 
-Current automated-qualified source evidence:
+Qualified theme-payload evidence:
 
-- exact candidate: `5283b55c8cf9e1817c4ff78535d0bfabd9eb948f`;
+- qualified payload source revision: `5283b55c8cf9e1817c4ff78535d0bfabd9eb948f`;
 - workflow run: `37157256520`;
 - Development artifact: `11285403723`;
 - inner archive: `goreecloud-glaze-zorin-0.1.0-dev.1.tar.gz`;
