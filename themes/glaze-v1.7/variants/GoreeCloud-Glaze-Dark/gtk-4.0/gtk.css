@@ -386,9 +386,3 @@ decoration {
   color: @glz_accent_secondary;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition-duration: 0s;
-    animation-duration: 0s;
-  }
-}
