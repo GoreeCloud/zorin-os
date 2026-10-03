@@ -103,3 +103,14 @@ This source is implemented but remains Development until it receives representat
 - scripts/install.sh — user-scoped installer and optional theme application.
 - scripts/uninstall.sh — guarded removal of only GoreeCloud-managed theme directories.
 - scripts/validate.sh — deterministic source/package validation.
+
+
+## Native acceptance
+
+After extracting the Development package, run:
+
+    bash scripts/native-preflight.sh
+
+Then follow `NATIVE-ACCEPTANCE.md` for the light, dark, GTK, GNOME Shell, Zorin Taskbar, Zorin Menu, accessibility, rollback, and libadwaita acceptance sequence.
+
+The preflight is read-only and does not establish visual or accessibility acceptance by itself.
