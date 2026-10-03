@@ -1,0 +1,41 @@
+name: GoreeCloud Glaze V1.7 Theme Validation
+
+on:
+  pull_request:
+    paths:
+      - 'themes/glaze-v1.7/**'
+      - '.github/workflows/glaze-theme-ci.yml'
+      - 'CHANGELOGS.md'
+      - 'IMPLEMENTED-FEATURES.md'
+      - 'PLANNED-FEATURES.md'
+  push:
+    branches:
+      - 'feat/glaze-v1-7-zorin-theme'
+    paths:
+      - 'themes/glaze-v1.7/**'
+      - '.github/workflows/glaze-theme-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-theme-source:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out exact source revision
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+
+      - name: Verify checked-out revision
+        run: |
+          set -eu
+          expected='${{ github.event.pull_request.head.sha || github.sha }}'
+          actual="$(git rev-parse HEAD)"
+          printf 'Expected: %s\nActual:   %s\n' "$expected" "$actual"
+          test "$actual" = "$expected"
+
+      - name: Validate GoreeCloud Glaze theme
+        run: bash themes/glaze-v1.7/scripts/validate.sh
