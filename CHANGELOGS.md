@@ -9,10 +9,11 @@
 - Preserved the V1.7 Stable boundary: retained dev.47 and Section 48 Development behavior are not imported into this theme.
 - Defined Zorin OS 18.1 / Ubuntu 24.04 as the primary source-validation target and Zorin OS 17.3 / Ubuntu 22.04 as the compatibility target, without converting source-level checks into native rendered acceptance.
 - Added semantic light/dark color roles, bounded surface depth, coordinated geometry, focus and selection states, disabled states, navigation surfaces, dialogs, menus, switches, progress, scrollbars, and GNOME Shell chrome.
+- Added Zorin-specific GNOME Shell compatibility for the Zorin Taskbar and Zorin Menu while retaining the from-scratch GoreeCloud visual implementation.
 - Added a guarded user-scoped installer, reversible uninstaller, deterministic source validator, and deterministic Development archive builder.
-- Added GitHub Actions validation on Ubuntu 24.04 plus Ubuntu 22.04 compatibility parsing. Exact head `ef0e7655ea83b724b7796196b4abe82120fa6c08` passed both jobs and produced a reproducible Development archive.
-- Preserved the generated archive as Actions artifact `11285823964`; its inner `goreecloud-glaze-zorin-0.1.0-dev.1.tar.gz` has SHA-256 `8d2ffb72f4639b16a6b4af3d8a11c7c7f39f04fa55087b67eaaa6f887d577a3a`.
-- Kept the theme lifecycle at Development with native Zorin rendering, human visual/accessibility review, GNOME Shell applied review, libadwaita opt-in review, and downstream Glaze consumer acceptance still pending. Automated validation does not constitute Stable or production acceptance.
+- Added GitHub Actions validation on Ubuntu 24.04 plus Ubuntu 22.04 compatibility parsing. Exact head `5283b55c8cf9e1817c4ff78535d0bfabd9eb948f` passed both jobs in workflow run `37157256520` and produced a reproducible Development archive.
+- Preserved the generated archive as Actions artifact `11285403723`; its inner `goreecloud-glaze-zorin-0.1.0-dev.1.tar.gz` has SHA-256 `cdbf985a2472793ea0ca5071f83a52fca0624111e77da90fa54a18d4ae020148`. The Actions ZIP digest is `sha256:fee4e9560fd243bbe79a01347ca813c1aa72345329ce4738713ca38dfecf6080`.
+- Kept the theme lifecycle at Development with native Zorin rendering, human visual/accessibility review, applied GNOME Shell review, libadwaita opt-in review, and downstream Glaze consumer acceptance still pending. Automated validation does not constitute Stable or production acceptance.
 
 ## 2026-09-27 — Care Drive feature-roadmap migration
 
