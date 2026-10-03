@@ -24,12 +24,13 @@ def copy_payload(destination: Path, package_name: str) -> Path:
     payload.mkdir(parents=True)
 
     shutil.copy2(ROOT / "README.md", payload / "README.md")
+    shutil.copy2(ROOT / "NATIVE-ACCEPTANCE.md", payload / "NATIVE-ACCEPTANCE.md")
     shutil.copytree(ROOT / "metadata", payload / "metadata")
     shutil.copytree(ROOT / "variants", payload / "variants")
 
     scripts = payload / "scripts"
     scripts.mkdir()
-    for name in ("install.sh", "uninstall.sh", "validate.sh"):
+    for name in ("install.sh", "uninstall.sh", "validate.sh", "native-preflight.sh"):
         shutil.copy2(ROOT / "scripts" / name, scripts / name)
 
     return payload
