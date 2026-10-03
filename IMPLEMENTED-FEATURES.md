@@ -29,18 +29,18 @@ The repository contains a from-scratch GoreeCloud Glaze desktop theme under `the
 - deterministic Development archive construction;
 - Ubuntu 24.04 source/parser validation for the Zorin OS 18.1 base target;
 - Ubuntu 22.04 source/parser validation for the Zorin OS 17.3 compatibility target;
-- exact-candidate GitHub Actions artifact preservation.
+- exact-candidate GitHub Actions artifact preservation;\n- read-only native preflight helper and mandatory native acceptance checklist.
 
 The implementation targets current Glaze V1.7 / 1.7.0 Stable/Anchor semantics and explicitly excludes retained dev.47 and Section 48 Development behavior transferred to V1.7.1.
 
 Qualified theme-payload evidence:
 
-- qualified payload source revision: `5283b55c8cf9e1817c4ff78535d0bfabd9eb948f`;
-- workflow run: `37157256520`;
-- Development artifact: `11285403723`;
+- qualified payload source revision: `b2dc014e0231bfec373f111b264fa2402f105725`;
+- workflow run: `37160036985`;
+- Development artifact: `11287566536`;
 - inner archive: `goreecloud-glaze-zorin-0.1.0-dev.1.tar.gz`;
-- inner archive SHA-256: `cdbf985a2472793ea0ca5071f83a52fca0624111e77da90fa54a18d4ae020148`;
-- Actions ZIP digest: `sha256:fee4e9560fd243bbe79a01347ca813c1aa72345329ce4738713ca38dfecf6080`.
+- inner archive SHA-256: `8e2d067375d800399dad5db91ceb1df84c93ad02650b6977334e62b88784a5c8`;
+- Actions ZIP digest: `sha256:24286349a46c85eee7fc3fb8197018780c704fec5c6ee7deab13eab98501a555`.
 
 Representative Zorin OS native rendering, human visual review, accessibility review, applied GNOME Shell review, libadwaita opt-in acceptance, and downstream Glaze consumer acceptance remain separate gates and are not claimed by this implemented-source record.
 
