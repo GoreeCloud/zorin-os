@@ -132,3 +132,25 @@ stage {
 StButton:focus {
   box-shadow: 0 0 0 3px rgba(36,79,198,0.30);
 }
+
+
+/* Zorin taskbar compatibility */
+#zorintaskbarScrollview .app-well-app .overview-icon,
+#zorintaskbarScrollview .grid-search-result .overview-icon {
+  border-radius: 16px;
+}
+
+#zorintaskbarScrollview .app-well-app:hover .overview-icon,
+#zorintaskbarScrollview .grid-search-result:hover .overview-icon {
+  background-color: rgba(54,108,246,0.12);
+}
+
+#zorintaskbarScrollview .app-well-app:focus .overview-icon,
+#zorintaskbarScrollview .app-well-app:checked .overview-icon,
+#zorintaskbarScrollview .grid-search-result:focus .overview-icon {
+  background-color: rgba(54,108,246,0.18);
+}
+
+#zorintaskbarScrollview .app-well-app-running-dot {
+  background-color: #366CF6;
+}
