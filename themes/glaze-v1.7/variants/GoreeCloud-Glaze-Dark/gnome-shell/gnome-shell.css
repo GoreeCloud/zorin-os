@@ -1,0 +1,132 @@
+/*
+ * GoreeCloud Glaze — GNOME Shell dark presentation.
+ * No private compositor blur API is assumed.
+ */
+stage {
+  color: #F3F6FB;
+}
+
+#panel {
+  height: 36px;
+  background-color: rgba(24,31,44,0.96);
+  color: #F3F6FB;
+  border-bottom: 1px solid rgba(193,207,229,0.12);
+  box-shadow: 0 18px 54px rgba(0,0,0,0.18);
+}
+
+#panel .panel-button {
+  min-width: 34px;
+  margin: 3px 2px;
+  padding: 0 8px;
+  border-radius: 14px;
+  color: #F3F6FB;
+}
+
+#panel .panel-button:hover,
+#panel .panel-button:focus {
+  background-color: rgba(122,162,255,0.14);
+}
+
+#panel .panel-button:active,
+#panel .panel-button:checked {
+  background-color: rgba(122,162,255,0.24);
+  color: #F3F6FB;
+}
+
+.popup-menu-content,
+.quick-settings,
+.calendar,
+.message-list,
+.modal-dialog,
+.notification-banner,
+.osd-window,
+.switcher-list {
+  background-color: rgba(24,31,44,0.97);
+  color: #F3F6FB;
+  border: 1px solid rgba(193,207,229,0.12);
+  border-radius: 22px;
+  box-shadow: 0 28px 80px rgba(0,0,0,0.34);
+}
+
+.popup-menu-item {
+  border-radius: 12px;
+}
+
+.popup-menu-item:focus,
+.popup-menu-item:hover,
+.popup-menu-item:selected {
+  background-color: rgba(122,162,255,0.24);
+  color: #F3F6FB;
+}
+
+.quick-toggle,
+.quick-menu-toggle .quick-toggle {
+  border-radius: 16px;
+  background-color: rgba(31,39,54,0.92);
+  color: #F3F6FB;
+}
+
+.quick-toggle:checked,
+.quick-toggle:focus {
+  background-color: #7AA2FF;
+  color: #0B1020;
+}
+
+.search-entry {
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid rgba(193,207,229,0.12);
+  border-radius: 16px;
+  background-color: rgba(24,31,44,0.96);
+  color: #F3F6FB;
+  box-shadow: 0 18px 54px rgba(0,0,0,0.18);
+}
+
+.search-entry:focus {
+  border-color: #A9C2FF;
+  box-shadow: 0 0 0 3px rgba(169,194,255,0.30);
+}
+
+#dash .dash-background {
+  margin: 0;
+  padding: 6px;
+  border: 1px solid rgba(193,207,229,0.12);
+  border-radius: 22px;
+  background-color: rgba(25,32,45,0.90);
+  box-shadow: 0 18px 54px rgba(0,0,0,0.24);
+}
+
+#dash .app-well-app .overview-icon,
+.app-well-app .overview-icon {
+  border-radius: 16px;
+}
+
+#dash .app-well-app:focus .overview-icon,
+#dash .app-well-app:hover .overview-icon {
+  background-color: rgba(122,162,255,0.14);
+}
+
+#dash .app-well-app:active .overview-icon,
+#dash .app-well-app:checked .overview-icon {
+  background-color: rgba(122,162,255,0.24);
+}
+
+.workspace-thumbnail {
+  border-radius: 14px;
+  border: 2px solid rgba(193,207,229,0.16);
+}
+
+.workspace-thumbnail-indicator {
+  border: 3px solid #A9C2FF;
+  border-radius: 16px;
+}
+
+.switcher-list .item-box:selected,
+.switcher-list .item-box:focus {
+  background-color: rgba(122,162,255,0.24);
+  border-radius: 16px;
+}
+
+StButton:focus {
+  box-shadow: 0 0 0 3px rgba(169,194,255,0.34);
+}
