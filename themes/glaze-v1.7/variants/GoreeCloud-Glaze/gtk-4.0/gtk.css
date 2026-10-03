@@ -1,0 +1,393 @@
+/*
+ * GoreeCloud Glaze for Zorin OS — Light
+ * Development theme source targeting Glaze V1.7 / 1.7.0 Stable semantics.
+ * Glaze V1.7 Stable intentionally inherits the accepted V1.6 runtime.
+ *
+ * GTK does not expose a portable backdrop-filter contract, so "glazed" chrome
+ * is represented with bounded high-opacity material, semantic borders, and
+ * depth. This is the intentional Reduced Transparency-safe mapping.
+ */
+
+@define-color glz_canvas #EEF3F9;
+@define-color glz_canvas_accent #F8FBFF;
+@define-color glz_surface rgba(255,255,255,0.76);
+@define-color glz_surface_strong rgba(255,255,255,0.94);
+@define-color glz_surface_muted rgba(244,247,251,0.86);
+@define-color glz_text #172033;
+@define-color glz_muted #67748A;
+@define-color glz_line rgba(95,116,146,0.16);
+@define-color glz_accent #366CF6;
+@define-color glz_accent_secondary #7C5CFF;
+@define-color glz_on_accent #FFFFFF;
+@define-color glz_info #2463D4;
+@define-color glz_success #197A4B;
+@define-color glz_warning #A15C00;
+@define-color glz_danger #B42318;
+@define-color glz_focus #244FC6;
+@define-color glz_selection rgba(54,108,246,0.18);
+@define-color glz_scrim rgba(8,18,34,0.42);
+
+* {
+  color: @glz_text;
+  caret-color: @glz_accent;
+  outline-color: @glz_focus;
+}
+
+window,
+.background,
+.view {
+  background-color: @glz_canvas;
+  color: @glz_text;
+}
+
+headerbar,
+.titlebar,
+.toolbar {
+  min-height: 44px;
+  padding: 6px 10px;
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.96), rgba(248,251,255,0.86));
+  background-color: @glz_surface_strong;
+  color: @glz_text;
+  border: 0;
+  border-bottom: 1px solid @glz_line;
+  box-shadow: 0 8px 30px rgba(37,55,82,0.05);
+}
+
+headerbar:backdrop,
+.titlebar:backdrop {
+  background-image: none;
+  background-color: @glz_surface_muted;
+  color: @glz_muted;
+}
+
+button {
+  min-height: 32px;
+  min-width: 32px;
+  padding: 5px 12px;
+  border: 1px solid @glz_line;
+  border-radius: 16px;
+  background-image: none;
+  background-color: @glz_surface;
+  color: @glz_text;
+  box-shadow: 0 3px 12px rgba(37,55,82,0.05);
+}
+
+button:hover {
+  background-color: @glz_surface_strong;
+  border-color: rgba(54,108,246,0.28);
+}
+
+button:active,
+button:checked {
+  background-color: @glz_selection;
+  border-color: rgba(54,108,246,0.36);
+}
+
+button:focus {
+  box-shadow: 0 0 0 3px rgba(36,79,198,0.30);
+  border-color: @glz_focus;
+}
+
+button.suggested-action,
+.suggested-action {
+  background-color: @glz_accent;
+  color: @glz_on_accent;
+  border-color: @glz_accent;
+  box-shadow: 0 8px 22px rgba(54,108,246,0.20);
+}
+
+button.suggested-action:hover {
+  background-color: #2E60E7;
+}
+
+button.destructive-action,
+.destructive-action {
+  background-color: @glz_danger;
+  color: #FFFFFF;
+  border-color: @glz_danger;
+}
+
+button.flat {
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+button.flat:hover {
+  background-color: rgba(54,108,246,0.10);
+}
+
+button:disabled,
+entry:disabled,
+spinbutton:disabled,
+combobox:disabled,
+switch:disabled {
+  opacity: 0.55;
+}
+
+entry,
+spinbutton,
+combobox,
+dropdown {
+  min-height: 36px;
+  padding: 4px 10px;
+  border: 1px solid @glz_line;
+  border-radius: 14px;
+  background-color: @glz_surface_strong;
+  color: @glz_text;
+}
+
+entry:focus,
+spinbutton:focus,
+combobox:focus,
+dropdown:focus {
+  border-color: @glz_focus;
+  box-shadow: 0 0 0 3px rgba(36,79,198,0.24);
+}
+
+entry placeholder,
+.placeholder {
+  color: @glz_muted;
+  opacity: 0.72;
+}
+
+textview,
+textview text,
+treeview.view,
+list,
+listview,
+columnview {
+  background-color: @glz_surface_strong;
+  color: @glz_text;
+}
+
+textview text selection,
+entry selection,
+selection,
+*:selected {
+  background-color: @glz_selection;
+  color: @glz_text;
+}
+
+frame,
+.card,
+.preferences-group,
+.content {
+  border-color: @glz_line;
+  border-radius: 18px;
+}
+
+.sidebar,
+.navigation-sidebar,
+.navigation-rail {
+  background-color: @glz_surface_muted;
+  color: @glz_text;
+  border-right: 1px solid @glz_line;
+}
+
+.sidebar row,
+.navigation-sidebar row {
+  min-height: 38px;
+  margin: 2px 6px;
+  padding: 3px 8px;
+  border-radius: 12px;
+}
+
+.sidebar row:hover,
+.navigation-sidebar row:hover {
+  background-color: rgba(54,108,246,0.08);
+}
+
+.sidebar row:selected,
+.navigation-sidebar row:selected {
+  background-color: @glz_selection;
+  color: @glz_text;
+}
+
+notebook > header {
+  background-color: @glz_surface_muted;
+  border-color: @glz_line;
+}
+
+notebook > header > tabs > tab {
+  min-height: 34px;
+  padding: 4px 12px;
+  border-radius: 12px;
+  color: @glz_muted;
+}
+
+notebook > header > tabs > tab:checked {
+  background-color: @glz_surface_strong;
+  color: @glz_text;
+  box-shadow: 0 4px 16px rgba(37,55,82,0.06);
+}
+
+popover,
+popover.background,
+menu,
+.menu,
+.popup {
+  padding: 6px;
+  background-color: @glz_surface_strong;
+  color: @glz_text;
+  border: 1px solid @glz_line;
+  border-radius: 18px;
+  box-shadow: 0 18px 48px rgba(37,55,82,0.09);
+}
+
+popover modelbutton,
+menuitem {
+  min-height: 34px;
+  padding: 4px 10px;
+  border-radius: 10px;
+}
+
+popover modelbutton:hover,
+menuitem:hover {
+  background-color: @glz_selection;
+}
+
+tooltip,
+tooltip.background {
+  padding: 6px 10px;
+  background-color: #172033;
+  color: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0 10px 24px rgba(8,18,34,0.20);
+}
+
+tooltip label {
+  color: #FFFFFF;
+}
+
+dialog,
+.dialog,
+messagedialog {
+  background-color: @glz_surface_strong;
+  color: @glz_text;
+  border-radius: 22px;
+}
+
+separator {
+  min-width: 1px;
+  min-height: 1px;
+  background-color: @glz_line;
+}
+
+switch {
+  min-width: 42px;
+  min-height: 24px;
+  border-radius: 999px;
+  background-color: rgba(103,116,138,0.30);
+  border: 1px solid @glz_line;
+}
+
+switch:checked {
+  background-color: @glz_accent;
+  border-color: @glz_accent;
+}
+
+switch slider {
+  min-width: 20px;
+  min-height: 20px;
+  margin: 1px;
+  border-radius: 999px;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 7px rgba(8,18,34,0.18);
+}
+
+check,
+radio {
+  min-width: 18px;
+  min-height: 18px;
+  border: 1px solid rgba(95,116,146,0.34);
+  background-color: @glz_surface_strong;
+}
+
+check {
+  border-radius: 6px;
+}
+
+radio {
+  border-radius: 999px;
+}
+
+check:checked,
+radio:checked {
+  background-color: @glz_accent;
+  color: @glz_on_accent;
+  border-color: @glz_accent;
+}
+
+scale trough,
+progressbar trough {
+  min-height: 6px;
+  border-radius: 999px;
+  background-color: rgba(103,116,138,0.18);
+}
+
+scale highlight,
+progressbar progress {
+  min-height: 6px;
+  border-radius: 999px;
+  background-color: @glz_accent;
+}
+
+scale slider {
+  min-width: 18px;
+  min-height: 18px;
+  margin: -6px;
+  border-radius: 999px;
+  background-color: @glz_surface_strong;
+  border: 2px solid @glz_accent;
+  box-shadow: 0 4px 12px rgba(54,108,246,0.20);
+}
+
+scrollbar {
+  background-color: transparent;
+}
+
+scrollbar slider {
+  min-width: 8px;
+  min-height: 24px;
+  margin: 3px;
+  border-radius: 999px;
+  background-color: rgba(103,116,138,0.36);
+}
+
+scrollbar slider:hover {
+  background-color: rgba(54,108,246,0.48);
+}
+
+infobar.info,
+.info {
+  color: @glz_info;
+}
+
+infobar.warning,
+.warning {
+  color: @glz_warning;
+}
+
+infobar.error,
+.error {
+  color: @glz_danger;
+}
+
+.success {
+  color: @glz_success;
+}
+
+decoration {
+  border-radius: 16px;
+  box-shadow: 0 18px 48px rgba(37,55,82,0.09);
+}
+
+*:link {
+  color: @glz_info;
+}
+
+*:visited {
+  color: @glz_accent_secondary;
+}
+

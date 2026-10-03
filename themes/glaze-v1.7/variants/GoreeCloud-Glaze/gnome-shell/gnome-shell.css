@@ -1,0 +1,189 @@
+/*
+ * GoreeCloud Glaze — GNOME Shell light presentation.
+ * Requires the GNOME User Themes extension to apply as a Shell theme.
+ * Uses opaque/translucent fallback material because GNOME Shell support varies
+ * by Zorin/GNOME generation. No private compositor blur API is assumed.
+ */
+stage {
+  color: #172033;
+}
+
+#panel {
+  height: 36px;
+  background-color: rgba(248,251,255,0.94);
+  color: #172033;
+  border-bottom: 1px solid rgba(95,116,146,0.16);
+  box-shadow: 0 8px 30px rgba(37,55,82,0.05);
+}
+
+#panel .panel-button {
+  min-width: 34px;
+  margin: 3px 2px;
+  padding: 0 8px;
+  border-radius: 14px;
+  color: #172033;
+}
+
+#panel .panel-button:hover,
+#panel .panel-button:focus {
+  background-color: rgba(54,108,246,0.12);
+}
+
+#panel .panel-button:active,
+#panel .panel-button:checked {
+  background-color: rgba(54,108,246,0.18);
+  color: #172033;
+}
+
+.popup-menu-content,
+.quick-settings,
+.calendar,
+.message-list,
+.modal-dialog,
+.notification-banner,
+.osd-window,
+.switcher-list {
+  background-color: rgba(255,255,255,0.96);
+  color: #172033;
+  border: 1px solid rgba(95,116,146,0.16);
+  border-radius: 22px;
+  box-shadow: 0 28px 80px rgba(8,18,34,0.18);
+}
+
+.popup-menu-item {
+  border-radius: 12px;
+}
+
+.popup-menu-item:focus,
+.popup-menu-item:hover,
+.popup-menu-item:selected {
+  background-color: rgba(54,108,246,0.18);
+  color: #172033;
+}
+
+.quick-toggle,
+.quick-menu-toggle .quick-toggle {
+  border-radius: 16px;
+  background-color: rgba(244,247,251,0.92);
+  color: #172033;
+}
+
+.quick-toggle:checked,
+.quick-toggle:focus {
+  background-color: #366CF6;
+  color: #FFFFFF;
+}
+
+.search-entry {
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid rgba(95,116,146,0.16);
+  border-radius: 16px;
+  background-color: rgba(255,255,255,0.94);
+  color: #172033;
+  box-shadow: 0 8px 30px rgba(37,55,82,0.05);
+}
+
+.search-entry:focus {
+  border-color: #244FC6;
+  box-shadow: 0 0 0 3px rgba(36,79,198,0.28);
+}
+
+#dash .dash-background {
+  margin: 0;
+  padding: 6px;
+  border: 1px solid rgba(95,116,146,0.16);
+  border-radius: 22px;
+  background-color: rgba(255,255,255,0.90);
+  box-shadow: 0 18px 48px rgba(37,55,82,0.09);
+}
+
+#dash .app-well-app .overview-icon,
+.app-well-app .overview-icon {
+  border-radius: 16px;
+}
+
+#dash .app-well-app:focus .overview-icon,
+#dash .app-well-app:hover .overview-icon {
+  background-color: rgba(54,108,246,0.12);
+}
+
+#dash .app-well-app:active .overview-icon,
+#dash .app-well-app:checked .overview-icon {
+  background-color: rgba(54,108,246,0.18);
+}
+
+.workspace-thumbnail {
+  border-radius: 14px;
+  border: 2px solid rgba(95,116,146,0.20);
+}
+
+.workspace-thumbnail-indicator {
+  border: 3px solid #244FC6;
+  border-radius: 16px;
+}
+
+.switcher-list .item-box:selected,
+.switcher-list .item-box:focus {
+  background-color: rgba(54,108,246,0.18);
+  border-radius: 16px;
+}
+
+StButton:focus {
+  box-shadow: 0 0 0 3px rgba(36,79,198,0.30);
+}
+
+
+/* Zorin taskbar compatibility */
+#zorintaskbarScrollview .app-well-app .overview-icon,
+#zorintaskbarScrollview .grid-search-result .overview-icon {
+  border-radius: 16px;
+}
+
+#zorintaskbarScrollview .app-well-app:hover .overview-icon,
+#zorintaskbarScrollview .grid-search-result:hover .overview-icon {
+  background-color: rgba(54,108,246,0.12);
+}
+
+#zorintaskbarScrollview .app-well-app:focus .overview-icon,
+#zorintaskbarScrollview .app-well-app:checked .overview-icon,
+#zorintaskbarScrollview .grid-search-result:focus .overview-icon {
+  background-color: rgba(54,108,246,0.18);
+}
+
+#zorintaskbarScrollview .app-well-app-running-dot {
+  background-color: #366CF6;
+}
+
+
+/* Zorin Menu compatibility */
+.all-layout-box,
+.apps-only-layout-box,
+.shortcuts-only-layout-box,
+.grid-layout-box {
+  background-color: rgba(255,255,255,0.96);
+  color: #172033;
+  border-radius: 18px;
+}
+
+.grid-layout-box .app-item,
+.list-search-result,
+.grid-layout-box .session-box .user-menu-item,
+.session-buttons-section .system-menu-action {
+  border-radius: 14px;
+}
+
+.grid-layout-box .app-item:hover,
+.list-search-result:hover,
+.grid-layout-box .session-box .user-menu-item:hover,
+.session-buttons-section .system-menu-action:hover {
+  background-color: rgba(54,108,246,0.12);
+}
+
+.grid-layout-box .app-item:focus,
+.list-search-result:focus,
+.grid-layout-box .session-box .user-menu-item:focus,
+.session-buttons-section .system-menu-action:focus {
+  background-color: rgba(54,108,246,0.18);
+  box-shadow: inset 0 0 0 2px rgba(36,79,198,0.48);
+}
