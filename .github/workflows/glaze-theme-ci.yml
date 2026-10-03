@@ -5,6 +5,7 @@ on:
     paths:
       - 'themes/glaze-v1.7/**'
       - '.github/workflows/glaze-theme-ci.yml'
+      - 'README.md'
       - 'CHANGELOGS.md'
       - 'IMPLEMENTED-FEATURES.md'
       - 'PLANNED-FEATURES.md'
@@ -58,3 +59,27 @@ jobs:
           for css in "themes/glaze-v1.7/variants/GoreeCloud-Glaze/gtk-4.0/gtk.css" "themes/glaze-v1.7/variants/GoreeCloud-Glaze-Dark/gtk-4.0/gtk.css"; do
             /usr/bin/python3 -c 'import gi,sys; gi.require_version("Gtk","4.0"); from gi.repository import Gtk; p=Gtk.CssProvider(); p.load_from_path(sys.argv[1]); print("GTK 4 parsed:", sys.argv[1])' "$css"
           done
+
+      - name: Build Development archive twice
+        run: |
+          python3 themes/glaze-v1.7/scripts/build_package.py "${{ runner.temp }}/build-a"
+          python3 themes/glaze-v1.7/scripts/build_package.py "${{ runner.temp }}/build-b"
+
+      - name: Verify deterministic Development archive
+        run: |
+          set -eu
+          a="${{ runner.temp }}/build-a/goreecloud-glaze-zorin-0.1.0-dev.1.tar.gz"
+          b="${{ runner.temp }}/build-b/goreecloud-glaze-zorin-0.1.0-dev.1.tar.gz"
+          cmp "$a" "$b"
+          cp "$a" ./goreecloud-glaze-zorin-0.1.0-dev.1.tar.gz
+          sha256sum ./goreecloud-glaze-zorin-0.1.0-dev.1.tar.gz | tee ./goreecloud-glaze-zorin-0.1.0-dev.1.tar.gz.sha256
+
+      - name: Preserve Development archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: goreecloud-glaze-zorin-0.1.0-dev.1-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            goreecloud-glaze-zorin-0.1.0-dev.1.tar.gz
+            goreecloud-glaze-zorin-0.1.0-dev.1.tar.gz.sha256
+          if-no-files-found: error
+          retention-days: 30
