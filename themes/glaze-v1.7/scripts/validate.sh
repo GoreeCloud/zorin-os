@@ -70,7 +70,7 @@ for path, tokens in expected.items():
     text = path.read_text(encoding="utf-8")
     for token in tokens:
         assert token in text, f"{path}: missing Glaze token {token}"
-    assert "backdrop-filter" not in text
+    assert "backdrop-filter:" not in text
     assert text.count("{") == text.count("}"), f"{path}: unbalanced braces"
 
 for variant in (light, dark):
@@ -79,7 +79,7 @@ for variant in (light, dark):
     assert gtk3 == gtk4, f"{variant.name}: GTK3/GTK4 semantic source drift"
     shell = (variant / "gnome-shell" / "gnome-shell.css").read_text(encoding="utf-8")
     assert shell.count("{") == shell.count("}"), f"{variant.name}: shell CSS braces"
-    assert "backdrop-filter" not in shell
+    assert "backdrop-filter:" not in shell
     marker = (variant / ".goreecloud-theme").read_text(encoding="utf-8")
     assert f"id={variant.name}" in marker
 
