@@ -43,7 +43,7 @@ window,
 headerbar,
 .titlebar,
 .toolbar {
-  min-height: 44px;
+  min-height: 36px;
   padding: 6px 10px;
   background-image: linear-gradient(to bottom, rgba(255,255,255,0.96), rgba(248,251,255,0.86));
   background-color: @glz_surface_strong;
