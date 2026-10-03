@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "id": "com.goreecloud.zorin.theme.glaze-v1-7",
+  "name": "GoreeCloud Glaze",
+  "version": "0.1.0-dev.1",
+  "lifecycle": "development",
+  "platform": "Zorin OS / GNOME",
+  "designSystem": {
+    "product": "Glaze V1.7",
+    "version": "1.7.0",
+    "lifecycle": "anchor",
+    "consumerEligible": true,
+    "consumerAcceptance": "pending",
+    "repository": "GoreeCloud/glaze",
+    "verifiedRepositoryRevision": "1a5756daed2294155be2e9972b24f580f6222b7b",
+    "sourceQualificationAnchor": "7c4ded83d7a8725165bb6a55dfb175667cc9589e",
+    "stableRuntime": "js/glaze-v1.7.0.mjs",
+    "inheritedAcceptedRuntime": "1.6.0",
+    "retainedDev47Included": false,
+    "section48Included": false
+  },
+  "variants": [
+    {
+      "id": "GoreeCloud-Glaze",
+      "appearance": "light"
+    },
+    {
+      "id": "GoreeCloud-Glaze-Dark",
+      "appearance": "dark"
+    }
+  ],
+  "surfaces": [
+    "gtk-3.0",
+    "gtk-4.0",
+    "gnome-shell"
+  ],
+  "nativeAcceptance": {
+    "status": "pending",
+    "representativeZorinRuntimeRequired": true,
+    "humanVisualReviewRequired": true,
+    "accessibilityReviewRequired": true
+  },
+  "targetSystems": {
+    "primary": {
+      "product": "Zorin OS 18.1",
+      "editionScope": "Core and Pro GNOME editions",
+      "base": "Ubuntu 24.04 LTS",
+      "sourceLevelValidation": "required"
+    },
+    "compatibility": [
+      {
+        "product": "Zorin OS 17.3",
+        "editionScope": "Core and Pro GNOME editions",
+        "base": "Ubuntu 22.04 LTS",
+        "sourceLevelValidation": "required"
+      }
+    ],
+    "nativeRenderedAcceptance": "pending"
+  },
+  "libadwaita": {
+    "themeSourcePresent": true,
+    "zorinOptInMarkerIncluded": false,
+    "reason": "Native libadwaita opt-in remains blocked until representative Zorin compatibility testing is complete."
+  }
+}

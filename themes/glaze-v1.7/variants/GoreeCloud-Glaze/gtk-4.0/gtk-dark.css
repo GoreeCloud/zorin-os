@@ -1,0 +1,388 @@
+/*
+ * GoreeCloud Glaze for Zorin OS — Dark
+ * Development theme source targeting Glaze V1.7 / 1.7.0 Stable semantics.
+ */
+
+@define-color glz_canvas #0D1119;
+@define-color glz_canvas_accent #121824;
+@define-color glz_surface rgba(25,32,45,0.78);
+@define-color glz_surface_strong rgba(24,31,44,0.96);
+@define-color glz_surface_muted rgba(31,39,54,0.86);
+@define-color glz_text #F3F6FB;
+@define-color glz_muted #A1AEC0;
+@define-color glz_line rgba(193,207,229,0.12);
+@define-color glz_accent #7AA2FF;
+@define-color glz_accent_secondary #A594FF;
+@define-color glz_on_accent #0B1020;
+@define-color glz_info #8AB4FF;
+@define-color glz_success #73D9A2;
+@define-color glz_warning #F7C36C;
+@define-color glz_danger #FF8A80;
+@define-color glz_focus #A9C2FF;
+@define-color glz_selection rgba(122,162,255,0.24);
+@define-color glz_scrim rgba(0,0,0,0.62);
+
+* {
+  color: @glz_text;
+  caret-color: @glz_accent;
+  outline-color: @glz_focus;
+}
+
+window,
+.background,
+.view {
+  background-color: @glz_canvas;
+  color: @glz_text;
+}
+
+headerbar,
+.titlebar,
+.toolbar {
+  min-height: 44px;
+  padding: 6px 10px;
+  background-image: linear-gradient(to bottom, rgba(31,39,54,0.96), rgba(24,31,44,0.90));
+  background-color: @glz_surface_strong;
+  color: @glz_text;
+  border: 0;
+  border-bottom: 1px solid @glz_line;
+  box-shadow: 0 18px 54px rgba(0,0,0,0.18);
+}
+
+headerbar:backdrop,
+.titlebar:backdrop {
+  background-image: none;
+  background-color: @glz_surface_muted;
+  color: @glz_muted;
+}
+
+button {
+  min-height: 32px;
+  min-width: 32px;
+  padding: 5px 12px;
+  border: 1px solid @glz_line;
+  border-radius: 16px;
+  background-image: none;
+  background-color: @glz_surface;
+  color: @glz_text;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.14);
+}
+
+button:hover {
+  background-color: @glz_surface_strong;
+  border-color: rgba(122,162,255,0.34);
+}
+
+button:active,
+button:checked {
+  background-color: @glz_selection;
+  border-color: rgba(122,162,255,0.44);
+}
+
+button:focus {
+  box-shadow: 0 0 0 3px rgba(169,194,255,0.34);
+  border-color: @glz_focus;
+}
+
+button.suggested-action,
+.suggested-action {
+  background-color: @glz_accent;
+  color: @glz_on_accent;
+  border-color: @glz_accent;
+  box-shadow: 0 8px 22px rgba(122,162,255,0.18);
+}
+
+button.suggested-action:hover {
+  background-color: #91B3FF;
+}
+
+button.destructive-action,
+.destructive-action {
+  background-color: @glz_danger;
+  color: #0B1020;
+  border-color: @glz_danger;
+}
+
+button.flat {
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+button.flat:hover {
+  background-color: rgba(122,162,255,0.10);
+}
+
+button:disabled,
+entry:disabled,
+spinbutton:disabled,
+combobox:disabled,
+switch:disabled {
+  opacity: 0.55;
+}
+
+entry,
+spinbutton,
+combobox,
+dropdown {
+  min-height: 36px;
+  padding: 4px 10px;
+  border: 1px solid @glz_line;
+  border-radius: 14px;
+  background-color: @glz_surface_strong;
+  color: @glz_text;
+}
+
+entry:focus,
+spinbutton:focus,
+combobox:focus,
+dropdown:focus {
+  border-color: @glz_focus;
+  box-shadow: 0 0 0 3px rgba(169,194,255,0.26);
+}
+
+entry placeholder,
+.placeholder {
+  color: @glz_muted;
+  opacity: 0.72;
+}
+
+textview,
+textview text,
+treeview.view,
+list,
+listview,
+columnview {
+  background-color: @glz_surface_strong;
+  color: @glz_text;
+}
+
+textview text selection,
+entry selection,
+selection,
+*:selected {
+  background-color: @glz_selection;
+  color: @glz_text;
+}
+
+frame,
+.card,
+.preferences-group,
+.content {
+  border-color: @glz_line;
+  border-radius: 18px;
+}
+
+.sidebar,
+.navigation-sidebar,
+.navigation-rail {
+  background-color: @glz_surface_muted;
+  color: @glz_text;
+  border-right: 1px solid @glz_line;
+}
+
+.sidebar row,
+.navigation-sidebar row {
+  min-height: 38px;
+  margin: 2px 6px;
+  padding: 3px 8px;
+  border-radius: 12px;
+}
+
+.sidebar row:hover,
+.navigation-sidebar row:hover {
+  background-color: rgba(122,162,255,0.10);
+}
+
+.sidebar row:selected,
+.navigation-sidebar row:selected {
+  background-color: @glz_selection;
+  color: @glz_text;
+}
+
+notebook > header {
+  background-color: @glz_surface_muted;
+  border-color: @glz_line;
+}
+
+notebook > header > tabs > tab {
+  min-height: 34px;
+  padding: 4px 12px;
+  border-radius: 12px;
+  color: @glz_muted;
+}
+
+notebook > header > tabs > tab:checked {
+  background-color: @glz_surface_strong;
+  color: @glz_text;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+
+popover,
+popover.background,
+menu,
+.menu,
+.popup {
+  padding: 6px;
+  background-color: @glz_surface_strong;
+  color: @glz_text;
+  border: 1px solid @glz_line;
+  border-radius: 18px;
+  box-shadow: 0 18px 54px rgba(0,0,0,0.24);
+}
+
+popover modelbutton,
+menuitem {
+  min-height: 34px;
+  padding: 4px 10px;
+  border-radius: 10px;
+}
+
+popover modelbutton:hover,
+menuitem:hover {
+  background-color: @glz_selection;
+}
+
+tooltip,
+tooltip.background {
+  padding: 6px 10px;
+  background-color: #F3F6FB;
+  color: #0B1020;
+  border-radius: 10px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.30);
+}
+
+tooltip label {
+  color: #0B1020;
+}
+
+dialog,
+.dialog,
+messagedialog {
+  background-color: @glz_surface_strong;
+  color: @glz_text;
+  border-radius: 22px;
+}
+
+separator {
+  min-width: 1px;
+  min-height: 1px;
+  background-color: @glz_line;
+}
+
+switch {
+  min-width: 42px;
+  min-height: 24px;
+  border-radius: 999px;
+  background-color: rgba(161,174,192,0.28);
+  border: 1px solid @glz_line;
+}
+
+switch:checked {
+  background-color: @glz_accent;
+  border-color: @glz_accent;
+}
+
+switch slider {
+  min-width: 20px;
+  min-height: 20px;
+  margin: 1px;
+  border-radius: 999px;
+  background-color: #F3F6FB;
+  box-shadow: 0 2px 7px rgba(0,0,0,0.32);
+}
+
+check,
+radio {
+  min-width: 18px;
+  min-height: 18px;
+  border: 1px solid rgba(193,207,229,0.30);
+  background-color: @glz_surface_strong;
+}
+
+check {
+  border-radius: 6px;
+}
+
+radio {
+  border-radius: 999px;
+}
+
+check:checked,
+radio:checked {
+  background-color: @glz_accent;
+  color: @glz_on_accent;
+  border-color: @glz_accent;
+}
+
+scale trough,
+progressbar trough {
+  min-height: 6px;
+  border-radius: 999px;
+  background-color: rgba(161,174,192,0.18);
+}
+
+scale highlight,
+progressbar progress {
+  min-height: 6px;
+  border-radius: 999px;
+  background-color: @glz_accent;
+}
+
+scale slider {
+  min-width: 18px;
+  min-height: 18px;
+  margin: -6px;
+  border-radius: 999px;
+  background-color: @glz_surface_strong;
+  border: 2px solid @glz_accent;
+  box-shadow: 0 4px 12px rgba(122,162,255,0.18);
+}
+
+scrollbar {
+  background-color: transparent;
+}
+
+scrollbar slider {
+  min-width: 8px;
+  min-height: 24px;
+  margin: 3px;
+  border-radius: 999px;
+  background-color: rgba(161,174,192,0.34);
+}
+
+scrollbar slider:hover {
+  background-color: rgba(122,162,255,0.52);
+}
+
+infobar.info,
+.info {
+  color: @glz_info;
+}
+
+infobar.warning,
+.warning {
+  color: @glz_warning;
+}
+
+infobar.error,
+.error {
+  color: @glz_danger;
+}
+
+.success {
+  color: @glz_success;
+}
+
+decoration {
+  border-radius: 16px;
+  box-shadow: 0 18px 54px rgba(0,0,0,0.24);
+}
+
+*:link {
+  color: @glz_info;
+}
+
+*:visited {
+  color: @glz_accent_secondary;
+}
+
