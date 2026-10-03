@@ -39,5 +39,27 @@
     "representativeZorinRuntimeRequired": true,
     "humanVisualReviewRequired": true,
     "accessibilityReviewRequired": true
+  },
+  "targetSystems": {
+    "primary": {
+      "product": "Zorin OS 18.1",
+      "editionScope": "Core and Pro GNOME editions",
+      "base": "Ubuntu 24.04 LTS",
+      "sourceLevelValidation": "required"
+    },
+    "compatibility": [
+      {
+        "product": "Zorin OS 17.3",
+        "editionScope": "Core and Pro GNOME editions",
+        "base": "Ubuntu 22.04 LTS",
+        "sourceLevelValidation": "required"
+      }
+    ],
+    "nativeRenderedAcceptance": "pending"
+  },
+  "libadwaita": {
+    "themeSourcePresent": true,
+    "zorinOptInMarkerIncluded": false,
+    "reason": "Native libadwaita opt-in remains blocked until representative Zorin compatibility testing is complete."
   }
 }
