@@ -48,31 +48,13 @@ jobs:
       - name: Parse GTK 3 theme sources
         run: |
           set -eu
-          for css in             themes/glaze-v1.7/variants/GoreeCloud-Glaze/gtk-3.0/gtk.css             themes/glaze-v1.7/variants/GoreeCloud-Glaze-Dark/gtk-3.0/gtk.css
-          do
-            /usr/bin/python3 - "$css" <<'PY'
-import gi
-import sys
-gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk
-provider = Gtk.CssProvider()
-provider.load_from_path(sys.argv[1])
-print("GTK 3 parsed:", sys.argv[1])
-PY
+          for css in "themes/glaze-v1.7/variants/GoreeCloud-Glaze/gtk-3.0/gtk.css" "themes/glaze-v1.7/variants/GoreeCloud-Glaze-Dark/gtk-3.0/gtk.css"; do
+            /usr/bin/python3 -c 'import gi,sys; gi.require_version("Gtk","3.0"); from gi.repository import Gtk; p=Gtk.CssProvider(); p.load_from_path(sys.argv[1]); print("GTK 3 parsed:", sys.argv[1])' "$css"
           done
 
       - name: Parse GTK 4 theme sources
         run: |
           set -eu
-          for css in             themes/glaze-v1.7/variants/GoreeCloud-Glaze/gtk-4.0/gtk.css             themes/glaze-v1.7/variants/GoreeCloud-Glaze-Dark/gtk-4.0/gtk.css
-          do
-            /usr/bin/python3 - "$css" <<'PY'
-import gi
-import sys
-gi.require_version("Gtk", "4.0")
-from gi.repository import Gtk
-provider = Gtk.CssProvider()
-provider.load_from_path(sys.argv[1])
-print("GTK 4 parsed:", sys.argv[1])
-PY
+          for css in "themes/glaze-v1.7/variants/GoreeCloud-Glaze/gtk-4.0/gtk.css" "themes/glaze-v1.7/variants/GoreeCloud-Glaze-Dark/gtk-4.0/gtk.css"; do
+            /usr/bin/python3 -c 'import gi,sys; gi.require_version("Gtk","4.0"); from gi.repository import Gtk; p=Gtk.CssProvider(); p.load_from_path(sys.argv[1]); print("GTK 4 parsed:", sys.argv[1])' "$css"
           done
