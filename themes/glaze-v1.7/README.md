@@ -28,17 +28,17 @@ GTK and GNOME Shell do not provide one portable backdrop-blur contract across su
 
 Run:
 
-    themes/glaze-v1.7/scripts/install.sh
+    bash themes/glaze-v1.7/scripts/install.sh
 
 This installs both variants into the current user's theme directory without changing the active theme.
 
 To install and apply the GTK light variant:
 
-    themes/glaze-v1.7/scripts/install.sh --apply light
+    bash themes/glaze-v1.7/scripts/install.sh --apply light
 
 To install and apply the GTK dark variant:
 
-    themes/glaze-v1.7/scripts/install.sh --apply dark
+    bash themes/glaze-v1.7/scripts/install.sh --apply dark
 
 The installer does not modify icon or cursor themes.
 
@@ -46,11 +46,11 @@ The installer does not modify icon or cursor themes.
 
 The package includes GNOME Shell CSS, but applying a custom Shell theme requires a compatible User Themes extension. If that extension and its settings schema are available, run:
 
-    themes/glaze-v1.7/scripts/install.sh --apply light --apply-shell
+    bash themes/glaze-v1.7/scripts/install.sh --apply light --apply-shell
 
 or:
 
-    themes/glaze-v1.7/scripts/install.sh --apply dark --apply-shell
+    bash themes/glaze-v1.7/scripts/install.sh --apply dark --apply-shell
 
 If the extension is not present, the installer leaves the Shell theme untouched and reports that condition.
 
@@ -68,7 +68,7 @@ The source maps Glaze semantic roles rather than treating the theme as a palette
 - light and dark semantic foregrounds;
 - clear disabled states;
 - bounded rounded geometry rather than uniform pill styling;
-- a Reduced Motion CSS fallback where the toolkit supports the media feature;
+- no theme-authored decorative animation, so Reduced Motion does not have to disable theme-level motion;
 - no dependency on blur for contrast or hierarchy.
 
 Color remains a supporting signal; applications remain responsible for labels, icons, accessible names, and semantic status.
@@ -77,7 +77,7 @@ Color remains a supporting signal; applications remain responsible for labels, i
 
 Run:
 
-    themes/glaze-v1.7/scripts/validate.sh
+    bash themes/glaze-v1.7/scripts/validate.sh
 
 The validation checks package structure, Glaze V1.7 authority metadata, light/dark token mappings, brace balance, installer isolation, safe uninstall behavior, and the absence of unsupported/private blur dependencies.
 
