@@ -9,7 +9,7 @@ GoreeCloud Glaze is a from-scratch Zorin OS / GNOME theme package that maps the 
 - Glaze target: Glaze V1.7 / 1.7.0
 - Glaze authority verified at: 1a5756daed2294155be2e9972b24f580f6222b7b
 - V1.7 source qualification anchor: 7c4ded83d7a8725165bb6a55dfb175667cc9589e
-- Consumer/native acceptance: pending
+- Consumer/native acceptance: pending\n- Primary current target: Zorin OS 18.1 Core/Pro (Ubuntu 24.04 base)\n- Compatibility target: Zorin OS 17.3 Core/Pro (Ubuntu 22.04 base)
 
 Glaze V1.7.0 is a bounded Stable release that inherits the accepted V1.6.0 runtime. This theme deliberately uses those Stable semantics and does not import retained dev.47 or Section 48 behavior that moved to V1.7.1.
 
@@ -56,7 +56,7 @@ If the extension is not present, the installer leaves the Shell theme untouched 
 
 ## GTK 4 and libadwaita
 
-The package ships a GTK 4 stylesheet for applications that honor GTK theme providers. The installer does not inject CSS into the user's global ~/.config/gtk-4.0 directory and does not force unsupported libadwaita theming. Native libadwaita color-scheme and accessibility behavior remain intact unless an application explicitly opts into this theme.
+The package ships a GTK 4 stylesheet for applications that honor GTK theme providers. Zorin OS 17 and newer can opt third-party GTK 4 themes into native libadwaita styling with a `.libadwaita` marker, but this Development package intentionally does not ship that marker yet. The opt-in remains gated on representative Zorin compatibility testing so native libadwaita applications are not themed before their widgets and accessibility behavior are verified.
 
 ## Accessibility and state design
 
@@ -81,7 +81,7 @@ Run:
 
 The validation checks package structure, Glaze V1.7 authority metadata, light/dark token mappings, brace balance, installer isolation, safe uninstall behavior, and the absence of unsupported/private blur dependencies.
 
-Repository CI runs the same validator for theme changes.
+Repository CI runs the same validator plus GTK 3 and GTK 4 parser checks for theme changes.\n\nTo build a deterministic Development archive locally, run:\n\n    python3 themes/glaze-v1.7/scripts/build_package.py /tmp/goreecloud-glaze-build\n\nThe builder writes a `.tar.gz` package and matching SHA-256 file without changing the installed desktop theme.
 
 ## Current acceptance boundary
 
