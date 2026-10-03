@@ -154,3 +154,36 @@ StButton:focus {
 #zorintaskbarScrollview .app-well-app-running-dot {
   background-color: #366CF6;
 }
+
+
+/* Zorin Menu compatibility */
+.all-layout-box,
+.apps-only-layout-box,
+.shortcuts-only-layout-box,
+.grid-layout-box {
+  background-color: rgba(255,255,255,0.96);
+  color: #172033;
+  border-radius: 18px;
+}
+
+.grid-layout-box .app-item,
+.list-search-result,
+.grid-layout-box .session-box .user-menu-item,
+.session-buttons-section .system-menu-action {
+  border-radius: 14px;
+}
+
+.grid-layout-box .app-item:hover,
+.list-search-result:hover,
+.grid-layout-box .session-box .user-menu-item:hover,
+.session-buttons-section .system-menu-action:hover {
+  background-color: rgba(54,108,246,0.12);
+}
+
+.grid-layout-box .app-item:focus,
+.list-search-result:focus,
+.grid-layout-box .session-box .user-menu-item:focus,
+.session-buttons-section .system-menu-action:focus {
+  background-color: rgba(54,108,246,0.18);
+  box-shadow: inset 0 0 0 2px rgba(36,79,198,0.48);
+}
