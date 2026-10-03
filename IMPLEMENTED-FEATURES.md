@@ -18,6 +18,7 @@ The repository contains a from-scratch GoreeCloud Glaze desktop theme under `the
 - GTK 4 styling;
 - GTK 3 and GTK 4 dark-preference stylesheets;
 - GNOME Shell styling;
+- Zorin Taskbar and Zorin Menu Shell compatibility selectors;
 - Glaze V1.7 semantic light/dark color mapping;
 - readability-first solid content surfaces and bounded translucent chrome;
 - semantic focus, selection, success, information, warning, danger, and disabled states;
@@ -34,11 +35,12 @@ The implementation targets current Glaze V1.7 / 1.7.0 Stable/Anchor semantics an
 
 Current automated-qualified source evidence:
 
-- exact candidate: `ef0e7655ea83b724b7796196b4abe82120fa6c08`;
-- workflow run: `37157005575`;
-- Development artifact: `11285823964`;
+- exact candidate: `5283b55c8cf9e1817c4ff78535d0bfabd9eb948f`;
+- workflow run: `37157256520`;
+- Development artifact: `11285403723`;
 - inner archive: `goreecloud-glaze-zorin-0.1.0-dev.1.tar.gz`;
-- inner archive SHA-256: `8d2ffb72f4639b16a6b4af3d8a11c7c7f39f04fa55087b67eaaa6f887d577a3a`.
+- inner archive SHA-256: `cdbf985a2472793ea0ca5071f83a52fca0624111e77da90fa54a18d4ae020148`;
+- Actions ZIP digest: `sha256:fee4e9560fd243bbe79a01347ca813c1aa72345329ce4738713ca38dfecf6080`.
 
 Representative Zorin OS native rendering, human visual review, accessibility review, applied GNOME Shell review, libadwaita opt-in acceptance, and downstream Glaze consumer acceptance remain separate gates and are not claimed by this implemented-source record.
 
