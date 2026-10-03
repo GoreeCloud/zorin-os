@@ -1,4 +1,4 @@
-name: GoreeCloud Glaze V1.7 Theme Validation
+# Exact-head validation also covers repository-record reconciliation commits.\nname: GoreeCloud Glaze V1.7 Theme Validation
 
 on:
   pull_request:
