@@ -83,3 +83,35 @@ jobs:
             goreecloud-glaze-zorin-0.1.0-dev.1.tar.gz.sha256
           if-no-files-found: error
           retention-days: 30
+
+
+  validate-zorin-17-base:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out exact source revision
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+
+      - name: Validate GoreeCloud Glaze source
+        run: bash themes/glaze-v1.7/scripts/validate.sh
+
+      - name: Install GTK parser dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-gi gir1.2-gtk-3.0 gir1.2-gtk-4.0
+
+      - name: Parse GTK 3 theme sources
+        run: |
+          set -eu
+          for css in "themes/glaze-v1.7/variants/GoreeCloud-Glaze/gtk-3.0/gtk.css" "themes/glaze-v1.7/variants/GoreeCloud-Glaze-Dark/gtk-3.0/gtk.css"; do
+            /usr/bin/python3 -c 'import gi,sys; gi.require_version("Gtk","3.0"); from gi.repository import Gtk; p=Gtk.CssProvider(); p.load_from_path(sys.argv[1]); print("GTK 3 parsed:", sys.argv[1])' "$css"
+          done
+
+      - name: Parse GTK 4 theme sources
+        run: |
+          set -eu
+          for css in "themes/glaze-v1.7/variants/GoreeCloud-Glaze/gtk-4.0/gtk.css" "themes/glaze-v1.7/variants/GoreeCloud-Glaze-Dark/gtk-4.0/gtk.css"; do
+            /usr/bin/python3 -c 'import gi,sys; gi.require_version("Gtk","4.0"); from gi.repository import Gtk; p=Gtk.CssProvider(); p.load_from_path(sys.argv[1]); print("GTK 4 parsed:", sys.argv[1])' "$css"
+          done
