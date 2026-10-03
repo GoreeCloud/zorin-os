@@ -4,11 +4,15 @@
 
 - Added the new GoreeCloud Glaze theme package under `themes/glaze-v1.7/`.
 - Added light-first `GoreeCloud-Glaze` and dark `GoreeCloud-Glaze-Dark` variants with GTK 3, GTK 4, and GNOME Shell presentation.
+- Added `gtk-dark.css` paths so applications requesting dark presentation can retain the Glaze dark semantic palette even when the light desktop variant is selected.
 - Bound the theme metadata to current Glaze V1.7 / 1.7.0 Stable/Anchor authority as verified at GoreeCloud/glaze revision `1a5756daed2294155be2e9972b24f580f6222b7b`.
 - Preserved the V1.7 Stable boundary: retained dev.47 and Section 48 Development behavior are not imported into this theme.
+- Defined Zorin OS 18.1 / Ubuntu 24.04 as the primary source-validation target and Zorin OS 17.3 / Ubuntu 22.04 as the compatibility target, without converting source-level checks into native rendered acceptance.
 - Added semantic light/dark color roles, bounded surface depth, coordinated geometry, focus and selection states, disabled states, navigation surfaces, dialogs, menus, switches, progress, scrollbars, and GNOME Shell chrome.
-- Added a guarded user-scoped installer, reversible uninstaller, deterministic source validator, and GitHub Actions validation workflow.
-- Kept the theme lifecycle at Development with native Zorin rendering, human visual/accessibility review, and consumer acceptance still pending. Source implementation and automated validation do not constitute Stable or production acceptance.
+- Added a guarded user-scoped installer, reversible uninstaller, deterministic source validator, and deterministic Development archive builder.
+- Added GitHub Actions validation on Ubuntu 24.04 plus Ubuntu 22.04 compatibility parsing. Exact head `ef0e7655ea83b724b7796196b4abe82120fa6c08` passed both jobs and produced a reproducible Development archive.
+- Preserved the generated archive as Actions artifact `11285823964`; its inner `goreecloud-glaze-zorin-0.1.0-dev.1.tar.gz` has SHA-256 `8d2ffb72f4639b16a6b4af3d8a11c7c7f39f04fa55087b67eaaa6f887d577a3a`.
+- Kept the theme lifecycle at Development with native Zorin rendering, human visual/accessibility review, GNOME Shell applied review, libadwaita opt-in review, and downstream Glaze consumer acceptance still pending. Automated validation does not constitute Stable or production acceptance.
 
 ## 2026-09-27 — Care Drive feature-roadmap migration
 
