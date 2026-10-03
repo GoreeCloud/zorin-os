@@ -9,18 +9,25 @@ DARK="$ROOT/variants/GoreeCloud-Glaze-Dark"
 required_files=(
   "$METADATA"
   "$ROOT/README.md"
+  "$ROOT/NATIVE-ACCEPTANCE.md"
   "$LIGHT/index.theme"
   "$LIGHT/.goreecloud-theme"
   "$LIGHT/gtk-3.0/gtk.css"
+  "$LIGHT/gtk-3.0/gtk-dark.css"
   "$LIGHT/gtk-4.0/gtk.css"
+  "$LIGHT/gtk-4.0/gtk-dark.css"
   "$LIGHT/gnome-shell/gnome-shell.css"
   "$DARK/index.theme"
   "$DARK/.goreecloud-theme"
   "$DARK/gtk-3.0/gtk.css"
+  "$DARK/gtk-3.0/gtk-dark.css"
   "$DARK/gtk-4.0/gtk.css"
+  "$DARK/gtk-4.0/gtk-dark.css"
   "$DARK/gnome-shell/gnome-shell.css"
   "$ROOT/scripts/install.sh"
   "$ROOT/scripts/uninstall.sh"
+  "$ROOT/scripts/native-preflight.sh"
+  "$ROOT/scripts/build_package.py"
 )
 
 for file in "${required_files[@]}"; do
@@ -30,6 +37,8 @@ done
 bash -n "$ROOT/scripts/install.sh"
 bash -n "$ROOT/scripts/uninstall.sh"
 bash -n "$ROOT/scripts/validate.sh"
+bash -n "$ROOT/scripts/native-preflight.sh"
+python3 -m py_compile "$ROOT/scripts/build_package.py"
 
 python3 - "$METADATA" "$LIGHT" "$DARK" <<'PY'
 import json
@@ -55,6 +64,17 @@ assert glaze["sourceQualificationAnchor"] == "7c4ded83d7a8725165bb6a55dfb175667c
 assert glaze["retainedDev47Included"] is False
 assert glaze["section48Included"] is False
 
+targets = data["targetSystems"]
+assert targets["primary"]["product"] == "Zorin OS 18.1"
+assert targets["primary"]["base"] == "Ubuntu 24.04 LTS"
+assert targets["compatibility"][0]["product"] == "Zorin OS 17.3"
+assert targets["compatibility"][0]["base"] == "Ubuntu 22.04 LTS"
+assert targets["nativeRenderedAcceptance"] == "pending"
+
+libadwaita = data["libadwaita"]
+assert libadwaita["themeSourcePresent"] is True
+assert libadwaita["zorinOptInMarkerIncluded"] is False
+
 expected = {
     light / "gtk-3.0" / "gtk.css": [
         "#EEF3F9", "#172033", "#366CF6", "#244FC6", "#B42318",
@@ -73,10 +93,19 @@ for path, tokens in expected.items():
     assert "backdrop-filter:" not in text
     assert text.count("{") == text.count("}"), f"{path}: unbalanced braces"
 
+dark_gtk3 = (dark / "gtk-3.0" / "gtk.css").read_bytes()
+dark_gtk4 = (dark / "gtk-4.0" / "gtk.css").read_bytes()
+assert dark_gtk3 == dark_gtk4, "dark GTK3/GTK4 semantic source drift"
+
 for variant in (light, dark):
     gtk3 = (variant / "gtk-3.0" / "gtk.css").read_bytes()
     gtk4 = (variant / "gtk-4.0" / "gtk.css").read_bytes()
     assert gtk3 == gtk4, f"{variant.name}: GTK3/GTK4 semantic source drift"
+    assert (variant / "gtk-3.0" / "gtk-dark.css").read_bytes() == dark_gtk3
+    assert (variant / "gtk-4.0" / "gtk-dark.css").read_bytes() == dark_gtk4
+    assert not (variant / "gtk-4.0" / ".libadwaita").exists(), (
+        f"{variant.name}: native libadwaita opt-in remains acceptance-gated"
+    )
     shell = (variant / "gnome-shell" / "gnome-shell.css").read_text(encoding="utf-8")
     assert shell.count("{") == shell.count("}"), f"{variant.name}: shell CSS braces"
     assert "backdrop-filter:" not in shell
