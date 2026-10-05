@@ -17,7 +17,7 @@ done
 
 TRACKED_CHANGES=$(git -C "$REPO_ROOT" status --porcelain --untracked-files=no -- apps/goreecloud-care .github/workflows/care-ci.yml)
 [ -z "$TRACKED_CHANGES" ] || {
-  echo "Tracked Care/CI changes are present. Commit/stash them before preparing exact-source V1.4 acceptance evidence." >&2
+  echo "Tracked Care/CI changes are present. Commit/stash them before preparing exact-source dev3 representative acceptance evidence." >&2
   printf '%s\n' "$TRACKED_CHANGES" >&2
   exit 2
 }
@@ -76,7 +76,7 @@ PACKAGE=$EXPECTED_PACKAGE
 }
 PACKAGE_VERSION=$(dpkg-deb -f "$PACKAGE" Version)
 [ "$PACKAGE_VERSION" = "$EXPECTED_PACKAGE_VERSION" ] || {
-  echo "Representative V1.4 harness expects package $EXPECTED_PACKAGE_VERSION; got $PACKAGE_VERSION" >&2
+  echo "Representative dev3 harness expects package $EXPECTED_PACKAGE_VERSION; got $PACKAGE_VERSION" >&2
   exit 2
 }
 sha256sum "$PACKAGE" > "$OUT/package.sha256"
