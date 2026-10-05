@@ -143,7 +143,7 @@ jobs:
         run: |
           cd dist
           sha256sum 'goreecloud-care_0.2.0~dev3_all.deb' | tee SHA256SUMS
-          printf 'source_revision=%s\nworkflow_run_id=%s\nlifecycle=development\nruntime_version=0.2.0-dev3\npackage_version=0.2.0~dev3\nglaze_ui_target=1.4.1\nglaze_ui_authority=4fab9da0fad2e5c974e0e66ec88632c61745751c\nglaze_ui_qualification_anchor=66478aed461b83c49b2ed027c3e4afc26520e98c\nglaze_ui_identity=optical-intelligence\nplatform_contract=0.2\nstable_promotion_authorized=false\nreproducible_package_verification=passed\ninstalled_lifecycle_prequalification=passed\nwardveil_installed_boundary_prequalification=passed\n' \
+          printf 'source_revision=%s\nworkflow_run_id=%s\nlifecycle=development\nruntime_version=0.2.0-dev3\npackage_version=0.2.0~dev3\nglaze_ui_implementation=1.4.1\nglaze_ui_target=1.5.0\nglaze_ui_implementation_authority=4fab9da0fad2e5c974e0e66ec88632c61745751c\nglaze_ui_implementation_qualification_anchor=66478aed461b83c49b2ed027c3e4afc26520e98c\nglaze_ui_identity=optical-intelligence\nplatform_contract=0.2\nstable_promotion_authorized=false\nreproducible_package_verification=passed\ninstalled_lifecycle_prequalification=passed\nwardveil_installed_boundary_prequalification=passed\n' \
             '${{ github.event.pull_request.head.sha || github.sha }}' \
             '${{ github.run_id }}' \
             > SOURCE_REVISION
@@ -234,7 +234,7 @@ jobs:
           }
           mkdir -p cross-env/evidence
           printf '%s  goreecloud-care_0.2.0~dev3_all.deb\n' "$JAMMY_SHA" > cross-env/evidence/SHA256SUMS.cross-environment
-          printf 'source_revision=%s\nlifecycle=development\nruntime_version=0.2.0-dev3\npackage_version=0.2.0~dev3\nglaze_ui_target=1.4.1\nglaze_ui_authority=4fab9da0fad2e5c974e0e66ec88632c61745751c\nglaze_ui_qualification_anchor=66478aed461b83c49b2ed027c3e4afc26520e98c\nplatform_contract=0.2\nstable_promotion_authorized=false\ncross_environment_reproducibility=passed\nubuntu_22_04_sha256=%s\nubuntu_24_04_sha256=%s\n' \
+          printf 'source_revision=%s\nlifecycle=development\nruntime_version=0.2.0-dev3\npackage_version=0.2.0~dev3\nglaze_ui_implementation=1.4.1\nglaze_ui_target=1.5.0\nglaze_ui_implementation_authority=4fab9da0fad2e5c974e0e66ec88632c61745751c\nglaze_ui_implementation_qualification_anchor=66478aed461b83c49b2ed027c3e4afc26520e98c\nplatform_contract=0.2\nstable_promotion_authorized=false\ncross_environment_reproducibility=passed\nubuntu_22_04_sha256=%s\nubuntu_24_04_sha256=%s\n' \
             '${{ github.event.pull_request.head.sha || github.sha }}' \
             "$JAMMY_SHA" "$NOBLE_SHA" \
             > cross-env/evidence/SOURCE_REVISION.cross-environment
