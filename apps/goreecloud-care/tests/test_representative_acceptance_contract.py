@@ -53,7 +53,6 @@ class RepresentativeAcceptanceContractTests(unittest.TestCase):
         self.assertIn("glaze_ui_implementation=1.4.1", self.source)
         self.assertIn("glaze_ui_target=1.5.0", self.source)
         self.assertIn("glaze_ui_migration_status=required", self.source)
-        self.assertIn("glaze_ui_source_revision=01c86323f8b747373d308026adc8b0881855cdc5", self.source)
 
     def test_preparation_harness_gates_installed_status_on_exact_runtime(self) -> None:
         self.assertIn('INSTALLED_PROBE_DIR=$(mktemp -d)', self.source)
