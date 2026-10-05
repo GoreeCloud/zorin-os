@@ -1,5 +1,7 @@
 # GoreeCloud Care — Stable 0.1.0 Specification
 
+> **Historical release-scoped specification.** Current repository/project authority is the root [PROJECT-SPECIFICATIONS.md](../../PROJECT-SPECIFICATIONS.md) together with [PROJECT-RECORD.md](../../PROJECT-RECORD.md). This file preserves the immutable Stable `0.1.0` requirements and acceptance boundary only; it must not be used to grant current Development acceptance.
+
 **Lifecycle:** Stable  
 **Released runtime/package:** `0.1.0` / `0.1.0`  
 **Immutable release source:** `bbc4779454c2887b810aa0ddc9e8a686a4c68ebd`  
